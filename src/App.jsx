@@ -1001,7 +1001,7 @@ export default function App() {
         .about-value-card__icon{ width:45px; height:45px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb,var(--value-color) 13%,transparent); }
         .about-value-card__num{ font-family:var(--mono); color:var(--value-color); font-size:11px; font-weight:700; }
         .about-value-card h3{ font-size:17px; margin:0 0 10px; }
-        .about-value-card p{ font-size:12.5px; line-height:1.75; color:var(--gray-on-light); margin:0; }
+        .about-value-card p{ font-size:14px; line-height:1.75; color:var(--gray-on-light); margin:0; }
 
         .about-journey{ background:var(--bg-light); }
         .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
