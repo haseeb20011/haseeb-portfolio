@@ -745,7 +745,7 @@ export default function App() {
           .hero h1{ max-width:100%; font-size:clamp(25px,7.65vw,34px); line-height:1.1; letter-spacing:-0.052em; text-wrap:balance; }
         }
 
-        .hero p.lead{ font-size:15.5px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
+        .hero p.lead{ font-size:16px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
         .hero p.lead strong{ color:#fff; font-weight:700; }
 
         .btn-row{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; }
