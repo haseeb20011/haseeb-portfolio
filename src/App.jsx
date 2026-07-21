@@ -909,7 +909,7 @@ export default function App() {
         @keyframes scrolldown{ 0%{ opacity:1; transform:translate(-50%,0);} 100%{ opacity:0; transform:translate(-50%,8px);} }
 
         /* ============ SECTION shared ============ */
-        .sec{ padding:96px 0; }
+        .sec{ padding:60px 0; }
         .sec-head{ margin-bottom:48px; max-width:640px; }
         .sec-head h2{ font-size:clamp(26px,3.6vw,38px); font-weight:800; letter-spacing:-0.02em; line-height:1.2; margin:0; }
         .sec-head p{ font-size:16px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
