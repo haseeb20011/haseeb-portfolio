@@ -743,12 +743,13 @@ export default function App() {
           color:#fff; padding:150px 0 70px; position:relative;
         }
         .hero__grid{ display:grid; grid-template-columns:1fr; gap:60px; align-items:center; }
-        @media (min-width:980px){ .hero__grid{ grid-template-columns:.88fr 1.12fr; gap:52px; } }
+        @media (min-width:980px){ .hero__grid{ grid-template-columns:1.04fr .96fr; gap:54px; } }
 
         .hi-badge{ display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--gray-on-dark); border:1px solid var(--line-dark); padding:6px 14px 6px 10px; border-radius:100px; margin-bottom:22px; }
 
-        .hero h1{ font-size:clamp(34px,5.2vw,52px); font-weight:800; line-height:1.1; letter-spacing:-0.035em; margin:0 0 22px; max-width:650px; }
-        .hero h1 .grad-text{ background:linear-gradient(95deg, var(--orange), #F06AA8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .hero h1{ font-size:clamp(36px,4.65vw,54px); font-weight:800; line-height:1.08; letter-spacing:-0.045em; margin:0 0 22px; max-width:700px; }
+        .hero-title-line{ display:block; }
+        .hero-title-line--accent{ background:linear-gradient(95deg, var(--orange), #F06AA8); -webkit-background-clip:text; background-clip:text; color:transparent; }
 
         .hero p.lead{ font-size:15.5px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
         .hero p.lead strong{ color:#fff; font-weight:700; }
@@ -764,68 +765,109 @@ export default function App() {
         .btn-white{ background:#fff; color:#0A0A12; }
         .btn-white:hover{ transform:translateY(-3px); box-shadow:0 16px 32px -16px rgba(0,0,0,0.4); }
 
-        .stats-row{ display:flex; gap:34px; flex-wrap:wrap; }
-        .stat-item{ display:flex; align-items:center; gap:10px; }
+        .stats-row{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; width:100%; max-width:760px; }
+        .stat-item{ min-width:0; display:flex; align-items:center; gap:10px; padding:12px 13px; border:1px solid var(--line-dark); border-radius:14px; background:rgba(255,255,255,.025); }
         .stat-ic{ width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex:none; }
-        .stat-item b{ display:block; font-size:19px; font-weight:800; }
-        .stat-item span{ font-size:11px; color:var(--gray-on-dark); }
+        .stat-item > div:last-child{ min-width:0; }
+        .stat-item b{ display:block; font-size:14px; line-height:1.25; font-weight:800; white-space:nowrap; }
+        .stat-item span{ display:block; margin-top:3px; font-size:10.5px; line-height:1.35; color:var(--gray-on-dark); white-space:nowrap; }
+        @media (max-width:1180px) and (min-width:980px){
+          .stats-row{ gap:10px; }
+          .stat-item{ padding:11px 10px; gap:8px; }
+          .stat-ic{ width:34px; height:34px; }
+          .stat-item b{ font-size:12.5px; }
+          .stat-item span{ font-size:9.5px; }
+        }
+        @media (max-width:720px){
+          .stats-row{ grid-template-columns:1fr; max-width:440px; }
+          .stat-item b,.stat-item span{ white-space:normal; }
+        }
 
-        .hero__visual{ position:relative; width:100%; min-width:0; }
-        .hero-showcase{
-          background:linear-gradient(145deg,rgba(18,18,29,.98),rgba(10,10,18,.98));
-          border:1px solid var(--line-dark); border-radius:22px; overflow:hidden;
-          box-shadow:0 54px 110px -34px rgba(0,0,0,.72); min-height:390px;
-          position:relative; isolation:isolate; contain:paint;
+        .hero__visual{ position:relative; width:100%; min-width:0; max-width:530px; margin-left:auto; }
+        .code-visual{
+          position:relative; width:100%; padding:18px 0 0;
         }
-        .hero-showcase::before{
-          content:''; position:absolute; width:260px; height:260px; border-radius:50%; right:-80px; top:-100px;
-          background:radial-gradient(circle,rgba(139,92,246,.34),transparent 68%); z-index:-1;
+        .code-window{
+          overflow:hidden; border:1px solid var(--line-dark); border-radius:22px;
+          background:linear-gradient(145deg,rgba(16,16,27,.99),rgba(9,9,17,.99));
+          box-shadow:0 54px 110px -38px rgba(0,0,0,.78);
         }
-        .hero-showcase__bar{ min-height:50px; padding:0 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; border-bottom:1px solid var(--line-dark); }
-        .hero-showcase__dots{ display:flex; gap:6px; }
-        .hero-showcase__dots i{ width:9px; height:9px; border-radius:50%; }
-        .hero-showcase__path{ font-family:var(--mono); font-size:9px; color:var(--gray-on-dark-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .hero-showcase__status{ display:flex; align-items:center; gap:7px; font-size:9.5px; font-weight:700; color:#D8FBE5; white-space:nowrap; }
-        .hero-showcase__status::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.12); }
-        .hero-showcase__body{ display:grid; grid-template-columns:.92fr 1.08fr; gap:18px; padding:28px; align-items:stretch; }
-        .hero-showcase__copy{ display:flex; flex-direction:column; justify-content:center; }
-        .hero-showcase__eyebrow{ font-family:var(--mono); font-size:9.5px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
-        .hero-showcase__copy h4{ font-size:22px; line-height:1.27; letter-spacing:-.02em; margin:0 0 12px; }
-        .hero-showcase__copy p{ font-size:12px; color:var(--gray-on-dark); line-height:1.7; margin:0 0 18px; }
-        .hero-showcase__services{ display:flex; flex-wrap:wrap; gap:7px; }
-        .hero-showcase__services span{ font-size:9px; font-weight:700; color:#D8D9E2; border:1px solid var(--line-dark); background:rgba(255,255,255,.04); padding:6px 9px; border-radius:100px; }
-        .hero-showcase__preview{ background:#F6F6FA; border-radius:15px; padding:13px; min-height:235px; box-shadow:0 28px 70px -32px rgba(0,0,0,.7); }
-        .hero-preview__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:11px; border-bottom:1px solid rgba(20,20,35,.08); }
-        .hero-preview__logo{ width:76px; height:8px; border-radius:10px; background:linear-gradient(90deg,#11111A 0 38%,#8B5CF6 38% 64%,#F5A623 64%); }
-        .hero-preview__menu{ display:flex; gap:5px; }
-        .hero-preview__menu i{ width:18px; height:4px; border-radius:10px; background:#D9DAE3; }
-        .hero-preview__hero{ margin-top:13px; border-radius:11px; padding:18px; min-height:104px; background:linear-gradient(130deg,#11111A,#261B48); position:relative; overflow:hidden; }
-        .hero-preview__hero::after{ content:''; position:absolute; width:100px; height:100px; border-radius:50%; right:-26px; top:-32px; background:linear-gradient(135deg,rgba(139,92,246,.9),rgba(245,166,35,.75)); filter:blur(2px); }
-        .hero-preview__line{ height:7px; border-radius:10px; background:#fff; margin-bottom:7px; position:relative; z-index:1; }
-        .hero-preview__line--lg{ width:62%; }
-        .hero-preview__line--sm{ width:42%; opacity:.45; }
-        .hero-preview__button{ width:58px; height:18px; border-radius:100px; background:var(--grad); margin-top:16px; position:relative; z-index:1; }
-        .hero-preview__cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
-        .hero-preview__card{ height:56px; border:1px solid rgba(20,20,35,.07); border-radius:9px; background:#fff; padding:9px; }
-        .hero-preview__card::before{ content:''; display:block; width:22px; height:22px; border-radius:7px; background:var(--card-tone); margin-bottom:6px; }
-        .hero-preview__card::after{ content:''; display:block; width:70%; height:4px; border-radius:8px; background:#D8D9E1; }
-        .hero-showcase__footer{ border-top:1px solid var(--line-dark); padding:15px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
-        .hero-showcase__footer-copy{ font-size:10px; color:var(--gray-on-dark); }
-        .hero-showcase__brands{ display:flex; align-items:center; gap:8px; }
-        .hero-showcase__brands .tech-badge{ width:30px; height:30px; min-height:0; padding:0; border-radius:9px; border-color:var(--line-dark); background:rgba(255,255,255,.05); }
-        .hero-showcase__brands .tech-badge__logo{ width:18px; height:18px; border-radius:5px; background:#fff; }
-        .hero-showcase__brands .tech-badge__logo img{ width:12px; height:12px; }
+        .code-window__bar{
+          min-height:54px; padding:0 17px; display:grid; grid-template-columns:auto 1fr auto;
+          align-items:center; gap:14px; border-bottom:1px solid var(--line-dark);
+          background:rgba(255,255,255,.015);
+        }
+        .code-window__dots{ display:flex; gap:7px; }
+        .code-window__dots i{ width:10px; height:10px; border-radius:50%; }
+        .code-window__path{
+          justify-self:start; display:inline-flex; align-items:center; gap:8px; max-width:100%;
+          padding:7px 11px; border:1px solid rgba(255,255,255,.07); border-radius:8px;
+          color:#A5A7B5; background:rgba(0,0,0,.2); font-family:var(--mono); font-size:9.5px;
+          white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+        }
+        .code-window__path svg{ color:var(--orange); flex:none; }
+        .code-window__availability{
+          display:inline-flex; align-items:center; gap:7px; justify-self:end;
+          padding:7px 10px; border:1px solid rgba(34,197,94,.17); border-radius:999px;
+          color:#D9FBE5; background:rgba(34,197,94,.07); font-size:9px; font-weight:700; white-space:nowrap;
+        }
+        .code-window__availability::before{
+          content:''; width:7px; height:7px; border-radius:50%; background:var(--green);
+          box-shadow:0 0 0 4px rgba(34,197,94,.11);
+        }
+        .code-window__editor{ display:grid; grid-template-columns:40px 1fr; min-height:330px; }
+        .code-window__numbers{
+          padding:18px 11px; border-right:1px solid rgba(255,255,255,.045);
+          color:#4F5262; font-family:var(--mono); font-size:11px; line-height:1.95; text-align:right;
+          user-select:none;
+        }
+        .code-window__code{
+          margin:0; padding:18px 20px 22px; overflow:hidden; color:#E4E5ED;
+          font-family:var(--mono); font-size:12px; line-height:1.95; white-space:pre-wrap;
+        }
+        .code-window__code .kw{ color:#C084FC; }
+        .code-window__code .name{ color:#FACC15; }
+        .code-window__code .key{ color:#38BDF8; }
+        .code-window__code .str{ color:#34D399; }
+        .code-window__code .fn{ color:#F59E0B; }
+        .code-window__code .muted{ color:#7D8192; }
+        .code-window__footer{
+          min-height:42px; padding:0 17px; display:flex; align-items:center; justify-content:space-between;
+          gap:14px; border-top:1px solid var(--line-dark); color:#6F7282;
+          background:rgba(255,255,255,.012); font-family:var(--mono); font-size:9px;
+        }
+        .code-window__footer span{ display:inline-flex; align-items:center; gap:7px; }
+        .code-window__footer .ready-dot{ width:7px; height:7px; border-radius:50%; background:var(--green); }
+        .code-skills{
+          position:relative; z-index:2; margin:14px 18px 0; padding:15px;
+          display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;
+          border:1px solid var(--line-dark); border-radius:17px;
+          background:rgba(15,15,25,.97); box-shadow:0 25px 60px -35px rgba(0,0,0,.8);
+        }
+        .code-skill{ min-width:0; }
+        .code-skill__top{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px; }
+        .code-skill__top b{ min-width:0; color:#D7D8E2; font-size:9.5px; line-height:1.25; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .code-skill__top span{ color:#B9BBC8; font-family:var(--mono); font-size:9px; flex:none; }
+        .code-skill__bar{ height:4px; overflow:hidden; border-radius:999px; background:rgba(255,255,255,.07); }
+        .code-skill__bar i{ display:block; height:100%; width:var(--skill-width); border-radius:inherit; background:var(--skill-gradient); }
         @media (max-width:1100px){
-          .hero-showcase__body{ grid-template-columns:1fr; }
-          .hero-showcase__copy{ padding:2px 4px; }
+          .hero__visual{ max-width:500px; }
+          .code-window__availability{ font-size:0; width:31px; height:31px; padding:0; justify-content:center; }
+          .code-window__availability::before{ margin:0; }
         }
         @media (max-width:560px){
-          .hero-showcase{ min-height:0; border-radius:18px; width:100%; }
-          .hero-showcase__path{ display:none; }
-          .hero-showcase__body{ padding:18px; gap:16px; }
-          .hero-showcase__copy h4{ font-size:19px; }
-          .hero-showcase__preview{ min-height:215px; }
-          .hero-showcase__footer{ align-items:flex-start; flex-direction:column; }
+          .hero__visual{ max-width:none; margin-left:0; }
+          .code-visual{ padding-top:0; }
+          .code-window{ border-radius:18px; }
+          .code-window__bar{ grid-template-columns:auto minmax(0,1fr); min-height:52px; padding:0 13px; }
+          .code-window__availability{ grid-column:1 / -1; justify-self:stretch; width:auto; height:auto; margin:0 0 11px; padding:7px 10px; font-size:9px; }
+          .code-window__path{ justify-self:end; max-width:205px; }
+          .code-window__editor{ grid-template-columns:32px 1fr; min-height:290px; }
+          .code-window__numbers{ padding:15px 8px; font-size:9.5px; }
+          .code-window__code{ padding:15px 13px 18px; font-size:10px; line-height:1.9; }
+          .code-window__footer{ padding:0 13px; }
+          .code-skills{ margin:12px 0 0; grid-template-columns:1fr; }
+          .code-skill__top b{ white-space:normal; }
         }
 
         .scroll-cue{ display:none; text-align:center; margin-top:56px; color:var(--gray-on-dark-2); font-size:11px; }
@@ -1179,8 +1221,9 @@ export default function App() {
                 <Reveal><span className="hi-badge">Web Developer · Computer Engineer</span></Reveal>
                 <Reveal delay={70}>
                   <h1>
-                    I build digital experiences that look sharp and
-                    <span className="grad-text"> work beautifully.</span>
+                    <span className="hero-title-line">I build digital experiences</span>
+                    <span className="hero-title-line">that look sharp and</span>
+                    <span className="hero-title-line hero-title-line--accent">work beautifully.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={130}>
@@ -1224,57 +1267,41 @@ export default function App() {
               </div>
 
               <Reveal delay={150} className="hero__visual">
-                <div className="hero-showcase">
-                  <div className="hero-showcase__bar">
-                    <div className="hero-showcase__dots">
-                      <i style={{ background: "#FF5F57" }} />
-                      <i style={{ background: "#FEBC2E" }} />
-                      <i style={{ background: "#28C840" }} />
-                    </div>
-                    <span className="hero-showcase__path">haseeb.dev / selected-work</span>
-                    <span className="hero-showcase__status">Available for projects</span>
-                  </div>
-
-                  <div className="hero-showcase__body">
-                    <div className="hero-showcase__copy">
-                      <span className="hero-showcase__eyebrow">React · WordPress · Shopify</span>
-                      <h4>Design-aware development across frontend, CMS, and commerce.</h4>
-                      <p>
-                        From component-based React interfaces to editable WordPress and Shopify builds, every experience is structured for usability and clean delivery.
-                      </p>
-                      <div className="hero-showcase__services">
-                        <span>Responsive</span>
-                        <span>CMS-ready</span>
-                        <span>E-commerce</span>
-                        <span>Custom UI</span>
+                <div className="code-visual">
+                  <div className="code-window">
+                    <div className="code-window__bar">
+                      <div className="code-window__dots" aria-hidden="true">
+                        <i style={{ background: "#FF5F57" }} />
+                        <i style={{ background: "#FEBC2E" }} />
+                        <i style={{ background: "#28C840" }} />
                       </div>
+                      <span className="code-window__path"><Code2 size={12} /> haseeb.dev / portfolio.tsx</span>
+                      <span className="code-window__availability">Open to work</span>
                     </div>
 
-                    <div className="hero-showcase__preview" aria-hidden="true">
-                      <div className="hero-preview__top">
-                        <span className="hero-preview__logo" />
-                        <span className="hero-preview__menu"><i /><i /><i /></span>
-                      </div>
-                      <div className="hero-preview__hero">
-                        <span className="hero-preview__line hero-preview__line--lg" />
-                        <span className="hero-preview__line hero-preview__line--sm" />
-                        <span className="hero-preview__button" />
-                      </div>
-                      <div className="hero-preview__cards">
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(139,92,246,.18)" }} />
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(245,166,35,.2)" }} />
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(59,130,246,.18)" }} />
-                      </div>
+                    <div className="code-window__editor" aria-hidden="true">
+                      <div className="code-window__numbers">1<br />2<br />3<br />4<br />5<br />6<br />7<br />8<br />9<br />10<br />11<br />12</div>
+                      <pre className="code-window__code"><span className="kw">const</span> <span className="name">haseeb</span> = {'{'}{"\n"}  <span className="key">name</span>: <span className="str">'Haseeb Ansari'</span>,{"\n"}  <span className="key">role</span>: <span className="str">'Web Developer'</span>,{"\n"}  <span className="key">stack</span>: [{"\n"}    <span className="str">'React'</span>, <span className="str">'WordPress'</span>,{"\n"}    <span className="str">'Shopify'</span>, <span className="str">'JavaScript'</span>{"\n"}  ],{"\n"}  <span className="key">focus</span>: <span className="str">'clean, responsive builds'</span>{"\n"}{'}'};{"\n\n"}<span className="kw">async function</span> <span className="fn">build</span>(idea) {'{'}{"\n"}  <span className="kw">return</span> <span className="fn">launch</span>(idea);{"\n"}{'}'}</pre>
+                    </div>
+
+                    <div className="code-window__footer">
+                      <span><i className="ready-dot" /> main / TypeScript</span>
+                      <span>UTF-8 · Ln 12</span>
                     </div>
                   </div>
 
-                  <div className="hero-showcase__footer">
-                    <span className="hero-showcase__footer-copy">Built across leading platforms</span>
-                    <div className="hero-showcase__brands">
-                      {HERO_TECH.map((label) => {
-                        const tech = TECH.find((item) => item.label === label);
-                        return tech ? <TechBadge key={tech.label} t={tech} compact /> : null;
-                      })}
+                  <div className="code-skills" aria-label="Core development strengths">
+                    <div className="code-skill">
+                      <div className="code-skill__top"><b>React &amp; Frontend</b><span>UI</span></div>
+                      <div className="code-skill__bar"><i style={{ "--skill-width": "92%", "--skill-gradient": "linear-gradient(90deg,#8B5CF6,#C084FC)" }} /></div>
+                    </div>
+                    <div className="code-skill">
+                      <div className="code-skill__top"><b>WordPress</b><span>CMS</span></div>
+                      <div className="code-skill__bar"><i style={{ "--skill-width": "95%", "--skill-gradient": "linear-gradient(90deg,#F5A623,#F59E0B)" }} /></div>
+                    </div>
+                    <div className="code-skill">
+                      <div className="code-skill__top"><b>Shopify</b><span>Store</span></div>
+                      <div className="code-skill__bar"><i style={{ "--skill-width": "85%", "--skill-gradient": "linear-gradient(90deg,#22C55E,#4ADE80)" }} /></div>
                     </div>
                   </div>
                 </div>
