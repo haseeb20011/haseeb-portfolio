@@ -743,16 +743,25 @@ export default function App() {
           color:#fff; padding:150px 0 70px; position:relative;
         }
         .hero__grid{ display:grid; grid-template-columns:1fr; gap:60px; align-items:center; }
+        .hero__grid > *{ min-width:0; }
         @media (min-width:980px){ .hero__grid{ grid-template-columns:1.12fr .88fr; gap:48px; } }
 
         .hi-badge{ display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--gray-on-dark); border:1px solid var(--line-dark); padding:6px 14px 6px 10px; border-radius:100px; margin-bottom:22px; }
 
-        .hero h1{ font-size:clamp(38px,4vw,56px); font-weight:800; line-height:1.08; letter-spacing:-0.05em; margin:0 0 22px; max-width:760px; }
-        .hero-title-line{ display:block; white-space:nowrap; }
-        @media (max-width:720px){
-          .hero h1{ font-size:clamp(22px,6.2vw,38px); line-height:1.12; letter-spacing:-0.045em; max-width:none; }
+        .hero h1{
+          max-width:650px; margin:0 0 22px; font-size:clamp(46px,3.8vw,56px); font-weight:800;
+          line-height:1.08; letter-spacing:-0.052em; text-wrap:balance;
         }
-        .hero-title-line--accent{ background:linear-gradient(95deg, var(--orange), #F06AA8); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .hero-title-accent{
+          white-space:nowrap; background:linear-gradient(95deg, var(--orange), #F06AA8);
+          -webkit-background-clip:text; background-clip:text; color:transparent;
+        }
+        @media (max-width:1180px) and (min-width:980px){
+          .hero h1{ max-width:570px; font-size:clamp(42px,3.75vw,50px); }
+        }
+        @media (max-width:720px){
+          .hero h1{ max-width:100%; font-size:clamp(25px,7.65vw,34px); line-height:1.1; letter-spacing:-0.052em; text-wrap:balance; }
+        }
 
         .hero p.lead{ font-size:15.5px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
         .hero p.lead strong{ color:#fff; font-weight:700; }
@@ -769,31 +778,40 @@ export default function App() {
         .btn-white:hover{ transform:translateY(-3px); box-shadow:0 16px 32px -16px rgba(0,0,0,0.4); }
 
         .stats-row{
-          display:grid; grid-template-columns:repeat(3,minmax(185px,1fr)); gap:14px; width:100%; max-width:760px;
-          overflow-x:auto; padding:2px 0 5px; scrollbar-width:none; scroll-snap-type:x proximity;
+          display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; width:100%; max-width:760px;
         }
-        .stats-row::-webkit-scrollbar{ display:none; }
         .stat-item{
-          min-width:0; min-height:108px; display:flex; flex-direction:column; align-items:flex-start; justify-content:flex-start;
-          gap:12px; padding:16px; border:1px solid var(--line-dark); border-radius:16px;
-          background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.018)); scroll-snap-align:start;
+          min-width:0; min-height:86px; display:grid; grid-template-columns:38px minmax(0,1fr); align-items:center;
+          gap:12px; padding:14px 15px; border:1px solid var(--line-dark); border-radius:16px;
+          background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.018));
           transition:transform .3s ease,border-color .3s ease,background .3s ease;
         }
         .stat-item:hover{ transform:translateY(-4px); border-color:rgba(139,92,246,.28); background:rgba(255,255,255,.052); }
         .stat-ic{ width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; flex:none; }
-        .stat-item > div:last-child{ min-width:0; width:100%; }
-        .stat-item b{ display:block; font-size:14px; line-height:1.25; font-weight:800; white-space:normal; }
-        .stat-item span{ display:block; margin-top:4px; font-size:10.5px; line-height:1.45; color:var(--gray-on-dark); white-space:normal; overflow-wrap:anywhere; }
+        .stat-item > div:last-child{ min-width:0; }
+        .stat-item b{ display:block; font-size:13.5px; line-height:1.25; font-weight:800; white-space:normal; }
+        .stat-item span{ display:block; margin-top:3px; font-size:10px; line-height:1.4; color:var(--gray-on-dark); white-space:normal; overflow-wrap:normal; }
         @media (max-width:1180px) and (min-width:980px){
-          .stats-row{ grid-template-columns:repeat(3,minmax(165px,1fr)); gap:10px; }
-          .stat-item{ min-height:104px; padding:14px; gap:10px; }
+          .stats-row{ gap:9px; }
+          .stat-item{ grid-template-columns:34px minmax(0,1fr); min-height:82px; padding:12px; gap:9px; }
           .stat-ic{ width:34px; height:34px; }
-          .stat-item b{ font-size:12.5px; }
-          .stat-item span{ font-size:9.5px; }
+          .stat-item b{ font-size:12px; }
+          .stat-item span{ font-size:9px; }
         }
         @media (max-width:720px){
-          .stats-row{ grid-template-columns:repeat(3,minmax(210px,1fr)); max-width:100%; }
-          .stat-item{ min-height:106px; }
+          .stats-row{ grid-template-columns:1fr; gap:10px; max-width:520px; }
+          .stat-item{ min-height:76px; grid-template-columns:38px minmax(0,1fr); padding:13px 14px; }
+          .stat-item b{ font-size:13.5px; }
+          .stat-item span{ font-size:10.5px; }
+        }
+
+        @media (max-width:720px){
+          .hero{ padding:112px 0 62px; }
+          .hero__grid{ gap:44px; }
+          .hi-badge{ margin-bottom:18px; font-size:11.5px; }
+          .hero p.lead{ max-width:none; margin-bottom:26px; font-size:14px; line-height:1.72; }
+          .btn-row{ flex-direction:column; align-items:flex-start; gap:11px; margin-bottom:32px; }
+          .btn-row .btn{ width:auto; max-width:100%; justify-content:center; padding:13px 20px; }
         }
 
         .hero__visual{ position:relative; width:100%; min-width:0; max-width:530px; margin-left:auto; }
@@ -1253,9 +1271,7 @@ export default function App() {
                 <Reveal><span className="hi-badge">Web Developer · Computer Engineer</span></Reveal>
                 <Reveal delay={70}>
                   <h1>
-                    <span className="hero-title-line">I build digital experiences</span>
-                    <span className="hero-title-line">that look sharp and</span>
-                    <span className="hero-title-line hero-title-line--accent">work beautifully.</span>
+                    I build digital experiences that look sharp and <span className="hero-title-accent">work beautifully.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={130}>
