@@ -1017,7 +1017,7 @@ export default function App() {
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
         .journey-card__org{ font-size:11px; color:var(--gray-on-light); margin-bottom:12px; }
-        .journey-card p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
+        .journey-card p{ font-size:15px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
 
         .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
         .about-principles::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; right:-180px; top:-250px; background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%); }
