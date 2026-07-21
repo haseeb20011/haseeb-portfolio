@@ -912,7 +912,7 @@ export default function App() {
         .sec{ padding:96px 0; }
         .sec-head{ margin-bottom:48px; max-width:640px; }
         .sec-head h2{ font-size:clamp(26px,3.6vw,38px); font-weight:800; letter-spacing:-0.02em; line-height:1.2; margin:0; }
-        .sec-head p{ font-size:14.5px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
+        .sec-head p{ font-size:16px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
         .sec-head--white p{ color:var(--gray-on-dark); }
 
         /* ============ ABOUT ============ */
@@ -1016,7 +1016,7 @@ export default function App() {
         @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
-        .journey-card__org{ font-size:11px; color:var(--gray-on-light); margin-bottom:12px; }
+        .journey-card__org{ font-size:13px; color:var(--gray-on-light); margin-bottom:12px; }
         .journey-card p{ font-size:15px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
 
         .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
