@@ -88,14 +88,14 @@ const ABOUT_CARDS = [
 ];
 
 const TECH = [
-  { label: "WordPress", type: "text", text: "W", bg: "#21759B", fg: "#ffffff", round: true },
-  { label: "Shopify", type: "text", text: "$", bg: "#95BF47", fg: "#ffffff" },
-  { label: "Wix", type: "text", text: "WIX", bg: "#111111", fg: "#ffffff" },
-  { label: "Webflow", type: "text", text: "W", bg: "#146EF5", fg: "#ffffff" },
-  { label: "Squarespace", type: "text", text: "~", bg: "#000000", fg: "#ffffff" },
-  { label: "Elementor", type: "text", text: "E", bg: "#92003B", fg: "#ffffff", round: true },
-  { label: "HTML5", type: "text", text: "H5", bg: "#E44D26", fg: "#ffffff" },
-  { label: "JavaScript", type: "text", text: "JS", bg: "#F0DB4F", fg: "#111111" },
+  { label: "WordPress", slug: "wordpress", color: "21759B", fallback: "W" },
+  { label: "Shopify", slug: "shopify", color: "7AB55C", fallback: "S" },
+  { label: "Wix", slug: "wix", color: "0C0C0C", fallback: "WIX" },
+  { label: "Webflow", slug: "webflow", color: "146EF5", fallback: "W" },
+  { label: "Squarespace", slug: "squarespace", color: "111111", fallback: "SQ" },
+  { label: "Elementor", slug: "elementor", color: "92003B", fallback: "E" },
+  { label: "HTML5", slug: "html5", color: "E34F26", fallback: "H5" },
+  { label: "JavaScript", slug: "javascript", color: "F7DF1E", fallback: "JS", darkTile: true },
 ];
 
 const FILTERS = ["All", "WordPress", "Shopify", "Webflow", "Wix", "Squarespace", "Custom Sites"];
@@ -384,15 +384,23 @@ function Eyebrow({ children }) {
   return <span className="eyebrow2">{children}</span>;
 }
 
-function TechBadge({ t }) {
+function TechBadge({ t, compact = false }) {
+  const logoUrl = `https://cdn.simpleicons.org/${t.slug}/${t.color}`;
   return (
-    <div className="tech-badge" title={t.label}>
-      <span
-        className="tech-badge__text"
-        style={{ background: t.bg, color: t.fg, borderRadius: t.round ? "50%" : "8px" }}
-      >
-        {t.text}
+    <div className={`tech-badge ${compact ? "tech-badge--compact" : ""}`} title={t.label}>
+      <span className={`tech-badge__logo ${t.darkTile ? "tech-badge__logo--dark" : ""}`}>
+        <img
+          src={logoUrl}
+          alt={`${t.label} logo`}
+          loading={compact ? "eager" : "lazy"}
+          onError={(event) => {
+            event.currentTarget.style.display = "none";
+            event.currentTarget.parentElement?.classList.add("tech-badge__logo--fallback");
+          }}
+        />
+        <b>{t.fallback}</b>
       </span>
+      {!compact && <span className="tech-badge__label">{t.label}</span>}
     </div>
   );
 }
@@ -643,7 +651,7 @@ export default function App() {
           color:#fff; padding:150px 0 70px; position:relative;
         }
         .hero__grid{ display:grid; grid-template-columns:1fr; gap:60px; align-items:center; }
-        @media (min-width:980px){ .hero__grid{ grid-template-columns:1.05fr .95fr; gap:36px; } }
+        @media (min-width:980px){ .hero__grid{ grid-template-columns:.88fr 1.12fr; gap:52px; } }
 
         .hi-badge{ display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--gray-on-dark); border:1px solid var(--line-dark); padding:6px 14px 6px 10px; border-radius:100px; margin-bottom:22px; }
 
@@ -669,28 +677,63 @@ export default function App() {
         .stat-item b{ display:block; font-size:19px; font-weight:800; }
         .stat-item span{ font-size:11px; color:var(--gray-on-dark); }
 
-        .hero__visual{ position:relative; }
-        .mock{ background:var(--panel-dark); border:1px solid var(--line-dark); border-radius:16px; overflow:hidden; box-shadow:0 50px 100px -30px rgba(0,0,0,0.6); animation:floaty 6.5s ease-in-out infinite; }
-        @keyframes floaty{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-14px);} }
-        .mock__bar{ display:flex; gap:6px; padding:13px 16px; border-bottom:1px solid var(--line-dark); }
-        .mock__bar i{ width:9px; height:9px; border-radius:50%; }
-        .mock__body{ padding:30px 26px 40px; background: radial-gradient(circle at 30% 20%, rgba(139,92,246,0.18), transparent 55%); min-height:220px; }
-        .mock__body h4{ font-size:19px; font-weight:800; line-height:1.3; margin:0 0 14px; max-width:260px; }
-        .mock__body p{ font-size:12px; color:var(--gray-on-dark); max-width:230px; margin:0 0 18px; line-height:1.6; }
-        .mock__buttons{ display:flex; gap:10px; }
-        .mock__buttons span{ font-size:11px; font-weight:700; padding:9px 14px; border-radius:100px; }
-        .mock__buttons span.a{ background:var(--grad); color:#fff; }
-        .mock__buttons span.b{ background:rgba(255,255,255,0.06); color:#fff; border:1px solid var(--line-dark); }
-
-        .float-badge{ position:absolute; background:var(--panel-dark); border:1px solid var(--line-dark); border-radius:14px; box-shadow:0 24px 50px -20px rgba(0,0,0,0.55); }
-        .float-badge--score{ top:-18px; right:6px; padding:14px 16px; display:flex; align-items:center; gap:10px; }
-        .float-badge--score .ring{ width:38px; height:38px; border-radius:50%; background:conic-gradient(var(--green) 98%, rgba(255,255,255,0.12) 0); display:flex; align-items:center; justify-content:center; }
-        .float-badge--score .ring b{ width:30px; height:30px; border-radius:50%; background:var(--panel-dark); display:flex; align-items:center; justify-content:center; font-size:11px; }
-        .float-badge--score small{ font-size:9.5px; color:var(--gray-on-dark); }
-        .float-badge--code{ bottom:-24px; left:-14px; width:170px; padding:14px; font-family:var(--mono); font-size:9.5px; line-height:1.9; color:var(--gray-on-dark); }
-        .float-badge--code .l1{ color:#C792EA; }
-        .float-badge--code .l2{ color:#89DDFF; }
-        .float-badge--code .l3{ color:#F5A623; }
+        .hero__visual{ position:relative; width:100%; }
+        .hero-showcase{
+          background:linear-gradient(145deg,rgba(18,18,29,.98),rgba(10,10,18,.98));
+          border:1px solid var(--line-dark); border-radius:22px; overflow:hidden;
+          box-shadow:0 54px 110px -34px rgba(0,0,0,.72); min-height:390px;
+          position:relative; isolation:isolate;
+        }
+        .hero-showcase::before{
+          content:''; position:absolute; width:260px; height:260px; border-radius:50%; right:-80px; top:-100px;
+          background:radial-gradient(circle,rgba(139,92,246,.34),transparent 68%); z-index:-1;
+        }
+        .hero-showcase__bar{ min-height:50px; padding:0 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; border-bottom:1px solid var(--line-dark); }
+        .hero-showcase__dots{ display:flex; gap:6px; }
+        .hero-showcase__dots i{ width:9px; height:9px; border-radius:50%; }
+        .hero-showcase__path{ font-family:var(--mono); font-size:9px; color:var(--gray-on-dark-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .hero-showcase__status{ display:flex; align-items:center; gap:7px; font-size:9.5px; font-weight:700; color:#D8FBE5; white-space:nowrap; }
+        .hero-showcase__status::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.12); }
+        .hero-showcase__body{ display:grid; grid-template-columns:.92fr 1.08fr; gap:18px; padding:28px; align-items:stretch; }
+        .hero-showcase__copy{ display:flex; flex-direction:column; justify-content:center; }
+        .hero-showcase__eyebrow{ font-family:var(--mono); font-size:9.5px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
+        .hero-showcase__copy h4{ font-size:22px; line-height:1.27; letter-spacing:-.02em; margin:0 0 12px; }
+        .hero-showcase__copy p{ font-size:12px; color:var(--gray-on-dark); line-height:1.7; margin:0 0 18px; }
+        .hero-showcase__services{ display:flex; flex-wrap:wrap; gap:7px; }
+        .hero-showcase__services span{ font-size:9px; font-weight:700; color:#D8D9E2; border:1px solid var(--line-dark); background:rgba(255,255,255,.04); padding:6px 9px; border-radius:100px; }
+        .hero-showcase__preview{ background:#F6F6FA; border-radius:15px; padding:13px; min-height:235px; box-shadow:0 28px 70px -32px rgba(0,0,0,.7); }
+        .hero-preview__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:11px; border-bottom:1px solid rgba(20,20,35,.08); }
+        .hero-preview__logo{ width:76px; height:8px; border-radius:10px; background:linear-gradient(90deg,#11111A 0 38%,#8B5CF6 38% 64%,#F5A623 64%); }
+        .hero-preview__menu{ display:flex; gap:5px; }
+        .hero-preview__menu i{ width:18px; height:4px; border-radius:10px; background:#D9DAE3; }
+        .hero-preview__hero{ margin-top:13px; border-radius:11px; padding:18px; min-height:104px; background:linear-gradient(130deg,#11111A,#261B48); position:relative; overflow:hidden; }
+        .hero-preview__hero::after{ content:''; position:absolute; width:100px; height:100px; border-radius:50%; right:-26px; top:-32px; background:linear-gradient(135deg,rgba(139,92,246,.9),rgba(245,166,35,.75)); filter:blur(2px); }
+        .hero-preview__line{ height:7px; border-radius:10px; background:#fff; margin-bottom:7px; position:relative; z-index:1; }
+        .hero-preview__line--lg{ width:62%; }
+        .hero-preview__line--sm{ width:42%; opacity:.45; }
+        .hero-preview__button{ width:58px; height:18px; border-radius:100px; background:var(--grad); margin-top:16px; position:relative; z-index:1; }
+        .hero-preview__cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
+        .hero-preview__card{ height:56px; border:1px solid rgba(20,20,35,.07); border-radius:9px; background:#fff; padding:9px; }
+        .hero-preview__card::before{ content:''; display:block; width:22px; height:22px; border-radius:7px; background:var(--card-tone); margin-bottom:6px; }
+        .hero-preview__card::after{ content:''; display:block; width:70%; height:4px; border-radius:8px; background:#D8D9E1; }
+        .hero-showcase__footer{ border-top:1px solid var(--line-dark); padding:15px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+        .hero-showcase__footer-copy{ font-size:10px; color:var(--gray-on-dark); }
+        .hero-showcase__brands{ display:flex; align-items:center; gap:8px; }
+        .hero-showcase__brands .tech-badge{ width:30px; height:30px; min-height:0; padding:0; border-radius:9px; border-color:var(--line-dark); background:rgba(255,255,255,.05); }
+        .hero-showcase__brands .tech-badge__logo{ width:18px; height:18px; border-radius:5px; background:#fff; }
+        .hero-showcase__brands .tech-badge__logo img{ width:12px; height:12px; }
+        @media (max-width:1100px){
+          .hero-showcase__body{ grid-template-columns:1fr; }
+          .hero-showcase__copy{ padding:2px 4px; }
+        }
+        @media (max-width:560px){
+          .hero-showcase{ min-height:0; border-radius:18px; }
+          .hero-showcase__path{ display:none; }
+          .hero-showcase__body{ padding:18px; gap:16px; }
+          .hero-showcase__copy h4{ font-size:19px; }
+          .hero-showcase__preview{ min-height:215px; }
+          .hero-showcase__footer{ align-items:flex-start; flex-direction:column; }
+        }
 
         .scroll-cue{ display:none; text-align:center; margin-top:56px; color:var(--gray-on-dark-2); font-size:11px; }
         @media (min-width:640px){ .scroll-cue{ display:block; } }
@@ -720,11 +763,20 @@ export default function App() {
         .about-card h4{ font-size:14px; font-weight:700; margin:0 0 4px; }
         .about-card p{ font-size:12px; color:var(--gray-on-light); margin:0; }
 
-        .tech-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
-        @media (min-width:640px){ .tech-row{ grid-template-columns:repeat(8,1fr); } }
-        .tech-badge{ aspect-ratio:1; background:#fff; border:1px solid var(--line-light); border-radius:14px; display:flex; align-items:center; justify-content:center; transition:transform .3s ease, box-shadow .3s ease; }
-        .tech-badge:hover{ transform:translateY(-5px); box-shadow:0 20px 34px -22px rgba(20,20,35,0.28); }
-        .tech-badge__text{ width:30px; height:30px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:800; }
+        .tech-row{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+        @media (min-width:560px){ .tech-row{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
+        @media (min-width:980px){ .tech-row{ grid-template-columns:repeat(8,minmax(0,1fr)); } }
+        .tech-badge{ min-height:104px; background:#fff; border:1px solid var(--line-light); border-radius:15px; padding:15px 10px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease; }
+        .tech-badge:hover{ transform:translateY(-5px); border-color:rgba(124,58,237,.2); box-shadow:0 20px 34px -22px rgba(20,20,35,0.28); }
+        .tech-badge__logo{ width:45px; height:45px; border-radius:13px; background:var(--bg-light); display:flex; align-items:center; justify-content:center; position:relative; }
+        .tech-badge__logo--dark{ background:#111; }
+        .tech-badge__logo img{ width:27px; height:27px; object-fit:contain; }
+        .tech-badge__logo b{ display:none; font-size:10px; color:var(--ink); }
+        .tech-badge__logo--dark b{ color:#fff; }
+        .tech-badge__logo--fallback img{ display:none; }
+        .tech-badge__logo--fallback b{ display:block; }
+        .tech-badge__label{ font-size:10.5px; font-weight:700; color:var(--gray-on-light); text-align:center; }
+        .tech-badge--compact{ min-height:0; width:32px; height:32px; padding:0; border-radius:9px; gap:0; }
 
         /* ============ INFO GRID (about page) ============ */
         .info-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; margin:26px 0 30px; max-width:460px; }
@@ -829,7 +881,7 @@ export default function App() {
 
         /* ============ PROCESS ============ */
         .process{ background:var(--bg-dark); color:#fff; }
-        .process-row{ display:grid; grid-template-columns:1fr; gap:40px; position:relative; }
+        .process-row{ display:grid; grid-template-columns:1fr; gap:16px; position:relative; }
         @media (min-width:860px){ .process-row{ grid-template-columns:repeat(4,1fr); gap:24px; } }
         @media (min-width:860px){
           .process-row::before{
@@ -843,6 +895,16 @@ export default function App() {
         .p-step__ic{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:var(--panel-dark); border:1px solid var(--line-dark); }
         .p-step h3{ font-size:16.5px; font-weight:700; margin:0 0 8px; }
         .p-step p{ font-size:13px; color:var(--gray-on-dark); line-height:1.7; margin:0; max-width:230px; }
+        @media (max-width:859px){
+          .process .sec-head{ text-align:center; margin-left:auto; margin-right:auto; margin-bottom:32px; }
+          .process-row{ max-width:430px; margin:0 auto; }
+          .p-step{ text-align:center; padding:24px 22px; border:1px solid var(--line-dark); border-radius:17px; background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018)); }
+          .p-step__top{ justify-content:center; margin-bottom:14px; }
+          .p-step__ic{ width:56px; height:56px; border-radius:16px; box-shadow:0 18px 34px -22px rgba(0,0,0,.8); }
+          .p-step p{ max-width:310px; margin:0 auto; }
+          .p-step::after{ content:''; position:absolute; left:50%; bottom:-17px; width:1px; height:17px; background:linear-gradient(var(--line-dark),transparent); }
+          .p-step:last-child::after{ display:none; }
+        }
 
         /* ============ CONTACT ============ */
         .contact{ background:var(--bg-light); }
@@ -874,8 +936,9 @@ export default function App() {
         /* ============ CTA BANNER ============ */
         .cta-banner{ background:var(--bg-darkest); padding:64px 0; color:#fff; position:relative; overflow:hidden; }
         .cta-banner::before{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 85% 30%, rgba(139,92,246,0.22), transparent 45%); }
-        .cta-row{ display:flex; flex-direction:column; gap:26px; position:relative; z-index:2; }
-        @media (min-width:860px){ .cta-row{ flex-direction:row; align-items:center; justify-content:space-between; } }
+        .cta-row{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:24px; position:relative; z-index:2; }
+        .cta-row .btn{ width:auto; align-self:center; flex:none; }
+        @media (min-width:860px){ .cta-row{ flex-direction:row; align-items:center; justify-content:space-between; text-align:left; } .cta-row .btn{ align-self:auto; } }
         .cta-row h3{ font-size:clamp(22px,3vw,30px); font-weight:800; margin:0 0 8px; letter-spacing:-0.01em; }
         .cta-row p{ font-size:13.5px; color:var(--gray-on-dark); margin:0; }
 
@@ -944,28 +1007,27 @@ export default function App() {
           <section id="home" className="hero">
             <div className="wrap hero__grid">
               <div>
-                <Reveal><span className="hi-badge">👋 Hello, I'm Haseeb</span></Reveal>
+                <Reveal><span className="hi-badge">Web Development Portfolio</span></Reveal>
                 <Reveal delay={70}>
                   <h1>
-                    Web Developer &amp;
+                    Thoughtful websites.
                     <br />
-                    <span className="grad-text">Computer Engineer.</span>
+                    <span className="grad-text">Built to work beautifully.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={130}>
                   <p className="lead">
-                    I build fast, responsive websites and CMS-driven web experiences — from
-                    WordPress and Shopify to Webflow and Wix — with a sharp focus on
-                    performance, usability, and pixel-perfect design.
+                    Responsive CMS websites, e-commerce stores, and custom front-end experiences —
+                    crafted with clear structure, precise implementation, and a strong focus on usability.
                   </p>
                 </Reveal>
                 <Reveal delay={190}>
                   <div className="btn-row">
                     <button className="btn btn-grad" onClick={() => navigateTo("projects", "page")}>
-                      View My Work <ArrowRight size={15} />
+                      Explore Projects <ArrowRight size={15} />
                     </button>
-                    <button className="btn btn-outline-dark" onClick={() => navigateTo("contact", "page")}>
-                      Get In Touch <Mail size={15} />
+                    <button className="btn btn-outline-dark" onClick={() => navigateTo("about", "page")}>
+                      View Skills <Layers size={15} />
                     </button>
                   </div>
                 </Reveal>
@@ -994,31 +1056,59 @@ export default function App() {
               </div>
 
               <Reveal delay={150} className="hero__visual">
-                <div className="mock">
-                  <div className="mock__bar">
-                    <i style={{ background: "#FF5F57" }} />
-                    <i style={{ background: "#FEBC2E" }} />
-                    <i style={{ background: "#28C840" }} />
+                <div className="hero-showcase">
+                  <div className="hero-showcase__bar">
+                    <div className="hero-showcase__dots">
+                      <i style={{ background: "#FF5F57" }} />
+                      <i style={{ background: "#FEBC2E" }} />
+                      <i style={{ background: "#28C840" }} />
+                    </div>
+                    <span className="hero-showcase__path">haseeb.dev / selected-work</span>
+                    <span className="hero-showcase__status">Available for projects</span>
                   </div>
-                  <div className="mock__body">
-                    <h4>Digital experiences that drive real results</h4>
-                    <p>Websites designed and developed to be fast, modern and built to convert.</p>
-                    <div className="mock__buttons">
-                      <span className="a">Explore Work</span>
-                      <span className="b">Contact Me</span>
+
+                  <div className="hero-showcase__body">
+                    <div className="hero-showcase__copy">
+                      <span className="hero-showcase__eyebrow">CMS · Commerce · Custom Code</span>
+                      <h4>The right platform, shaped into a polished experience.</h4>
+                      <p>
+                        Professional development across WordPress, Shopify, Webflow, Wix,
+                        Squarespace, and custom front-end interfaces.
+                      </p>
+                      <div className="hero-showcase__services">
+                        <span>Responsive</span>
+                        <span>CMS-ready</span>
+                        <span>E-commerce</span>
+                        <span>Custom UI</span>
+                      </div>
+                    </div>
+
+                    <div className="hero-showcase__preview" aria-hidden="true">
+                      <div className="hero-preview__top">
+                        <span className="hero-preview__logo" />
+                        <span className="hero-preview__menu"><i /><i /><i /></span>
+                      </div>
+                      <div className="hero-preview__hero">
+                        <span className="hero-preview__line hero-preview__line--lg" />
+                        <span className="hero-preview__line hero-preview__line--sm" />
+                        <span className="hero-preview__button" />
+                      </div>
+                      <div className="hero-preview__cards">
+                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(139,92,246,.18)" }} />
+                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(245,166,35,.2)" }} />
+                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(59,130,246,.18)" }} />
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="float-badge float-badge--score">
-                  <div className="ring"><b>98</b></div>
-                  <small>Performance</small>
-                </div>
-
-                <div className="float-badge float-badge--code">
-                  <div className="l1">const build = () =&gt; {"{"}</div>
-                  <div className="l2">&nbsp;&nbsp;return &lt;Site /&gt;;</div>
-                  <div className="l3">{"}"};</div>
+                  <div className="hero-showcase__footer">
+                    <span className="hero-showcase__footer-copy">Built across leading platforms</span>
+                    <div className="hero-showcase__brands">
+                      {TECH.slice(0, 5).map((tech) => (
+                        <TechBadge key={tech.label} t={tech} compact />
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             </div>
