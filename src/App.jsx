@@ -1013,7 +1013,6 @@ export default function App() {
         .journey-card:last-child::before{ display:none; }
         @media (min-width:860px){ .journey-card{ padding:0; z-index:1; } .journey-card::before{ display:none; } }
         .journey-card__dot{ position:absolute; left:0; top:18px; width:16px; height:16px; border-radius:50%; background:#fff; border:4px solid var(--journey-color); box-shadow:0 0 0 6px var(--bg-light); }
-        @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
         .journey-card__org{ font-size:13px; color:var(--gray-on-light); margin-bottom:12px; }
