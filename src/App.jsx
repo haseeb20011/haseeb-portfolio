@@ -60,7 +60,7 @@ function Reveal({ as: Tag = "div", delay = 0, className = "", children, ...rest 
       style={{ transitionDelay: visible ? `${delay}ms` : "0ms" }}
       {...rest}
     >
-      {children}.about-value-card p
+      {children}
     </Tag>
   );
 }
