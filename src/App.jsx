@@ -257,142 +257,111 @@ const SERVICES = [
   },
 ];
 
-const WEB_SKILL_AREAS = [
+const ABOUT_VALUE_CARDS = [
   {
     number: "01",
-    icon: Layers,
+    icon: Lightbulb,
     color: "#8B5CF6",
-    title: "WordPress Development",
-    desc: "Custom WordPress builds, builder-based implementation, theme customization, and extendable CMS functionality.",
-    wide: true,
-    groups: [
-      {
-        title: "Page Builders",
-        items: ["Elementor", "Elementor Pro", "WPBakery", "Divi Builder", "Gutenberg"],
-      },
-      {
-        title: "Themes & Customization",
-        items: [
-          "WordPress Theme Customization",
-          "Child Theme Customization",
-          "Template Customization",
-          "Theme Functionality Modifications",
-          "BeTheme",
-        ],
-      },
-      {
-        title: "Custom WordPress Development",
-        items: [
-          "Custom WordPress Websites",
-          "Custom Templates",
-          "Custom Post Types",
-          "Custom PHP Functionality",
-          "Plugin Integrations",
-          "API Integrations",
-          "WooCommerce Customization",
-        ],
-      },
-    ],
+    title: "Product Thinking",
+    desc: "I focus on the user experience and the business goal, not only the code behind the screen.",
   },
   {
     number: "02",
-    icon: Code2,
-    color: "#EC4899",
-    title: "Custom Development",
-    desc: "Responsive, component-based interfaces developed with modern front-end technologies and clean custom code.",
-    wide: true,
-    groups: [
-      {
-        title: "Technologies",
-        items: ["React.js", "JavaScript", "HTML5", "CSS3"],
-      },
-      {
-        title: "Development Capabilities",
-        items: [
-          "Responsive Web Development",
-          "Component-Based UI Development",
-          "Interactive Web Interfaces",
-          "API Integration",
-          "Custom Frontend Development",
-        ],
-      },
-    ],
+    icon: Layout,
+    color: "#F5A623",
+    title: "Design Awareness",
+    desc: "I translate visual ideas into clean, responsive interfaces while protecting hierarchy, spacing, and usability.",
   },
   {
     number: "03",
-    icon: Layout,
-    color: "#146EF5",
-    title: "CMS & Website Builders",
-    desc: "Professional websites built and customized on modern CMS and visual website-building platforms.",
-    groups: [
-      {
-        title: "Platforms",
-        items: ["Shopify", "Wix", "Webflow", "Squarespace"],
-      },
-    ],
+    icon: Code2,
+    color: "#3B82F6",
+    title: "Technical Execution",
+    desc: "From WordPress and Shopify to React and custom frontend work, I choose the right approach for each build.",
   },
   {
     number: "04",
-    icon: ShoppingBag,
-    color: "#95BF47",
-    title: "E-commerce Development",
-    desc: "Storefront development and checkout experiences designed around clarity, usability, and reliable integrations.",
-    groups: [
-      {
-        title: "Commerce Capabilities",
-        items: [
-          "WooCommerce",
-          "Shopify",
-          "Payment Gateway Integrations",
-          "Stripe Integration",
-          "Custom Product & Checkout Experiences",
-        ],
-      },
-    ],
+    icon: Zap,
+    color: "#22C55E",
+    title: "Performance Mindset",
+    desc: "Fast loading, responsive layouts, maintainable code, and dependable cross-browser behavior are part of the work.",
   },
 ];
 
-const SUPPORTING_SKILLS = [
-  "Website Optimization",
-  "Responsive Design",
-  "Problem Solving",
-  "Communication",
-  "Team Collaboration",
-  "Quick Learner",
-];
-
-const LANGUAGES = ["English — Professional", "Urdu — Native"];
-
-const EDUCATION = [
-  { yr: "2020 — 2024", title: "Bachelor of Computer Engineering", org: "Sir Syed University of Engineering & Technology (SSUET), Karachi" },
-  { yr: "2017 — 2019", title: "Higher Secondary Certificate — Pre-Engineering", org: "SAL College, Mirpurkhas" },
-  { yr: "2015 — 2017", title: "Secondary School Certificate — Science", org: "The Lings School System, Mirpurkhas" },
-];
-
-const EXPERIENCE = [
+const ABOUT_JOURNEY = [
   {
-    yr: "2023 — Present",
+    year: "2022",
+    title: "Started Freelancing",
+    org: "Independent · Remote",
+    desc: "Began building websites for businesses and clients across different industries, translating ideas into practical CMS-driven experiences.",
+  },
+  {
+    year: "2023 — Present",
     title: "Web Developer",
-    org: "JTECH Solutions — Karachi, Pakistan",
-    bullets: [
-      "Develop and maintain responsive websites using WordPress and leading page builders.",
-      "Customize themes, layouts, and plugins to match precise client requirements.",
-      "Implement HTML, CSS, and JavaScript for custom functionality and UI enhancements.",
-      "Ensure performance, cross-browser compatibility, and full mobile responsiveness.",
-    ],
+    org: "JTECH Solutions · Karachi",
+    desc: "Developing WordPress websites, custom interfaces, responsive layouts, CMS solutions, and production-ready client projects.",
   },
   {
-    yr: "2022 — Present",
-    title: "Freelance Web Developer",
-    org: "Independent — Remote",
-    bullets: [
-      "Delivered multiple projects across WordPress, Shopify, Wix, and Webflow.",
-      "Built business websites, landing pages, and CMS-driven solutions end-to-end.",
-      "Partnered with clients to translate requirements into optimized web solutions.",
-      "Prioritized clean design, intuitive UX, and SEO-friendly structure.",
-    ],
+    year: "Today",
+    title: "Building Better Digital Experiences",
+    org: "Frontend · CMS · Commerce",
+    desc: "Continuing to grow across React, WordPress, Shopify, and modern web technologies while refining the quality of every build.",
   },
 ];
+
+const ABOUT_PRINCIPLES = [
+  {
+    icon: Compass,
+    color: "#8B5CF6",
+    title: "Understand first",
+    desc: "Every project starts with understanding the goal, audience, content, and problem that needs to be solved.",
+  },
+  {
+    icon: Layers,
+    color: "#F5A623",
+    title: "Keep it intentional",
+    desc: "I prefer clear hierarchy, purposeful interactions, and solutions that remain easy to update and maintain.",
+  },
+  {
+    icon: Smartphone,
+    color: "#3B82F6",
+    title: "Build for real users",
+    desc: "A website should look polished while also being fast, responsive, accessible, and useful on real devices.",
+  },
+  {
+    icon: Lightbulb,
+    color: "#22C55E",
+    title: "Keep improving",
+    desc: "The web changes constantly, so I keep learning, testing ideas, and improving how I approach development.",
+  },
+];
+
+const ABOUT_PERSONAL = [
+  {
+    icon: Code2,
+    color: "#8B5CF6",
+    label: "Currently learning",
+    value: "React and modern frontend development",
+  },
+  {
+    icon: ShoppingBag,
+    color: "#F5A623",
+    label: "Enjoy working with",
+    value: "WordPress, Shopify, and JavaScript",
+  },
+  {
+    icon: MapPin,
+    color: "#3B82F6",
+    label: "Based in",
+    value: "Karachi, Pakistan",
+  },
+];
+
+const ABOUT_EDUCATION = {
+  year: "2020 — 2024",
+  title: "Bachelor of Computer Engineering",
+  org: "Sir Syed University of Engineering & Technology (SSUET) · Karachi",
+};
 
 const CONTACT_INFO = [
   { icon: Mail, label: "Email", value: "haseebmujeeb360@gmail.com", href: "mailto:haseebmujeeb360@gmail.com" },
@@ -498,7 +467,7 @@ function ProjectPreview({ project }) {
   );
 }
 
-function Masthead({ crumb, title, subtitle }) {
+function Masthead({ crumb, title, subtitle, meta = [] }) {
   return (
     <section className="masthead">
       <div className="wrap">
@@ -507,6 +476,19 @@ function Masthead({ crumb, title, subtitle }) {
         </Reveal>
         <Reveal delay={60}><h1>{title}</h1></Reveal>
         <Reveal delay={110}><p>{subtitle}</p></Reveal>
+        {meta.length > 0 && (
+          <Reveal delay={150} className="masthead-meta">
+            {meta.map((item) => {
+              const MetaIcon = item.icon;
+              return (
+                <span key={item.label}>
+                  <MetaIcon size={13} />
+                  {item.label}
+                </span>
+              );
+            })}
+          </Reveal>
+        )}
       </div>
     </section>
   );
@@ -981,58 +963,104 @@ export default function App() {
         .tech-pill .tech-badge__logo img{ width:15px; height:15px; }
         .tech-pill > span{ font-size:10.5px; font-weight:700; color:#3C3E49; }
 
-        /* ============ INFO GRID (about page) ============ */
-        .info-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px 32px; margin:26px 0 30px; max-width:460px; }
-        .info-grid .label{ font-size:10.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gray-on-light); margin-bottom:5px; }
-        .info-grid .value{ font-size:14px; font-weight:700; }
+        /* ============ PREMIUM ABOUT PAGE ============ */
+        .masthead-meta{ display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:22px; }
+        .masthead-meta span{ display:inline-flex; align-items:center; gap:7px; min-height:34px; padding:7px 12px; border:1px solid var(--line-dark); border-radius:100px; background:rgba(255,255,255,.035); color:#CDD0DB; font-size:11px; font-weight:650; }
+        .masthead-meta span:last-child{ color:#D8FBE5; }
+        .masthead-meta span:last-child svg{ color:var(--green); }
 
-        /* ============ WEB DEVELOPMENT SKILLS ============ */
-        .web-skills-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
-        @media (min-width:900px){ .web-skills-grid{ grid-template-columns:1fr 1fr; } }
-        .skill-domain{
-          border:1px solid var(--line-light); border-radius:18px; padding:26px; background:#fff;
-          position:relative; overflow:hidden; transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease;
+        .about-profile{ background:var(--bg-light); }
+        .about-profile__grid{ display:grid; grid-template-columns:1fr; gap:42px; align-items:center; }
+        @media (min-width:960px){ .about-profile__grid{ grid-template-columns:1.02fr .98fr; gap:66px; } }
+        .about-photo{ position:relative; max-width:650px; }
+        .about-photo__frame{ position:relative; overflow:hidden; border-radius:24px; background:#12121D; border:1px solid var(--line-light); box-shadow:0 40px 90px -48px rgba(10,10,20,.42); }
+        .about-photo__frame::after{ content:''; position:absolute; inset:auto 0 0; height:42%; background:linear-gradient(180deg,transparent,rgba(8,8,14,.82)); pointer-events:none; }
+        .about-photo__frame img{ width:100%; aspect-ratio:1.2/1; object-fit:cover; object-position:center 44%; }
+        .about-photo__caption{ position:absolute; left:22px; right:22px; bottom:20px; z-index:2; display:flex; align-items:flex-end; justify-content:space-between; gap:18px; }
+        .about-photo__caption b{ display:block; color:#fff; font-size:15px; margin-bottom:4px; }
+        .about-photo__caption span{ color:#AFB3C2; font-size:11px; }
+        .about-photo__signal{ display:inline-flex; align-items:center; gap:7px; padding:8px 11px; border:1px solid rgba(255,255,255,.1); border-radius:100px; background:rgba(8,8,14,.62); backdrop-filter:blur(12px); color:#D8FBE5 !important; font-size:10px !important; font-weight:700; white-space:nowrap; }
+        .about-photo__signal::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.12); }
+        .about-photo__badge{ position:absolute; right:-14px; top:28px; z-index:3; display:flex; align-items:center; gap:10px; min-width:170px; padding:13px 15px; border-radius:15px; background:#fff; border:1px solid var(--line-light); box-shadow:0 24px 52px -27px rgba(20,20,35,.32); }
+        .about-photo__badge-icon{ width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(139,92,246,.12); color:var(--purple-2); flex:none; }
+        .about-photo__badge small{ display:block; color:var(--gray-on-light); font-size:9.5px; margin-bottom:2px; }
+        .about-photo__badge b{ font-size:11.5px; }
+        .about-story .eyebrow2{ margin-bottom:14px; }
+        .about-story h2{ font-size:clamp(30px,4.2vw,46px); line-height:1.12; letter-spacing:-.035em; margin:0 0 22px; max-width:600px; }
+        .about-story p{ font-size:14.5px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
+        .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:13px; line-height:1.7; }
+
+        .about-values{ background:#fff; }
+        .about-value-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+        @media (min-width:680px){ .about-value-grid{ grid-template-columns:1fr 1fr; } }
+        @media (min-width:1040px){ .about-value-grid{ grid-template-columns:repeat(4,1fr); } }
+        .about-value-card{ position:relative; overflow:hidden; min-height:250px; border:1px solid var(--line-light); border-radius:19px; padding:26px 22px; background:#fff; transition:transform .35s cubic-bezier(.16,.8,.24,1),box-shadow .35s ease,border-color .35s ease; }
+        .about-value-card::before{ content:''; position:absolute; inset:0 0 auto; height:3px; background:var(--value-color); }
+        .about-value-card:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.17); box-shadow:0 30px 58px -34px rgba(20,20,35,.28); }
+        .about-value-card__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:34px; }
+        .about-value-card__icon{ width:45px; height:45px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb,var(--value-color) 13%,transparent); }
+        .about-value-card__num{ font-family:var(--mono); color:var(--value-color); font-size:11px; font-weight:700; }
+        .about-value-card h3{ font-size:17px; margin:0 0 10px; }
+        .about-value-card p{ font-size:12.5px; line-height:1.75; color:var(--gray-on-light); margin:0; }
+
+        .about-journey{ background:var(--bg-light); }
+        .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
+        @media (min-width:860px){ .journey-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
+        @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:10%; right:10%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
+        .journey-card{ position:relative; padding:0 0 34px 36px; }
+        .journey-card:last-child{ padding-bottom:0; }
+        .journey-card::before{ content:''; position:absolute; left:7px; top:30px; bottom:0; width:1px; background:var(--line-light); }
+        .journey-card:last-child::before{ display:none; }
+        @media (min-width:860px){ .journey-card{ padding:0; z-index:1; } .journey-card::before{ display:none; } }
+        .journey-card__dot{ position:absolute; left:0; top:18px; width:16px; height:16px; border-radius:50%; background:#fff; border:4px solid var(--journey-color); box-shadow:0 0 0 6px var(--bg-light); }
+        @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
+        .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
+        .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
+        .journey-card__org{ font-size:11px; color:var(--gray-on-light); margin-bottom:12px; }
+        .journey-card p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
+
+        .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
+        .about-principles::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; right:-180px; top:-250px; background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%); }
+        .principle-grid{ display:grid; grid-template-columns:1fr; gap:14px; position:relative; z-index:1; }
+        @media (min-width:680px){ .principle-grid{ grid-template-columns:1fr 1fr; } }
+        .principle-card{ display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; padding:24px; border:1px solid var(--line-dark); border-radius:17px; background:rgba(255,255,255,.025); }
+        .principle-card__icon{ width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.05); }
+        .principle-card h3{ font-size:15px; margin:2px 0 7px; }
+        .principle-card p{ color:var(--gray-on-dark); font-size:12.5px; line-height:1.7; margin:0; }
+
+        .about-details{ background:#fff; }
+        .about-details__grid{ display:grid; grid-template-columns:1fr; gap:22px; }
+        @media (min-width:900px){ .about-details__grid{ grid-template-columns:.78fr 1.22fr; gap:26px; align-items:stretch; } }
+        .education-card{ border:1px solid var(--line-light); border-radius:20px; padding:28px; background:var(--bg-light); position:relative; overflow:hidden; }
+        .education-card::after{ content:''; position:absolute; width:170px; height:170px; border-radius:50%; right:-70px; bottom:-90px; background:radial-gradient(circle,rgba(139,92,246,.16),transparent 70%); }
+        .education-card__icon{ width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(139,92,246,.13); color:var(--purple-2); margin-bottom:34px; }
+        .education-card__year{ font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--purple-2); }
+        .education-card h3{ font-size:21px; line-height:1.35; margin:9px 0 8px; max-width:340px; }
+        .education-card p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.7; margin:0; max-width:390px; }
+        .beyond-card{ border:1px solid var(--line-light); border-radius:20px; padding:28px; background:#fff; }
+        .beyond-card h2{ font-size:25px; margin:0 0 12px; }
+        .beyond-card > p{ color:var(--gray-on-light); font-size:13px; line-height:1.75; max-width:680px; margin:0 0 24px; }
+        .beyond-grid{ display:grid; grid-template-columns:1fr; gap:12px; }
+        @media (min-width:620px){ .beyond-grid{ grid-template-columns:repeat(3,1fr); } }
+        .beyond-item{ padding:17px; border:1px solid var(--line-light); border-radius:14px; background:var(--bg-light); }
+        .beyond-item__icon{ width:37px; height:37px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; background:color-mix(in srgb,var(--beyond-color) 13%,transparent); }
+        .beyond-item small{ display:block; font-size:9.5px; color:var(--gray-on-light); text-transform:uppercase; letter-spacing:.055em; font-weight:700; margin-bottom:5px; }
+        .beyond-item b{ font-size:12px; line-height:1.5; display:block; }
+
+        .about-final-cta{ background:var(--bg-darkest); color:#fff; padding:76px 0; position:relative; overflow:hidden; }
+        .about-final-cta::after{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 86% 40%,rgba(139,92,246,.25),transparent 42%); }
+        .about-final-cta__inner{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:28px; }
+        @media (min-width:840px){ .about-final-cta__inner{ flex-direction:row; align-items:center; } }
+        .about-final-cta h2{ font-size:clamp(29px,4vw,42px); line-height:1.15; letter-spacing:-.03em; margin:0 0 10px; }
+        .about-final-cta p{ color:var(--gray-on-dark); font-size:13.5px; line-height:1.7; margin:0; }
+
+        @media (max-width:700px){
+          .about-photo__badge{ position:relative; right:auto; top:auto; margin:-18px 14px 0; }
+          .about-photo__frame img{ aspect-ratio:1/1; object-position:54% 45%; }
+          .about-photo__caption{ left:16px; right:16px; bottom:16px; }
+          .about-photo__signal{ display:none; }
+          .about-story h2{ font-size:31px; }
         }
-        .skill-domain::before{ content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--domain-color); }
-        .skill-domain:hover{ transform:translateY(-5px); box-shadow:0 28px 55px -34px rgba(20,20,35,0.28); }
-        @media (min-width:900px){ .skill-domain--wide{ grid-column:1 / -1; } }
-        .skill-domain__head{ display:grid; grid-template-columns:auto 1fr auto; gap:14px; align-items:start; margin-bottom:24px; }
-        .skill-domain__icon{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; flex:none; }
-        .skill-domain__title h3{ font-size:17px; font-weight:800; margin:0 0 7px; line-height:1.3; }
-        .skill-domain__title p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.7; margin:0; max-width:680px; }
-        .skill-domain__number{ font-family:var(--mono); font-size:11px; font-weight:700; color:var(--domain-color); padding-top:4px; }
-        .skill-domain__groups{ display:grid; grid-template-columns:1fr; gap:14px; }
-        @media (min-width:680px){ .skill-domain--wide .skill-domain__groups{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-        @media (min-width:1040px){ .skill-domain--wordpress .skill-domain__groups{ grid-template-columns:repeat(3,minmax(0,1fr)); } }
-        .skill-subgroup{ background:var(--bg-light); border:1px solid var(--line-light); border-radius:14px; padding:18px; }
-        .skill-subgroup h4{ font-size:12px; font-weight:800; letter-spacing:.01em; margin:0 0 12px; color:var(--ink); }
-        .skill-subgroup__items{ display:flex; flex-wrap:wrap; gap:7px; }
-        .skill-subgroup__items span{ font-size:10.5px; font-weight:600; line-height:1.35; color:var(--gray-on-light); background:#fff; border:1px solid var(--line-light); padding:6px 9px; border-radius:8px; }
-        .skill-meta{ display:grid; grid-template-columns:1fr; gap:14px; margin-top:18px; }
-        @media (min-width:760px){ .skill-meta{ grid-template-columns:1.5fr .5fr; } }
-        .skill-meta__item{ border:1px solid var(--line-light); border-radius:14px; padding:18px 20px; background:var(--bg-light); }
-        .skill-meta__item h4{ font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; margin:0 0 10px; color:var(--gray-on-light); }
-        .skill-meta__tags{ display:flex; flex-wrap:wrap; gap:7px; }
-        .skill-meta__tags span{ font-size:10.5px; font-weight:600; background:#fff; border:1px solid var(--line-light); border-radius:8px; padding:5px 9px; }
-        @media (max-width:520px){
-          .skill-domain{ padding:22px 18px; }
-          .skill-domain__head{ grid-template-columns:auto 1fr; }
-          .skill-domain__number{ display:none; }
-        }
-
-        /* ============ TIMELINE (education / experience) ============ */
-        .timeline{ position:relative; max-width:760px; }
-        .timeline::before{ content:''; position:absolute; left:7px; top:6px; bottom:6px; width:1px; background:var(--line-light); }
-        .t-item{ position:relative; padding-left:34px; padding-bottom:36px; }
-        .t-item:last-child{ padding-bottom:0; }
-        .t-item::before{ content:''; position:absolute; left:0; top:4px; width:15px; height:15px; border-radius:50%; background:#fff; border:2px solid var(--purple-2); }
-        .t-item .yr{ font-family:var(--mono); font-size:11px; color:var(--purple-2); font-weight:600; margin-bottom:6px; display:block; }
-        .t-item h4{ font-size:16.5px; font-weight:800; margin:0 0 3px; }
-        .t-item .org{ font-size:12.5px; color:var(--gray-on-light); margin-bottom:12px; }
-        .t-item ul{ margin:0; padding-left:18px; }
-        .t-item ul li{ font-size:13px; color:var(--gray-on-light); line-height:1.8; margin-bottom:5px; }
-
-        .subhead{ font-size:19px; font-weight:800; margin:0 0 26px; display:flex; align-items:center; gap:10px; }
 
         /* ============ PROJECTS ============ */
         .projects{ background:#fff; }
@@ -1130,7 +1158,7 @@ export default function App() {
         @media (min-width:860px){ .process-row{ grid-template-columns:repeat(4,1fr); gap:24px; } }
         @media (min-width:860px){
           .process-row::before{
-            content:''; display:block; position:absolute; top:26px; left:4%; right:19%; height:1px;
+            content:''; display:block; position:absolute; top:26px; left:12%; right:12%; height:1px;
             background-image:linear-gradient(90deg, var(--line-dark) 50%, transparent 50%); background-size:14px 1px;
           }
         }
@@ -1534,151 +1562,172 @@ export default function App() {
         <>
           <Masthead
             crumb="About"
-            title="From curiosity to production-ready websites."
-            subtitle="I combine a Computer Engineering mindset with practical frontend, WordPress, Shopify, and CMS development experience to build responsive websites that are clear, maintainable, and ready for real use."
+            title="Building with curiosity. Delivering with purpose."
+            subtitle="I'm Haseeb — a Computer Engineer and Web Developer focused on building thoughtful, high-performance digital experiences."
+            meta={[
+              { icon: MapPin, label: "Karachi, Pakistan" },
+              { icon: CheckCircle2, label: "Available for remote opportunities" },
+            ]}
           />
 
-          <section className="about sec" style={{ paddingBottom: 40 }}>
-            <div className="wrap">
-              <Reveal><Eyebrow>Profile</Eyebrow></Reveal>
-              <Reveal delay={50}><h2 style={{ marginBottom: 6 }}>Haseeb Mujeeb Ansari</h2></Reveal>
-              <Reveal delay={90}>
-                <p style={{ color: "var(--gray-on-light)", fontSize: 14.5, maxWidth: 640, lineHeight: 1.8, marginTop: 14 }}>
-                  I started by wanting to understand how websites work; that curiosity grew into
-                  building them professionally. Today, I work as a Web Developer at JTECH Solutions
-                  and independently with clients, translating designs and requirements into responsive
-                  React interfaces, WordPress websites, Shopify stores, and CMS-driven experiences.
-                  My Computer Engineering background keeps the work structured, practical, and tested
-                  against real-world use.
-                </p>
-              </Reveal>
-              <Reveal delay={130}>
-                <div className="info-grid">
-                  <div><div className="label">Name</div><div className="value">Haseeb M. Ansari</div></div>
-                  <div><div className="label">Location</div><div className="value">Karachi, Pakistan</div></div>
-                  <div><div className="label">Email</div><div className="value">haseebmujeeb360@gmail.com</div></div>
-                  <div><div className="label">Phone</div><div className="value">+92 335 3832477</div></div>
+          <section className="about-profile sec">
+            <div className="wrap about-profile__grid">
+              <Reveal className="about-photo">
+                <div className="about-photo__frame">
+                  <img
+                    src="/images/haseeb-ansari-profile.webp"
+                    alt="Haseeb Mujeeb Ansari, Web Developer and Computer Engineer"
+                    loading="eager"
+                  />
+                  <div className="about-photo__caption">
+                    <div>
+                      <b>Haseeb Mujeeb Ansari</b>
+                      <span>Web Developer · Computer Engineer</span>
+                    </div>
+                    <span className="about-photo__signal">Building for the web</span>
+                  </div>
+                </div>
+                <div className="about-photo__badge">
+                  <span className="about-photo__badge-icon"><MapPin size={17} /></span>
+                  <span><small>Based in</small><b>Karachi, Pakistan</b></span>
                 </div>
               </Reveal>
-              <Reveal delay={160}>
-                <button className="btn btn-outline-light" onClick={() => navigateTo("contact", "page")}>
-                  Let's Connect <ArrowRight size={15} />
-                </button>
-              </Reveal>
+
+              <div className="about-story">
+                <Reveal><Eyebrow>My Story</Eyebrow></Reveal>
+                <Reveal delay={60}><h2>A developer who cares about the details.</h2></Reveal>
+                <Reveal delay={110}>
+                  <p>
+                    I started with a curiosity about how websites work. Over time, that curiosity became a career in building digital experiences that are clear, responsive, and built to perform.
+                  </p>
+                  <p>
+                    Today, I work across WordPress, Shopify, React, and modern front-end technologies — helping businesses turn ideas, approved designs, and real requirements into polished, usable websites.
+                  </p>
+                  <div className="about-story__highlight">
+                    My work sits between design awareness and technical execution: protecting the visual details while making sure the final website is practical, editable, and ready for real users.
+                  </div>
+                </Reveal>
+                <Reveal delay={160}>
+                  <button className="btn btn-grad" onClick={() => navigateTo("contact", "page")}>Let's Work Together <ArrowRight size={15} /></button>
+                </Reveal>
+              </div>
             </div>
           </section>
 
-          <section className="sec" style={{ paddingTop: 20 }}>
+          <section className="about-values sec">
             <div className="wrap">
               <Reveal className="sec-head">
-                <Eyebrow>Web Development</Eyebrow>
-                <h2>Development expertise, clearly organized.</h2>
-                <p>
-                  My work spans custom WordPress development, hand-coded front-end interfaces,
-                  modern CMS platforms, and e-commerce implementation.
-                </p>
+                <Eyebrow>What I Bring</Eyebrow>
+                <h2>More than a list of technologies.</h2>
+                <p>I bring a balanced approach that connects thoughtful interfaces, dependable development, and the practical needs of a real project.</p>
               </Reveal>
-
-              <div className="web-skills-grid">
-                {WEB_SKILL_AREAS.map((area, i) => {
-                  const AreaIcon = area.icon;
+              <div className="about-value-grid">
+                {ABOUT_VALUE_CARDS.map((item, index) => {
+                  const ValueIcon = item.icon;
                   return (
-                    <Reveal
-                      delay={(i % 2) * 80}
-                      key={area.title}
-                      className={`skill-domain ${area.wide ? "skill-domain--wide" : ""} ${area.number === "01" ? "skill-domain--wordpress" : ""}`}
-                      style={{ "--domain-color": area.color }}
-                    >
-                      <div className="skill-domain__head">
-                        <div className="skill-domain__icon" style={{ background: `${area.color}18` }}>
-                          <AreaIcon size={21} color={area.color} />
-                        </div>
-                        <div className="skill-domain__title">
-                          <h3>{area.title}</h3>
-                          <p>{area.desc}</p>
-                        </div>
-                        <span className="skill-domain__number">{area.number}</span>
+                    <Reveal key={item.title} delay={(index % 4) * 70} className="about-value-card" style={{ "--value-color": item.color }}>
+                      <div className="about-value-card__top">
+                        <span className="about-value-card__icon"><ValueIcon size={20} color={item.color} /></span>
+                        <span className="about-value-card__num">{item.number}</span>
                       </div>
-
-                      <div className="skill-domain__groups">
-                        {area.groups.map((group) => (
-                          <div className="skill-subgroup" key={group.title}>
-                            <h4>{group.title}</h4>
-                            <div className="skill-subgroup__items">
-                              {group.items.map((item) => (
-                                <span key={item}>{item}</span>
-                              ))}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
+                      <h3>{item.title}</h3>
+                      <p>{item.desc}</p>
                     </Reveal>
                   );
                 })}
               </div>
-
-              <Reveal delay={100} className="skill-meta">
-                <div className="skill-meta__item">
-                  <h4>Professional Strengths</h4>
-                  <div className="skill-meta__tags">
-                    {SUPPORTING_SKILLS.map((skill) => <span key={skill}>{skill}</span>)}
-                  </div>
-                </div>
-                <div className="skill-meta__item">
-                  <h4>Languages</h4>
-                  <div className="skill-meta__tags">
-                    {LANGUAGES.map((language) => <span key={language}>{language}</span>)}
-                  </div>
-                </div>
-              </Reveal>
             </div>
           </section>
 
-          <section className="about sec">
+          <section className="about-journey sec">
             <div className="wrap">
-              <Reveal className="subhead"><Briefcase size={19} color="var(--purple-2)" /> Professional Experience</Reveal>
-              <Reveal delay={60} className="timeline" style={{ marginBottom: 60 }}>
-                {EXPERIENCE.map((e) => (
-                  <div className="t-item" key={e.title}>
-                    <span className="yr">{e.yr}</span>
-                    <h4>{e.title}</h4>
-                    <div className="org">{e.org}</div>
-                    <ul>
-                      {e.bullets.map((b) => (
-                        <li key={b}>{b}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+              <Reveal className="sec-head">
+                <Eyebrow>My Journey</Eyebrow>
+                <h2>The path so far.</h2>
+                <p>A practical progression from independent client work to production development — with a focus on getting better through every build.</p>
+              </Reveal>
+              <div className="journey-grid">
+                {ABOUT_JOURNEY.map((item, index) => {
+                  const colors = ["#8B5CF6", "#F5A623", "#22C55E"];
+                  const icons = [Briefcase, Code2, CheckCircle2];
+                  const JourneyIcon = icons[index];
+                  return (
+                    <Reveal key={item.title} delay={index * 100} className="journey-card" style={{ "--journey-color": colors[index] }}>
+                      <span className="journey-card__dot"><JourneyIcon size={19} /></span>
+                      <span className="journey-card__year">{item.year}</span>
+                      <h3>{item.title}</h3>
+                      <div className="journey-card__org">{item.org}</div>
+                      <p>{item.desc}</p>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="about-principles sec">
+            <div className="wrap">
+              <Reveal className="sec-head sec-head--white">
+                <Eyebrow>The Way I Work</Eyebrow>
+                <h2>Thoughtful choices from the first conversation to the final handoff.</h2>
+                <p>These principles guide how I approach development, communication, and the quality of the finished experience.</p>
+              </Reveal>
+              <div className="principle-grid">
+                {ABOUT_PRINCIPLES.map((item, index) => {
+                  const PrincipleIcon = item.icon;
+                  return (
+                    <Reveal key={item.title} delay={(index % 2) * 80} className="principle-card">
+                      <span className="principle-card__icon"><PrincipleIcon size={20} color={item.color} /></span>
+                      <div><h3>{item.title}</h3><p>{item.desc}</p></div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="about-details sec">
+            <div className="wrap about-details__grid">
+              <Reveal className="education-card">
+                <span className="education-card__icon"><GraduationCap size={22} /></span>
+                <span className="education-card__year">{ABOUT_EDUCATION.year}</span>
+                <h3>{ABOUT_EDUCATION.title}</h3>
+                <p>{ABOUT_EDUCATION.org}</p>
               </Reveal>
 
-              <Reveal className="subhead"><GraduationCap size={19} color="var(--purple-2)" /> Education</Reveal>
-              <Reveal delay={60} className="timeline">
-                {EDUCATION.map((e) => (
-                  <div className="t-item" key={e.title}>
-                    <span className="yr">{e.yr}</span>
-                    <h4>{e.title}</h4>
-                    <div className="org" style={{ marginBottom: 0 }}>{e.org}</div>
-                  </div>
-                ))}
+              <Reveal delay={80} className="beyond-card">
+                <Eyebrow>Beyond the Code</Eyebrow>
+                <h2>Curiosity does not stop when a project launches.</h2>
+                <p>When I'm not building websites, I'm usually exploring new technologies, testing design ideas, or learning something that helps me become a more thoughtful developer.</p>
+                <div className="beyond-grid">
+                  {ABOUT_PERSONAL.map((item) => {
+                    const PersonalIcon = item.icon;
+                    return (
+                      <div className="beyond-item" key={item.label} style={{ "--beyond-color": item.color }}>
+                        <span className="beyond-item__icon"><PersonalIcon size={17} color={item.color} /></span>
+                        <small>{item.label}</small>
+                        <b>{item.value}</b>
+                      </div>
+                    );
+                  })}
+                </div>
               </Reveal>
             </div>
           </section>
 
-          <section className="cta-banner">
-            <div className="wrap cta-row">
+          <section className="about-final-cta">
+            <div className="wrap about-final-cta__inner">
               <div>
-                <h3>Like what you see?</h3>
-                <p>Let's talk about what you're building.</p>
+                <h2>Have a project, opportunity, or idea?</h2>
+                <p>Whether you're building something new, improving an existing website, or looking for a developer to join your team, I'd be glad to hear about it.</p>
               </div>
-              <button className="btn btn-grad" onClick={() => navigateTo("contact", "page")}>
-                Get In Touch <ArrowRight size={15} />
-              </button>
+              <button className="btn btn-grad" onClick={() => navigateTo("contact", "page")}>Start a Conversation <ArrowRight size={15} /></button>
             </div>
           </section>
         </>
       )}
 
+      {/* ================================================================ */}
       {/* ================================================================ */}
       {/* SERVICES PAGE                                                    */}
       {/* ================================================================ */}
