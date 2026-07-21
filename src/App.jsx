@@ -1329,6 +1329,92 @@ export default function App() {
         .footer-bottom{ border-top:1px solid var(--line-dark); padding-top:22px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:12px; }
         .footer-bottom a{ color:var(--gray-on-dark-2); margin-left:18px; }
         .footer-bottom a:hover{ color:#fff; }
+
+        /* ============ FOOTER MOBILE ============ */
+@media (max-width: 759px) {
+  .footer {
+    padding: 48px 0 22px;
+  }
+
+  .footer .wrap {
+    width: 100%;
+    max-width: none;
+    padding-left: 22px;
+    padding-right: 22px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 34px;
+    margin-bottom: 38px;
+  }
+
+  .footer-grid > div {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .footer-brand {
+    width: 100%;
+  }
+
+  .footer-brand p {
+    width: 100%;
+    max-width: 310px;
+    font-size: 13px;
+    line-height: 1.75;
+    margin: 14px 0 20px;
+  }
+
+  .footer h5 {
+    margin-bottom: 15px;
+  }
+
+  .footer-links {
+    width: 100%;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    width: fit-content;
+    max-width: 100%;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-contact {
+    width: 100%;
+  }
+
+  .footer-contact div {
+    width: 100%;
+    align-items: flex-start;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+  .footer-bottom {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding-top: 20px;
+  }
+
+  .footer-bottom div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+  }
+
+  .footer-bottom a {
+    margin-left: 0;
+  }
+}
       `}</style>
 
       {/* ============ NAV ============ */}
