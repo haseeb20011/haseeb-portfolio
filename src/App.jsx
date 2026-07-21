@@ -1130,7 +1130,7 @@ export default function App() {
         @media (min-width:860px){ .process-row{ grid-template-columns:repeat(4,1fr); gap:24px; } }
         @media (min-width:860px){
           .process-row::before{
-            content:''; display:block; position:absolute; top:26px; left:12%; right:12%; height:1px;
+            content:''; display:block; position:absolute; top:26px; left:4%; right:19%; height:1px;
             background-image:linear-gradient(90deg, var(--line-dark) 50%, transparent 50%); background-size:14px 1px;
           }
         }
