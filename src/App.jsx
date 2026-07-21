@@ -1018,6 +1018,90 @@ export default function App() {
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
         .journey-card__org{ font-size:13px; color:var(--gray-on-light); margin-bottom:12px; }
         .journey-card p{ font-size:15px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
+        @media (max-width: 859px) {
+  .about-journey .sec-head {
+    margin-bottom: 38px;
+  }
+
+  .journey-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .journey-card {
+    position: relative;
+    padding: 0 0 42px 60px;
+    min-width: 0;
+  }
+
+  .journey-card:last-child {
+    padding-bottom: 0;
+  }
+
+  .journey-card::before {
+    display: block;
+    left: 21px;
+    top: 46px;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(
+      to bottom,
+      var(--journey-color),
+      rgba(139, 92, 246, 0.08)
+    );
+  }
+
+  .journey-card:last-child::before {
+    display: none;
+  }
+
+  .journey-card__dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--journey-color);
+    background: #ffffff;
+    border: 1px solid var(--line-light);
+    box-shadow: 0 14px 28px -20px rgba(20, 20, 35, 0.3);
+  }
+
+  .journey-card__dot svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+  }
+
+  .journey-card__year {
+    display: block;
+    margin: 0 0 7px;
+    padding-top: 1px;
+    line-height: 1.3;
+  }
+
+  .journey-card h3 {
+    font-size: 16px;
+    line-height: 1.35;
+    margin-bottom: 5px;
+  }
+
+  .journey-card__org {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+
+  .journey-card p {
+    max-width: none;
+    font-size: 12.5px;
+    line-height: 1.72;
+    overflow-wrap: anywhere;
+  }
+}
 
         .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
         .about-principles::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; right:-180px; top:-250px; background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%); }
