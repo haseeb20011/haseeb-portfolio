@@ -770,62 +770,71 @@ export default function App() {
         .stat-item b{ display:block; font-size:19px; font-weight:800; }
         .stat-item span{ font-size:11px; color:var(--gray-on-dark); }
 
-        .hero__visual{ position:relative; width:100%; }
+        .hero__visual{ position:relative; width:100%; max-width:560px; margin-left:auto; }
         .hero-showcase{
           background:linear-gradient(145deg,rgba(18,18,29,.98),rgba(10,10,18,.98));
           border:1px solid var(--line-dark); border-radius:22px; overflow:hidden;
-          box-shadow:0 54px 110px -34px rgba(0,0,0,.72); min-height:390px;
+          box-shadow:0 44px 100px -38px rgba(0,0,0,.72); min-height:0;
           position:relative; isolation:isolate;
         }
         .hero-showcase::before{
-          content:''; position:absolute; width:260px; height:260px; border-radius:50%; right:-80px; top:-100px;
-          background:radial-gradient(circle,rgba(139,92,246,.34),transparent 68%); z-index:-1;
+          content:''; position:absolute; width:220px; height:220px; border-radius:50%; right:-86px; top:-110px;
+          background:radial-gradient(circle,rgba(139,92,246,.28),transparent 70%); z-index:-1;
         }
-        .hero-showcase__bar{ min-height:50px; padding:0 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; border-bottom:1px solid var(--line-dark); }
+        .hero-showcase__bar{ min-height:52px; padding:0 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; border-bottom:1px solid var(--line-dark); }
         .hero-showcase__dots{ display:flex; gap:6px; }
         .hero-showcase__dots i{ width:9px; height:9px; border-radius:50%; }
         .hero-showcase__path{ font-family:var(--mono); font-size:9px; color:var(--gray-on-dark-2); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
         .hero-showcase__status{ display:flex; align-items:center; gap:7px; font-size:9.5px; font-weight:700; color:#D8FBE5; white-space:nowrap; }
         .hero-showcase__status::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.12); }
-        .hero-showcase__body{ display:grid; grid-template-columns:.92fr 1.08fr; gap:18px; padding:28px; align-items:stretch; }
-        .hero-showcase__copy{ display:flex; flex-direction:column; justify-content:center; }
-        .hero-showcase__eyebrow{ font-family:var(--mono); font-size:9.5px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin-bottom:12px; }
-        .hero-showcase__copy h4{ font-size:22px; line-height:1.27; letter-spacing:-.02em; margin:0 0 12px; }
-        .hero-showcase__copy p{ font-size:12px; color:var(--gray-on-dark); line-height:1.7; margin:0 0 18px; }
+        .hero-showcase__body{ display:grid; grid-template-columns:.88fr 1.12fr; gap:18px; padding:24px; align-items:start; }
+        .hero-showcase__copy{ display:flex; flex-direction:column; justify-content:center; padding-top:6px; }
+        .hero-showcase__eyebrow{ font-family:var(--mono); font-size:9.5px; font-weight:700; color:var(--orange); text-transform:uppercase; letter-spacing:.08em; margin-bottom:10px; }
+        .hero-showcase__copy h4{ font-size:20px; line-height:1.24; letter-spacing:-.02em; margin:0 0 12px; max-width:240px; }
+        .hero-showcase__copy p{ font-size:12px; color:var(--gray-on-dark); line-height:1.72; margin:0 0 16px; max-width:250px; }
         .hero-showcase__services{ display:flex; flex-wrap:wrap; gap:7px; }
         .hero-showcase__services span{ font-size:9px; font-weight:700; color:#D8D9E2; border:1px solid var(--line-dark); background:rgba(255,255,255,.04); padding:6px 9px; border-radius:100px; }
-        .hero-showcase__preview{ background:#F6F6FA; border-radius:15px; padding:13px; min-height:235px; box-shadow:0 28px 70px -32px rgba(0,0,0,.7); }
-        .hero-preview__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding-bottom:11px; border-bottom:1px solid rgba(20,20,35,.08); }
-        .hero-preview__logo{ width:76px; height:8px; border-radius:10px; background:linear-gradient(90deg,#11111A 0 38%,#8B5CF6 38% 64%,#F5A623 64%); }
-        .hero-preview__menu{ display:flex; gap:5px; }
-        .hero-preview__menu i{ width:18px; height:4px; border-radius:10px; background:#D9DAE3; }
-        .hero-preview__hero{ margin-top:13px; border-radius:11px; padding:18px; min-height:104px; background:linear-gradient(130deg,#11111A,#261B48); position:relative; overflow:hidden; }
-        .hero-preview__hero::after{ content:''; position:absolute; width:100px; height:100px; border-radius:50%; right:-26px; top:-32px; background:linear-gradient(135deg,rgba(139,92,246,.9),rgba(245,166,35,.75)); filter:blur(2px); }
-        .hero-preview__line{ height:7px; border-radius:10px; background:#fff; margin-bottom:7px; position:relative; z-index:1; }
-        .hero-preview__line--lg{ width:62%; }
-        .hero-preview__line--sm{ width:42%; opacity:.45; }
-        .hero-preview__button{ width:58px; height:18px; border-radius:100px; background:var(--grad); margin-top:16px; position:relative; z-index:1; }
-        .hero-preview__cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:10px; }
-        .hero-preview__card{ height:56px; border:1px solid rgba(20,20,35,.07); border-radius:9px; background:#fff; padding:9px; }
-        .hero-preview__card::before{ content:''; display:block; width:22px; height:22px; border-radius:7px; background:var(--card-tone); margin-bottom:6px; }
-        .hero-preview__card::after{ content:''; display:block; width:70%; height:4px; border-radius:8px; background:#D8D9E1; }
-        .hero-showcase__footer{ border-top:1px solid var(--line-dark); padding:15px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+        .hero-showcase__stack{ display:flex; flex-direction:column; gap:12px; }
+        .hero-code-panel{
+          background:linear-gradient(180deg,rgba(16,16,28,.98),rgba(11,11,20,.98)); border:1px solid rgba(255,255,255,.06); border-radius:16px;
+          padding:14px 15px 16px; box-shadow:0 22px 54px -30px rgba(0,0,0,.68);
+        }
+        .hero-code-panel__top{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+        .hero-code-panel__title{ font-size:9px; font-family:var(--mono); color:var(--gray-on-dark-2); letter-spacing:.08em; text-transform:uppercase; }
+        .hero-code-panel__label{ font-size:9px; font-weight:700; color:#D8FBE5; padding:5px 8px; border-radius:100px; border:1px solid rgba(34,197,94,.26); background:rgba(34,197,94,.09); }
+        .hero-code-panel__lines{ display:grid; gap:8px; }
+        .hero-code-line{ display:flex; align-items:center; gap:10px; }
+        .hero-code-line__no{ font-family:var(--mono); font-size:10px; color:rgba(152,160,183,.72); width:16px; flex:none; }
+        .hero-code-line__bar{ height:8px; border-radius:100px; background:linear-gradient(90deg,rgba(255,255,255,.16),rgba(255,255,255,.07)); position:relative; overflow:hidden; flex:1; }
+        .hero-code-line__bar::after{ content:''; position:absolute; inset:0 auto 0 0; width:var(--line-width); background:linear-gradient(90deg,var(--line-start),var(--line-end)); border-radius:100px; }
+        .hero-code-panel__footer{ display:flex; gap:8px; flex-wrap:wrap; margin-top:14px; }
+        .hero-code-panel__footer span{ font-size:9px; font-weight:700; color:#C7CAD9; border:1px solid rgba(255,255,255,.07); background:rgba(255,255,255,.03); border-radius:100px; padding:6px 8px; }
+        .hero-mini-grid{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+        .hero-mini-card{ border:1px solid rgba(255,255,255,.06); background:rgba(255,255,255,.03); border-radius:14px; padding:13px 12px; min-height:88px; }
+        .hero-mini-card__icon{ width:32px; height:32px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:10px; }
+        .hero-mini-card b{ display:block; font-size:13px; margin-bottom:4px; }
+        .hero-mini-card p{ margin:0; font-size:10.5px; line-height:1.55; color:var(--gray-on-dark); }
+        .hero-showcase__footer{ border-top:1px solid var(--line-dark); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
         .hero-showcase__footer-copy{ font-size:10px; color:var(--gray-on-dark); }
-        .hero-showcase__brands{ display:flex; align-items:center; gap:8px; }
+        .hero-showcase__brands{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:flex-end; }
         .hero-showcase__brands .tech-badge{ width:30px; height:30px; min-height:0; padding:0; border-radius:9px; border-color:var(--line-dark); background:rgba(255,255,255,.05); }
         .hero-showcase__brands .tech-badge__logo{ width:18px; height:18px; border-radius:5px; background:#fff; }
         .hero-showcase__brands .tech-badge__logo img{ width:12px; height:12px; }
-        @media (max-width:1100px){
+        @media (max-width:1180px){
+          .hero__visual{ max-width:520px; }
           .hero-showcase__body{ grid-template-columns:1fr; }
-          .hero-showcase__copy{ padding:2px 4px; }
+          .hero-showcase__copy h4,.hero-showcase__copy p{ max-width:none; }
         }
         @media (max-width:560px){
-          .hero-showcase{ min-height:0; border-radius:18px; }
+          .hero__visual{ max-width:none; }
+          .hero-showcase{ border-radius:18px; }
           .hero-showcase__path{ display:none; }
+          .hero-showcase__bar{ padding:0 14px; }
           .hero-showcase__body{ padding:18px; gap:16px; }
-          .hero-showcase__copy h4{ font-size:19px; }
-          .hero-showcase__preview{ min-height:215px; }
+          .hero-showcase__copy h4{ font-size:18px; }
+          .hero-mini-grid{ grid-template-columns:1fr; }
           .hero-showcase__footer{ align-items:flex-start; flex-direction:column; }
+          .hero-showcase__brands{ justify-content:flex-start; }
         }
 
         .scroll-cue{ display:none; text-align:center; margin-top:56px; color:var(--gray-on-dark-2); font-size:11px; }
@@ -1231,39 +1240,56 @@ export default function App() {
                       <i style={{ background: "#FEBC2E" }} />
                       <i style={{ background: "#28C840" }} />
                     </div>
-                    <span className="hero-showcase__path">haseeb.dev / selected-work</span>
+                    <span className="hero-showcase__path">src / components / hero-preview.jsx</span>
                     <span className="hero-showcase__status">Available for projects</span>
                   </div>
 
                   <div className="hero-showcase__body">
                     <div className="hero-showcase__copy">
                       <span className="hero-showcase__eyebrow">React · WordPress · Shopify</span>
-                      <h4>Design-aware development across frontend, CMS, and commerce.</h4>
+                      <h4>Clean, scalable code for polished web experiences.</h4>
                       <p>
-                        From component-based React interfaces to editable WordPress and Shopify builds, every experience is structured for usability and clean delivery.
+                        Thoughtful frontend structure, CMS flexibility, and e-commerce functionality — delivered with responsive detail and maintainable code.
                       </p>
                       <div className="hero-showcase__services">
-                        <span>Responsive</span>
+                        <span>Reusable UI</span>
+                        <span>Clean Structure</span>
                         <span>CMS-ready</span>
-                        <span>E-commerce</span>
-                        <span>Custom UI</span>
+                        <span>Launch-ready</span>
                       </div>
                     </div>
 
-                    <div className="hero-showcase__preview" aria-hidden="true">
-                      <div className="hero-preview__top">
-                        <span className="hero-preview__logo" />
-                        <span className="hero-preview__menu"><i /><i /><i /></span>
+                    <div className="hero-showcase__stack" aria-hidden="true">
+                      <div className="hero-code-panel">
+                        <div className="hero-code-panel__top">
+                          <span className="hero-code-panel__title">Selected build approach</span>
+                          <span className="hero-code-panel__label">Production ready</span>
+                        </div>
+                        <div className="hero-code-panel__lines">
+                          <span className="hero-code-line"><span className="hero-code-line__no">01</span><span className="hero-code-line__bar" style={{ "--line-width": "82%", "--line-start": "#8B5CF6", "--line-end": "#C084FC" }} /></span>
+                          <span className="hero-code-line"><span className="hero-code-line__no">02</span><span className="hero-code-line__bar" style={{ "--line-width": "68%", "--line-start": "#F5A623", "--line-end": "#F59E0B" }} /></span>
+                          <span className="hero-code-line"><span className="hero-code-line__no">03</span><span className="hero-code-line__bar" style={{ "--line-width": "74%", "--line-start": "#3B82F6", "--line-end": "#60A5FA" }} /></span>
+                          <span className="hero-code-line"><span className="hero-code-line__no">04</span><span className="hero-code-line__bar" style={{ "--line-width": "58%", "--line-start": "#22C55E", "--line-end": "#4ADE80" }} /></span>
+                          <span className="hero-code-line"><span className="hero-code-line__no">05</span><span className="hero-code-line__bar" style={{ "--line-width": "44%", "--line-start": "#F06AA8", "--line-end": "#FB7185" }} /></span>
+                        </div>
+                        <div className="hero-code-panel__footer">
+                          <span>Responsive UI</span>
+                          <span>Component-based</span>
+                          <span>API ready</span>
+                        </div>
                       </div>
-                      <div className="hero-preview__hero">
-                        <span className="hero-preview__line hero-preview__line--lg" />
-                        <span className="hero-preview__line hero-preview__line--sm" />
-                        <span className="hero-preview__button" />
-                      </div>
-                      <div className="hero-preview__cards">
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(139,92,246,.18)" }} />
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(245,166,35,.2)" }} />
-                        <span className="hero-preview__card" style={{ "--card-tone": "rgba(59,130,246,.18)" }} />
+
+                      <div className="hero-mini-grid">
+                        <div className="hero-mini-card">
+                          <div className="hero-mini-card__icon" style={{ background: "rgba(139,92,246,.15)" }}><Code2 size={16} color="#8B5CF6" /></div>
+                          <b>Frontend</b>
+                          <p>React interfaces with strong visual consistency and clean structure.</p>
+                        </div>
+                        <div className="hero-mini-card">
+                          <div className="hero-mini-card__icon" style={{ background: "rgba(245,166,35,.16)" }}><ShoppingBag size={16} color="#F5A623" /></div>
+                          <b>CMS & Commerce</b>
+                          <p>Flexible WordPress and Shopify builds with content editing in mind.</p>
+                        </div>
                       </div>
                     </div>
                   </div>
