@@ -987,7 +987,7 @@ export default function App() {
         .about-photo__badge b{ font-size:11.5px; }
         .about-story .eyebrow2{ margin-bottom:14px; }
         .about-story h2{ font-size:clamp(30px,4.2vw,46px); line-height:1.12; letter-spacing:-.035em; margin:0 0 22px; max-width:600px; }
-        .about-story p{ font-size:14.5px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
+        .about-story p{ font-size:16px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
         .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:13px; line-height:1.7; }
 
         .about-values{ background:#fff; }
