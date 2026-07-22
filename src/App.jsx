@@ -1318,7 +1318,7 @@ export default function App() {
         /* ============ FOOTER ============ */
         .footer{ background:var(--bg-darkest); color:var(--gray-on-dark); padding:60px 0 24px; border-top:1px solid var(--line-dark); }
         .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; margin-bottom:48px; }
-        @media (min-width:760px){ .footer-grid{ grid-template-columns:1.3fr 1fr 1fr 1.1fr; gap:30px; } }
+        @media (min-width:760px){ .footer-grid{ grid-template-columns:1.3fr 0.7fr 1.3fr 1.1fr; gap:30px; } }
         .footer-brand p{ font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:260px; color:var(--gray-on-dark-2); }
         .footer h5{ color:#fff; font-size:13.5px; font-weight:700; margin:0 0 18px; }
         .footer-links{ display:flex; flex-direction:column; gap:11px; }
