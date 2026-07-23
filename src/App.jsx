@@ -111,73 +111,197 @@ const TECH_GROUPS = [
 
 const HERO_TECH = ["React", "WordPress", "Shopify", "JavaScript", "WooCommerce"];
 
-const FILTERS = ["All", "WordPress", "Shopify", "React", "Custom Sites"];
+const FILTERS = ["All", "WordPress", "Shopify", "Live", "In Development"];
 
 const PROJECTS = [
   {
-    code: "WP",
+    code: "HW",
     category: "WordPress",
-    projectType: "Client Website",
-    title: "Julien Solar Solutions",
-    desc: "A responsive website for a solar solutions company, structured around clear services, trust, and lead generation.",
-    highlight: "Service clarity · Lead generation · Mobile usability",
-    stack: ["WordPress", "Elementor", "JavaScript", "Responsive UI"],
-    badgeBg: "#21759B",
-    visual: "solar",
-    accent: "#F5A623",
-    previewBg: "#12211B",
-  },
-  {
-    code: "WP",
-    category: "WordPress",
-    projectType: "Client Website",
-    title: "Straight Ahead Credit & Funding",
-    desc: "A professional credit and funding website that turns complex services into a clear, conversion-focused experience.",
-    highlight: "Trust building · Service hierarchy · Conversion flow",
-    stack: ["WordPress", "Custom CSS", "Forms", "Responsive UI"],
-    badgeBg: "#7C3AED",
-    visual: "finance",
-    accent: "#8B5CF6",
-    previewBg: "#111A32",
-  },
-  {
-    code: "CMS",
-    category: "Custom Sites",
-    projectType: "Content Website",
+    filters: ["WordPress", "Live"],
+    projectType: "News & Media",
     title: "Holiday Weekly",
-    desc: "A content-led holiday and travel experience designed for easy browsing, readable publishing, and responsive discovery.",
-    highlight: "Content structure · Readability · Responsive publishing",
-    stack: ["CMS", "HTML5", "CSS3", "JavaScript"],
-    badgeBg: "#0F766E",
-    visual: "editorial",
-    accent: "#14B8A6",
-    previewBg: "#13201F",
+    domain: "holidayweekly.pk",
+    liveUrl: "https://holidayweekly.pk",
+    status: "Live",
+    statusTone: "live",
+    role: "Design & Development",
+    platform: "WordPress + Elementor",
+    focus: "Editorial CMS architecture and content taxonomy",
+    desc: "A publishing-focused news portal for Pakistan's aviation, tourism, and hospitality sectors, built around a scalable editorial structure for frequent content updates.",
+    highlight: "Editorial taxonomy · Fast mobile reading · Content discovery",
+    stack: ["WordPress", "Elementor", "Editorial CMS", "Taxonomy", "Responsive"],
+    details: [
+      "Multi-level category and tag architecture spanning more than 20 editorial sub-sections.",
+      "Homepage modules for Trending, Most Popular, and latest stories by section.",
+      "Digital e-paper archive with issue-by-issue cover browsing.",
+      "Newsletter opt-in plus WhatsApp and social distribution links.",
+      "Responsive presentation optimized for fast mobile news reading.",
+    ],
+    image: "/images/projects/holiday-weekly.webp",
+    accent: "#EC008C",
+    badgeBg: "#EC008C",
   },
   {
-    code: "SH",
+    code: "JS",
+    category: "WordPress",
+    filters: ["WordPress", "Live"],
+    projectType: "Clean Energy · Lead Generation",
+    title: "Julien's Solar Solutions",
+    domain: "juliensolarsolutions.com",
+    liveUrl: "https://juliensolarsolutions.com",
+    status: "Live",
+    statusTone: "live",
+    role: "Design & Development",
+    platform: "WordPress + Elementor",
+    focus: "Lead capture and single-path funnel design",
+    desc: "A residential solar website designed to move Massachusetts homeowners from the value proposition to a quote request without unnecessary friction.",
+    highlight: "Lead capture · Funnel design · Appointment conversion",
+    stack: ["WordPress", "Elementor", "Forms", "Lead Generation", "Responsive"],
+    details: [
+      "Hero-to-form conversion flow with persistent calls to action.",
+      "Six-stage installation process from consultation through activation.",
+      "Service sections covering installation, maintenance, and warranty support.",
+      "Testimonials and social proof positioned around the conversion journey.",
+      "Promotional ticker for seasonal solar offers and messaging.",
+    ],
+    image: "/images/projects/juliens-solar.webp",
+    accent: "#147AC2",
+    badgeBg: "#0B5F9D",
+  },
+  {
+    code: "IS",
+    category: "WordPress",
+    filters: ["WordPress", "Live"],
+    projectType: "Hospitality · Booking",
+    title: "Inspire Salon",
+    domain: "inspiresalonstl.com",
+    liveUrl: "https://inspiresalonstl.com",
+    status: "Live",
+    statusTone: "live",
+    role: "Design & Development",
+    platform: "WordPress + Elementor",
+    focus: "Booking integration and service-catalogue UX",
+    desc: "A warm, service-led salon website that connects browsing, promotions, social proof, and appointment booking in one consistent guest journey.",
+    highlight: "Meevo booking · Service catalogue · Local conversion",
+    stack: ["WordPress", "Elementor", "Meevo", "Service UX", "Responsive"],
+    details: [
+      "Direct connection to the Meevo salon booking and customer portal.",
+      "Service catalogue organized around haircuts, color, and enhancements.",
+      "Seasonal promotions bar for products and limited-time offers.",
+      "Client testimonials, team content, and a visual photo gallery.",
+      "Hours, location, contact, and eGift-card modules.",
+    ],
+    image: "/images/projects/inspire-salon.webp",
+    accent: "#A77A72",
+    badgeBg: "#76544E",
+  },
+  {
+    code: "SA",
+    category: "WordPress",
+    filters: ["WordPress", "Live"],
+    projectType: "Financial Services",
+    title: "Straight Ahead Credit & Funding",
+    domain: "straightaheadcreditandfunding.com",
+    liveUrl: "https://straightaheadcreditandfunding.com",
+    status: "Live",
+    statusTone: "live",
+    role: "Design & Development",
+    platform: "WordPress + Elementor",
+    focus: "Lead qualification and complex form UX",
+    desc: "A business-financing and credit-repair website that explains multiple funding options, builds trust, and moves qualified prospects into scheduling and application flows.",
+    highlight: "Lead qualification · Funding comparison · Application intake",
+    stack: ["WordPress", "Elementor", "Calendly", "Multi-step Forms", "Responsive"],
+    details: [
+      "Funding comparison table covering seven products and their best use cases.",
+      "Embedded Calendly scheduling for funding consultations.",
+      "Multi-part business, owner, and partner application intake.",
+      "Credit-repair services presented through clear benefit cards.",
+      "Lead-magnet popup supporting downloadable funding guidance.",
+    ],
+    image: "/images/projects/straight-ahead-credit.webp",
+    accent: "#1577BD",
+    badgeBg: "#0B4F82",
+  },
+  {
+    code: "MD",
     category: "Shopify",
-    projectType: "E-commerce Website",
-    title: "Shopify Storefront Experience",
-    desc: "A polished storefront focused on product discovery, responsive merchandising, and a smooth path from browsing to checkout.",
-    highlight: "Product discovery · Mobile commerce · Checkout usability",
-    stack: ["Shopify", "Liquid", "Product UX", "E-commerce"],
-    badgeBg: "#7AB55C",
-    visual: "commerce",
-    accent: "#95BF47",
-    previewBg: "#162116",
+    filters: ["Shopify", "Live"],
+    projectType: "E-commerce · Fashion",
+    title: "Mardo",
+    domain: "mardopk.com",
+    liveUrl: "https://mardopk.com",
+    status: "Live",
+    statusTone: "live",
+    role: "Design & Development",
+    platform: "Shopify",
+    focus: "Storefront architecture and product storytelling",
+    desc: "A Shopify storefront for a technical medical-scrubwear label, balancing editorial presentation with clear collection browsing and checkout-ready product flows.",
+    highlight: "Collection architecture · Product storytelling · Commerce UX",
+    stack: ["Shopify", "E-commerce", "Collections", "Product UX", "Checkout"],
+    details: [
+      "Shopify collection structure across Tops, Bottoms, Sets, and Outerwear.",
+      "Product detail experiences with variant selection and cart flow.",
+      "Material-science section explaining the proprietary Forma 4WX fabric.",
+      "Testimonials targeted to healthcare and critical-care professionals.",
+      "Newsletter capture plus cart, account, and checkout-ready commerce flow.",
+    ],
+    image: "/images/projects/mardo.webp",
+    accent: "#D8A85B",
+    badgeBg: "#111111",
   },
   {
-    code: "RX",
-    category: "React",
-    projectType: "Frontend Project",
-    title: "React Frontend Experience",
-    desc: "A component-based frontend project demonstrating reusable UI patterns, responsive behavior, and API-ready structure.",
-    highlight: "Reusable components · Responsive UI · API-ready architecture",
-    stack: ["React", "JavaScript", "CSS3", "Component UI"],
-    badgeBg: "#2563EB",
-    visual: "react",
-    accent: "#61DAFB",
-    previewBg: "#101B2C",
+    code: "GO",
+    category: "WordPress",
+    filters: ["WordPress", "In Development"],
+    projectType: "Agency Build · Consulting",
+    title: "Go Studio",
+    domain: "dev-go-studio.pantheonsite.io",
+    liveUrl: "https://dev-go-studio.pantheonsite.io",
+    status: "In Development",
+    statusTone: "development",
+    role: "Development",
+    platform: "WordPress on Pantheon",
+    focus: "Consulting-brand architecture and reusable page templates",
+    desc: "An innovation-consulting brand presence being developed page by page, with a strong homepage narrative, service structure, case-study presentation, and reusable component patterns.",
+    highlight: "Staged delivery · Service architecture · Case-study system",
+    stack: ["WordPress", "Pantheon", "Component System", "Staging Workflow"],
+    details: [
+      "Consulting-brand homepage narrative and conversion structure.",
+      "Service architecture designed for a growing studio offering.",
+      "Case-study templates prepared for consistent future publishing.",
+      "Reusable component patterns built ahead of client review.",
+      "Pantheon Dev → Test → Live workflow for controlled releases.",
+    ],
+    image: "/images/projects/go-studio.webp",
+    accent: "#FF5A36",
+    badgeBg: "#C83A20",
+  },
+  {
+    code: "DF",
+    category: "WordPress",
+    filters: ["WordPress", "In Development"],
+    projectType: "Agency Build · Digital Services",
+    title: "DGT Forge",
+    domain: "dev-dgt-forge.pantheonsite.io",
+    liveUrl: "https://dev-dgt-forge.pantheonsite.io",
+    status: "In Development",
+    statusTone: "development",
+    role: "Development",
+    platform: "WordPress on Pantheon",
+    focus: "Web, app, marketing, and SaaS service-page architecture",
+    desc: "A full-service digital agency website being assembled section by section in a staged WordPress environment, with focused service, portfolio, process, pricing, and contact experiences.",
+    highlight: "Agency architecture · Staged WordPress · Service positioning",
+    stack: ["WordPress", "Pantheon", "Service Pages", "Git Workflow"],
+    details: [
+      "Structured service groups for design, development, marketing, and SaaS.",
+      "Portfolio presentation with filters and featured case-study content.",
+      "Process, pricing, proof, and lead-capture sections built as reusable modules.",
+      "Git-based staged delivery ahead of production launch.",
+      "Pantheon development environment supporting controlled client review.",
+    ],
+    image: "/images/projects/dgt-forge.webp",
+    accent: "#2141E8",
+    badgeBg: "#1024A9",
   },
 ];
 
@@ -409,59 +533,109 @@ function TechPill({ t }) {
 }
 
 function ProjectPreview({ project }) {
-  const commerce = project.visual === "commerce";
-  const dashboard = project.visual === "react" || project.visual === "finance";
+  return (
+    <div className="project-shot" aria-label={`${project.title} full-page website screenshot preview`}>
+      <div className="project-shot__browser">
+        <span className="project-shot__dots"><i /><i /><i /></span>
+        <span className="project-shot__url">{project.domain}</span>
+        <span className={`project-shot__status project-shot__status--${project.statusTone}`}>{project.status}</span>
+      </div>
+      <div className="project-shot__viewport">
+        <img src={project.image} alt={`${project.title} full-page website screenshot`} loading="lazy" />
+        <span className="project-shot__hint">Full-page preview</span>
+      </div>
+    </div>
+  );
+}
+
+function ProjectCard({ project, onOpen }) {
+  return (
+    <article className="pcard">
+      <div className="pcard__img-wrap">
+        <ProjectPreview project={project} />
+        <span className="pcard__badge" style={{ background: project.badgeBg }}>{project.code}</span>
+      </div>
+      <div className="pcard__body">
+        <div className="pcard__meta">
+          <span>{project.projectType}</span>
+          <span className={`pcard__status pcard__status--${project.statusTone}`}>{project.status}</span>
+        </div>
+        <h3>{project.title}</h3>
+        <p>{project.desc}</p>
+        <div className="pcard__highlight"><b>Focus</b>{project.highlight}</div>
+        <div className="pcard__stack">
+          {project.stack.map((item) => <span key={item}>{item}</span>)}
+        </div>
+        <div className="pcard__actions">
+          <button type="button" className="pcard__case" onClick={() => onOpen(project)}>
+            View Case Study <ArrowRight size={14} />
+          </button>
+          <a href={project.liveUrl} target="_blank" rel="noreferrer">
+            {project.statusTone === "development" ? "View Staging" : "Live Site"} <ExternalLink size={13} />
+          </a>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function ProjectCaseStudy({ project, onClose }) {
+  if (!project) return null;
 
   return (
-    <div
-      className={`project-preview project-preview--${project.visual}`}
-      style={{ "--project-accent": project.accent, "--project-bg": project.previewBg }}
-      aria-label={`${project.title} website preview`}
-    >
-      <div className="project-preview__browser">
-        <span className="project-preview__dots"><i /><i /><i /></span>
-        <span className="project-preview__url">project-preview.dev</span>
-      </div>
-      <div className="project-preview__site">
-        <div className="project-preview__nav">
-          <span className="project-preview__brand" />
-          <span className="project-preview__navlinks"><i /><i /><i /></span>
+    <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onMouseDown={(event) => {
+      if (event.target === event.currentTarget) onClose();
+    }}>
+      <div className="project-modal__dialog">
+        <button className="project-modal__close" type="button" onClick={onClose} aria-label="Close project case study">
+          <X size={20} />
+        </button>
+
+        <div className="project-modal__visual">
+          <div className="project-modal__browser">
+            <span className="project-shot__dots"><i /><i /><i /></span>
+            <span>{project.domain}</span>
+          </div>
+          <div className="project-modal__screen">
+            <img src={project.image} alt={`${project.title} complete website screenshot`} />
+          </div>
         </div>
 
-        {commerce ? (
-          <div className="project-preview__commerce">
-            <div className="project-preview__commerce-copy">
-              <span className="project-preview__kicker" />
-              <span className="project-preview__headline" />
-              <span className="project-preview__headline project-preview__headline--short" />
-              <span className="project-preview__button" />
-            </div>
-            <div className="project-preview__products">
-              <span /><span /><span />
-            </div>
+        <div className="project-modal__details">
+          <div className="project-modal__eyebrow">
+            <span>{project.projectType}</span>
+            <span className={`pcard__status pcard__status--${project.statusTone}`}>{project.status}</span>
           </div>
-        ) : dashboard ? (
-          <div className="project-preview__dashboard">
-            <div className="project-preview__sidebar"><i /><i /><i /><i /></div>
-            <div className="project-preview__dashboard-main">
-              <span className="project-preview__headline" />
-              <div className="project-preview__metric-row"><i /><i /><i /></div>
-              <div className="project-preview__chart"><span /></div>
-            </div>
+          <h2 id="project-modal-title">{project.title}</h2>
+          <p className="project-modal__lead">{project.desc}</p>
+
+          <div className="project-modal__specs">
+            <div><small>Role</small><b>{project.role}</b></div>
+            <div><small>Platform</small><b>{project.platform}</b></div>
+            <div><small>Focus</small><b>{project.focus}</b></div>
+            <div><small>Website</small><b>{project.domain}</b></div>
           </div>
-        ) : (
-          <div className="project-preview__editorial">
-            <div className="project-preview__editorial-copy">
-              <span className="project-preview__kicker" />
-              <span className="project-preview__headline" />
-              <span className="project-preview__headline project-preview__headline--short" />
-              <span className="project-preview__textline" />
-              <span className="project-preview__textline project-preview__textline--short" />
-              <span className="project-preview__button" />
-            </div>
-            <div className="project-preview__art"><span /><i /><b /></div>
+
+          <div className="project-modal__built">
+            <span className="eyebrow2">What I Built</span>
+            <ul>
+              {project.details.map((item) => (
+                <li key={item}><CheckCircle2 size={16} /> <span>{item}</span></li>
+              ))}
+            </ul>
           </div>
-        )}
+
+          <div className="pcard__stack project-modal__stack">
+            {project.stack.map((item) => <span key={item}>{item}</span>)}
+          </div>
+
+          <div className="project-modal__actions">
+            <a className="btn btn-grad" href={project.liveUrl} target="_blank" rel="noreferrer">
+              {project.statusTone === "development" ? "Open Staging Site" : "Visit Live Website"} <ExternalLink size={14} />
+            </a>
+            <button className="btn btn-outline-light" type="button" onClick={onClose}>Close</button>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -503,6 +677,7 @@ export default function App() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [formSent, setFormSent] = useState(false);
@@ -569,6 +744,23 @@ export default function App() {
   );
 
 
+  useEffect(() => {
+    if (!selectedProject) return undefined;
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event) => {
+      if (event.key === "Escape") setSelectedProject(null);
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedProject]);
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -623,7 +815,7 @@ export default function App() {
     }
   };
 
-  const filteredProjects = activeFilter === "All" ? PROJECTS : PROJECTS.filter((p) => p.category === activeFilter);
+  const filteredProjects = activeFilter === "All" ? PROJECTS : PROJECTS.filter((project) => project.filters.includes(activeFilter));
 
   return (
     <div className="ds">
@@ -745,7 +937,7 @@ export default function App() {
           .hero h1{ max-width:100%; font-size:clamp(25px,7.65vw,34px); line-height:1.1; letter-spacing:-0.052em; text-wrap:balance; }
         }
 
-        .hero p.lead{ font-size:16px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
+        .hero p.lead{ font-size:15.5px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
         .hero p.lead strong{ color:#fff; font-weight:700; }
 
         .btn-row{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; }
@@ -909,10 +1101,10 @@ export default function App() {
         @keyframes scrolldown{ 0%{ opacity:1; transform:translate(-50%,0);} 100%{ opacity:0; transform:translate(-50%,8px);} }
 
         /* ============ SECTION shared ============ */
-        .sec{ padding:60px 0; }
+        .sec{ padding:96px 0; }
         .sec-head{ margin-bottom:48px; max-width:640px; }
         .sec-head h2{ font-size:clamp(26px,3.6vw,38px); font-weight:800; letter-spacing:-0.02em; line-height:1.2; margin:0; }
-        .sec-head p{ font-size:16px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
+        .sec-head p{ font-size:14.5px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
         .sec-head--white p{ color:var(--gray-on-dark); }
 
         /* ============ ABOUT ============ */
@@ -987,8 +1179,8 @@ export default function App() {
         .about-photo__badge b{ font-size:11.5px; }
         .about-story .eyebrow2{ margin-bottom:14px; }
         .about-story h2{ font-size:clamp(30px,4.2vw,46px); line-height:1.12; letter-spacing:-.035em; margin:0 0 22px; max-width:600px; }
-        .about-story p{ font-size:16px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
-        .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:16px; line-height:1.7; }
+        .about-story p{ font-size:14.5px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
+        .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:13px; line-height:1.7; }
 
         .about-values{ background:#fff; }
         .about-value-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
@@ -1001,107 +1193,23 @@ export default function App() {
         .about-value-card__icon{ width:45px; height:45px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb,var(--value-color) 13%,transparent); }
         .about-value-card__num{ font-family:var(--mono); color:var(--value-color); font-size:11px; font-weight:700; }
         .about-value-card h3{ font-size:17px; margin:0 0 10px; }
-        .about-value-card p{ font-size:14px; line-height:1.75; color:var(--gray-on-light); margin:0; }
+        .about-value-card p{ font-size:12.5px; line-height:1.75; color:var(--gray-on-light); margin:0; }
 
         .about-journey{ background:var(--bg-light); }
         .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
         @media (min-width:860px){ .journey-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
-        @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:4%; right:10%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
+        @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:10%; right:10%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
         .journey-card{ position:relative; padding:0 0 34px 36px; }
         .journey-card:last-child{ padding-bottom:0; }
         .journey-card::before{ content:''; position:absolute; left:7px; top:30px; bottom:0; width:1px; background:var(--line-light); }
         .journey-card:last-child::before{ display:none; }
         @media (min-width:860px){ .journey-card{ padding:0; z-index:1; } .journey-card::before{ display:none; } }
         .journey-card__dot{ position:absolute; left:0; top:18px; width:16px; height:16px; border-radius:50%; background:#fff; border:4px solid var(--journey-color); box-shadow:0 0 0 6px var(--bg-light); }
-         @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
+        @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
-        .journey-card__org{ font-size:13px; color:var(--gray-on-light); margin-bottom:12px; }
-        .journey-card p{ font-size:15px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
-        @media (max-width: 859px) {
-  .about-journey .sec-head {
-    margin-bottom: 38px;
-  }
-
-  .journey-grid {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-
-  .journey-card {
-    position: relative;
-    padding: 0 0 42px 60px;
-    min-width: 0;
-  }
-
-  .journey-card:last-child {
-    padding-bottom: 0;
-  }
-
-  .journey-card::before {
-    display: block;
-    left: 21px;
-    top: 46px;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(
-      to bottom,
-      var(--journey-color),
-      rgba(139, 92, 246, 0.08)
-    );
-  }
-
-  .journey-card:last-child::before {
-    display: none;
-  }
-
-  .journey-card__dot {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 42px;
-    height: 42px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--journey-color);
-    background: #ffffff;
-    border: 1px solid var(--line-light);
-    box-shadow: 0 14px 28px -20px rgba(20, 20, 35, 0.3);
-  }
-
-  .journey-card__dot svg {
-    width: 18px;
-    height: 18px;
-    stroke-width: 2;
-  }
-
-  .journey-card__year {
-    display: block;
-    margin: 0 0 7px;
-    padding-top: 1px;
-    line-height: 1.3;
-  }
-
-  .journey-card h3 {
-    font-size: 16px;
-    line-height: 1.35;
-    margin-bottom: 5px;
-  }
-
-  .journey-card__org {
-    margin-bottom: 10px;
-    line-height: 1.5;
-  }
-
-  .journey-card p {
-    max-width: none;
-    font-size: 12.5px;
-    line-height: 1.72;
-    overflow-wrap: anywhere;
-  }
-}
+        .journey-card__org{ font-size:11px; color:var(--gray-on-light); margin-bottom:12px; }
+        .journey-card p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
 
         .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
         .about-principles::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; right:-180px; top:-250px; background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%); }
@@ -1148,93 +1256,104 @@ export default function App() {
 
         /* ============ PROJECTS ============ */
         .projects{ background:#fff; }
-        .filter-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:40px; }
-        .filter-pill{ font-size:12.5px; font-weight:600; padding:10px 18px; border-radius:100px; border:1px solid var(--line-light); background:#fff; color:var(--gray-on-light); transition:all .3s ease; }
-        .filter-pill.active{ background:var(--purple-2); color:#fff; border-color:var(--purple-2); }
+        .project-archive-head{ display:flex; flex-direction:column; align-items:flex-start; gap:22px; margin-bottom:34px; padding:28px; border:1px solid var(--line-light); border-radius:20px; background:linear-gradient(135deg,var(--bg-light),#fff); }
+        .project-archive-head h2{ font-size:clamp(24px,3.2vw,36px); line-height:1.2; margin:8px 0 9px; letter-spacing:-.025em; }
+        .project-archive-head p{ color:var(--gray-on-light); font-size:13px; line-height:1.75; max-width:720px; margin:0; }
+        @media (min-width:820px){ .project-archive-head{ flex-direction:row; align-items:center; justify-content:space-between; } .project-archive-head .btn{ flex:none; } }
+
+        .filter-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px; }
+        .filter-pill{ font-size:12px; font-weight:700; padding:10px 17px; border-radius:100px; border:1px solid var(--line-light); background:#fff; color:var(--gray-on-light); transition:all .3s ease; }
+        .filter-pill.active{ background:var(--purple-2); color:#fff; border-color:var(--purple-2); box-shadow:0 12px 24px -16px rgba(124,58,237,.8); }
         .filter-pill:hover:not(.active){ border-color:var(--purple-2); color:var(--purple-2); }
 
         .proj-grid2{ display:grid; grid-template-columns:1fr; gap:26px; margin-bottom:44px; }
-        @media (min-width:680px){ .proj-grid2{ grid-template-columns:1fr 1fr; } }
-        @media (min-width:1020px){ .proj-grid2{ grid-template-columns:1fr 1fr 1fr; } }
+        @media (min-width:820px){ .proj-grid2{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
+        .proj-grid2 > .rv{ height:100%; }
+        .proj-grid2 > .rv > .pcard{ height:100%; }
 
-        .pcard{ border-radius:18px; overflow:hidden; border:1px solid var(--line-light); background:#fff; transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s ease; }
-        .pcard:hover{ transform:translateY(-8px); box-shadow:0 40px 70px -32px rgba(20,20,35,0.28); }
-        .pcard__img-wrap{ position:relative; height:220px; overflow:hidden; background:#10111A; padding:14px; }
-        .pcard__badge{ position:absolute; left:18px; bottom:-17px; min-width:42px; height:42px; padding:0 9px; border-radius:11px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800; box-shadow:0 12px 24px -9px rgba(0,0,0,0.45); z-index:4; }
-        .pcard__body{ padding:29px 20px 22px; }
-        .pcard__eyebrow{ font-family:var(--mono); font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--purple-2); margin-bottom:7px; }
-        .pcard__body h3{ font-size:16px; font-weight:800; margin:0 0 8px; line-height:1.35; }
-        .pcard__body p{ font-size:12.5px; color:var(--gray-on-light); margin:0 0 13px; line-height:1.68; }
-        .pcard__highlight{ font-size:10.5px; color:#3B3D48; border-left:2px solid var(--purple-2); padding-left:9px; margin:0 0 14px; line-height:1.55; }
+        .pcard{ min-width:0; border-radius:20px; overflow:hidden; border:1px solid var(--line-light); background:#fff; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s ease, border-color .35s ease; }
+        .pcard:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.2); box-shadow:0 38px 70px -34px rgba(20,20,35,.3); }
+        .pcard__img-wrap{ position:relative; height:310px; overflow:hidden; background:#0C0D14; padding:14px; }
+        .pcard__badge{ position:absolute; left:22px; bottom:-18px; min-width:44px; height:44px; padding:0 10px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800; box-shadow:0 13px 28px -10px rgba(0,0,0,.45); z-index:4; }
+        .pcard__body{ padding:32px 22px 23px; display:flex; flex-direction:column; flex:1; }
+        .pcard__meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }
+        .pcard__meta > span:first-child{ font-family:var(--mono); font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--purple-2); }
+        .pcard__status{ display:inline-flex; align-items:center; gap:6px; font-size:9px; font-weight:800; padding:5px 8px; border-radius:100px; white-space:nowrap; }
+        .pcard__status::before{ content:''; width:6px; height:6px; border-radius:50%; }
+        .pcard__status--live{ color:#14723C; background:#ECFDF3; border:1px solid #CEF2DC; }
+        .pcard__status--live::before{ background:#22C55E; }
+        .pcard__status--development{ color:#9A5500; background:#FFF7E8; border:1px solid #F5DFC1; }
+        .pcard__status--development::before{ background:#F5A623; }
+        .pcard__body h3{ font-size:19px; font-weight:800; margin:0 0 9px; line-height:1.32; letter-spacing:-.015em; }
+        .pcard__body > p{ font-size:12.5px; color:var(--gray-on-light); margin:0 0 15px; line-height:1.72; }
+        .pcard__highlight{ font-size:10.5px; color:#4B4E5C; border-left:2px solid var(--purple-2); padding-left:10px; margin:0 0 15px; line-height:1.6; }
+        .pcard__highlight b{ display:block; color:var(--ink); font-size:9px; text-transform:uppercase; letter-spacing:.065em; margin-bottom:2px; }
         .pcard__stack{ display:flex; flex-wrap:wrap; gap:6px; }
-        .pcard__stack span{ font-size:9.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:4px 8px; border-radius:7px; background:var(--bg-light); }
+        .pcard__stack span{ font-size:9.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:5px 8px; border-radius:7px; background:var(--bg-light); }
+        .pcard__actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line-light); padding-top:17px; margin-top:auto; }
+        .pcard__actions button,.pcard__actions a{ display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:800; }
+        .pcard__case{ color:var(--purple-2); background:none; border:none; padding:0; }
+        .pcard__actions a{ color:var(--gray-on-light); }
+        .pcard__actions button svg,.pcard__actions a svg{ transition:transform .25s ease; }
+        .pcard__actions button:hover svg,.pcard__actions a:hover svg{ transform:translate(2px,-1px); }
 
-        .project-preview{ width:100%; height:100%; border-radius:13px; overflow:hidden; background:var(--project-bg); border:1px solid rgba(255,255,255,.1); box-shadow:0 24px 46px -28px rgba(0,0,0,.8); transition:transform .55s cubic-bezier(.16,.8,.24,1); }
-        .pcard:hover .project-preview{ transform:scale(1.025); }
-        .project-preview__browser{ height:27px; display:flex; align-items:center; justify-content:space-between; padding:0 10px; background:rgba(6,7,12,.7); border-bottom:1px solid rgba(255,255,255,.08); }
-        .project-preview__dots{ display:flex; gap:4px; }
-        .project-preview__dots i{ width:5px; height:5px; border-radius:50%; background:#FF5F57; }
-        .project-preview__dots i:nth-child(2){ background:#FEBC2E; }
-        .project-preview__dots i:nth-child(3){ background:#28C840; }
-        .project-preview__url{ font-family:var(--mono); font-size:7px; color:rgba(255,255,255,.38); }
-        .project-preview__site{ height:calc(100% - 27px); padding:12px; background:linear-gradient(145deg,rgba(255,255,255,.05),transparent 50%); }
-        .project-preview__nav{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px; }
-        .project-preview__brand{ width:44px; height:6px; border-radius:20px; background:var(--project-accent); }
-        .project-preview__navlinks{ display:flex; gap:4px; }
-        .project-preview__navlinks i{ width:15px; height:3px; border-radius:9px; background:rgba(255,255,255,.25); }
-        .project-preview__editorial,.project-preview__commerce{ height:calc(100% - 18px); display:grid; grid-template-columns:1.02fr .98fr; gap:12px; align-items:center; }
-        .project-preview__editorial-copy,.project-preview__commerce-copy{ display:flex; flex-direction:column; }
-        .project-preview__kicker{ width:38px; height:4px; border-radius:10px; background:var(--project-accent); margin-bottom:8px; opacity:.9; }
-        .project-preview__headline{ width:88%; height:8px; border-radius:10px; background:#fff; margin-bottom:6px; }
-        .project-preview__headline--short{ width:62%; opacity:.78; }
-        .project-preview__textline{ width:92%; height:4px; border-radius:10px; background:rgba(255,255,255,.25); margin-top:7px; }
-        .project-preview__textline--short{ width:66%; margin-top:5px; }
-        .project-preview__button{ width:48px; height:15px; border-radius:100px; background:var(--project-accent); margin-top:13px; }
-        .project-preview__art{ min-height:112px; border-radius:12px; background:linear-gradient(145deg,var(--project-accent),rgba(255,255,255,.08)); position:relative; overflow:hidden; }
-        .project-preview__art span{ position:absolute; width:82px; height:82px; border-radius:50%; right:-16px; top:-20px; background:rgba(255,255,255,.22); }
-        .project-preview__art i{ position:absolute; width:58px; height:77px; border-radius:10px; left:14px; bottom:-18px; background:rgba(10,10,18,.48); transform:rotate(-7deg); }
-        .project-preview__art b{ position:absolute; width:34px; height:34px; border-radius:9px; right:17px; bottom:16px; background:rgba(255,255,255,.78); }
-        .project-preview__products{ display:grid; grid-template-columns:repeat(2,1fr); gap:7px; }
-        .project-preview__products span{ height:55px; border-radius:10px; background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(255,255,255,.62)); position:relative; }
-        .project-preview__products span::before{ content:''; position:absolute; inset:8px 12px 19px; border-radius:6px; background:var(--project-accent); opacity:.35; }
-        .project-preview__products span::after{ content:''; position:absolute; left:10px; bottom:9px; width:50%; height:4px; border-radius:8px; background:rgba(10,10,18,.22); }
-        .project-preview__products span:first-child{ grid-row:span 2; height:117px; }
-        .project-preview__dashboard{ height:calc(100% - 18px); display:grid; grid-template-columns:42px 1fr; gap:10px; background:rgba(255,255,255,.04); border-radius:11px; padding:8px; }
-        .project-preview__sidebar{ border-radius:8px; background:rgba(8,9,16,.56); padding:9px; display:flex; flex-direction:column; gap:8px; }
-        .project-preview__sidebar i{ width:100%; height:8px; border-radius:4px; background:rgba(255,255,255,.13); }
-        .project-preview__sidebar i:first-child{ background:var(--project-accent); opacity:.8; }
-        .project-preview__dashboard-main{ padding:4px; }
-        .project-preview__metric-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:6px; margin:10px 0; }
-        .project-preview__metric-row i{ height:32px; border-radius:7px; background:rgba(255,255,255,.09); border:1px solid rgba(255,255,255,.06); }
-        .project-preview__chart{ height:58px; border-radius:8px; background:rgba(255,255,255,.06); position:relative; overflow:hidden; }
-        .project-preview__chart::before,.project-preview__chart::after{ content:''; position:absolute; left:8px; right:8px; height:1px; background:rgba(255,255,255,.08); }
-        .project-preview__chart::before{ top:19px; } .project-preview__chart::after{ top:38px; }
-        .project-preview__chart span{ position:absolute; left:9px; right:9px; bottom:12px; height:27px; border-left:2px solid var(--project-accent); border-bottom:2px solid var(--project-accent); transform:skewY(-9deg); opacity:.9; }
+        .project-shot{ width:100%; height:100%; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.13); background:#fff; box-shadow:0 28px 58px -32px rgba(0,0,0,.9); }
+        .project-shot__browser{ height:32px; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:10px; padding:0 11px; background:#10111A; border-bottom:1px solid rgba(255,255,255,.09); }
+        .project-shot__dots{ display:flex; gap:5px; }
+        .project-shot__dots i{ width:6px; height:6px; border-radius:50%; background:#FF5F57; }
+        .project-shot__dots i:nth-child(2){ background:#FEBC2E; }
+        .project-shot__dots i:nth-child(3){ background:#28C840; }
+        .project-shot__url{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:center; font-family:var(--mono); font-size:7.5px; color:rgba(255,255,255,.48); }
+        .project-shot__status{ font-size:7.5px; font-weight:800; color:#fff; opacity:.82; }
+        .project-shot__viewport{ position:relative; height:calc(100% - 32px); overflow:hidden; background:#F4F4F7; }
+        .project-shot__viewport img{ position:absolute; left:0; top:0; width:100%; height:auto; min-height:100%; display:block; transition:transform 8s cubic-bezier(.18,.72,.2,1); will-change:transform; }
+        .pcard:hover .project-shot__viewport img{ transform:translateY(calc(-100% + 278px)); }
+        .project-shot__hint{ position:absolute; right:10px; bottom:10px; z-index:2; background:rgba(8,9,15,.82); color:#fff; font-size:8px; font-weight:700; padding:6px 8px; border-radius:100px; backdrop-filter:blur(8px); opacity:0; transform:translateY(5px); transition:.3s ease; }
+        .pcard:hover .project-shot__hint{ opacity:1; transform:none; }
+        @media (hover:none){ .pcard:hover .project-shot__viewport img{ transform:none; } .project-shot__hint{ opacity:1; transform:none; } }
+        @media (prefers-reduced-motion:reduce){ .project-shot__viewport img{ transition:none; } .pcard:hover .project-shot__viewport img{ transform:none; } }
+
+        .project-modal{ position:fixed; inset:0; z-index:1200; background:rgba(4,4,9,.82); backdrop-filter:blur(12px); padding:24px; overflow:auto; display:flex; align-items:flex-start; justify-content:center; }
+        .project-modal__dialog{ width:min(1180px,100%); min-height:min(760px,calc(100vh - 48px)); background:#fff; border-radius:24px; overflow:hidden; position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(370px,.95fr); box-shadow:0 60px 140px -45px rgba(0,0,0,.75); }
+        .project-modal__close{ position:absolute; right:16px; top:16px; width:40px; height:40px; z-index:8; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid var(--line-light); background:rgba(255,255,255,.92); color:var(--ink); box-shadow:0 14px 34px -20px rgba(0,0,0,.4); }
+        .project-modal__visual{ min-width:0; background:#0B0C13; padding:20px; display:flex; flex-direction:column; }
+        .project-modal__browser{ height:38px; flex:none; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12px; padding:0 13px; color:rgba(255,255,255,.6); background:#14151F; border:1px solid rgba(255,255,255,.08); border-radius:13px 13px 0 0; font-family:var(--mono); font-size:9px; }
+        .project-modal__screen{ height:calc(100vh - 126px); min-height:620px; overflow:auto; background:#fff; border-radius:0 0 13px 13px; scrollbar-width:thin; }
+        .project-modal__screen img{ width:100%; height:auto; display:block; }
+        .project-modal__details{ padding:58px 38px 38px; overflow:auto; }
+        .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:15px; }
+        .project-modal__eyebrow > span:first-child{ font-family:var(--mono); font-size:10px; color:var(--purple-2); font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
+        .project-modal__details h2{ font-size:clamp(28px,3.5vw,42px); line-height:1.13; letter-spacing:-.035em; margin:0 0 15px; }
+        .project-modal__lead{ color:var(--gray-on-light); font-size:13.5px; line-height:1.78; margin:0 0 24px; }
+        .project-modal__specs{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+        .project-modal__specs div{ padding:14px; border:1px solid var(--line-light); border-radius:13px; background:var(--bg-light); }
+        .project-modal__specs small{ display:block; color:var(--gray-on-light); font-size:9px; text-transform:uppercase; letter-spacing:.07em; font-weight:700; margin-bottom:5px; }
+        .project-modal__specs b{ display:block; font-size:11.5px; line-height:1.45; }
+        .project-modal__built{ margin-bottom:24px; }
+        .project-modal__built ul{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:11px; }
+        .project-modal__built li{ display:grid; grid-template-columns:auto 1fr; gap:9px; color:#4E5260; font-size:12px; line-height:1.58; }
+        .project-modal__built li svg{ color:var(--purple-2); margin-top:2px; }
+        .project-modal__stack{ margin-bottom:28px; }
+        .project-modal__actions{ display:flex; flex-wrap:wrap; gap:10px; }
+
+        @media (max-width:860px){
+          .project-modal{ padding:12px; }
+          .project-modal__dialog{ grid-template-columns:1fr; border-radius:20px; }
+          .project-modal__visual{ padding:12px; }
+          .project-modal__screen{ height:52vh; min-height:360px; }
+          .project-modal__details{ padding:34px 20px 26px; }
+          .project-modal__close{ right:10px; top:10px; }
+        }
+        @media (max-width:560px){
+          .pcard__img-wrap{ height:270px; padding:10px; }
+          .pcard__body{ padding:31px 18px 20px; }
+          .project-shot__status{ display:none; }
+          .project-shot__browser{ grid-template-columns:auto minmax(0,1fr); }
+          .project-modal__specs{ grid-template-columns:1fr; }
+          .project-modal__actions .btn{ width:auto; }
+        }
 
         .center-row{ display:flex; justify-content:center; }
-        .empty-state{ text-align:center; padding:50px 20px; color:var(--gray-on-light); font-size:14px; }
-
-        /* academic projects */
-        .mini-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
-        @media (min-width:760px){ .mini-grid{ grid-template-columns:repeat(3,1fr); } }
-        .mini-card{ background:var(--bg-light); border:1px solid var(--line-light); border-radius:16px; padding:24px; transition:transform .3s ease, box-shadow .3s ease; }
-        .mini-card:hover{ transform:translateY(-5px); box-shadow:0 22px 40px -26px rgba(20,20,35,0.2); }
-        .mini-card__ic{ width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
-        .mini-card h4{ font-size:14.5px; font-weight:800; margin:0 0 6px; }
-        .mini-card .tag{ display:inline-block; font-size:10px; font-weight:700; color:var(--purple-2); background:rgba(124,58,237,0.08); padding:3px 9px; border-radius:100px; margin-bottom:10px; }
-        .mini-card p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.7; margin:0; }
-
-        /* ============ SERVICES ============ */
-        .services-grid{ display:grid; grid-template-columns:1fr; gap:22px; }
-        @media (min-width:700px){ .services-grid{ grid-template-columns:1fr 1fr; } }
-        @media (min-width:1040px){ .services-grid{ grid-template-columns:repeat(3,1fr); } }
-        .service-card{ background:#fff; border:1px solid var(--line-light); border-radius:18px; padding:28px 24px; transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease; }
-        .service-card:hover{ transform:translateY(-8px); box-shadow:0 30px 60px -32px rgba(20,20,35,0.25); }
-        .service-card__ic{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
-        .service-card h3{ font-size:16.5px; font-weight:800; margin:0 0 10px; line-height:1.35; }
-        .service-card p{ font-size:13px; color:var(--gray-on-light); line-height:1.75; margin:0 0 16px; }
-        .service-card__tags{ display:flex; flex-wrap:wrap; gap:7px; }
-        .service-card__tags span{ font-size:10.5px; font-weight:600; color:var(--gray-on-light); border:1px solid var(--line-light); padding:4px 10px; border-radius:100px; }
 
         /* ============ PROCESS ============ */
         .process{ background:var(--bg-dark); color:#fff; }
@@ -1242,7 +1361,7 @@ export default function App() {
         @media (min-width:860px){ .process-row{ grid-template-columns:repeat(4,1fr); gap:24px; } }
         @media (min-width:860px){
           .process-row::before{
-            content:''; display:block; position:absolute; top:26px; left:2%; right:20%; height:1px;
+            content:''; display:block; position:absolute; top:26px; left:12%; right:12%; height:1px;
             background-image:linear-gradient(90deg, var(--line-dark) 50%, transparent 50%); background-size:14px 1px;
           }
         }
@@ -1318,7 +1437,7 @@ export default function App() {
         /* ============ FOOTER ============ */
         .footer{ background:var(--bg-darkest); color:var(--gray-on-dark); padding:60px 0 24px; border-top:1px solid var(--line-dark); }
         .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; margin-bottom:48px; }
-        @media (min-width:760px){ .footer-grid{ grid-template-columns:1.3fr 0.7fr 1.3fr 1.1fr; gap:30px; } }
+        @media (min-width:760px){ .footer-grid{ grid-template-columns:1.3fr 1fr 1fr 1.1fr; gap:30px; } }
         .footer-brand p{ font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:260px; color:var(--gray-on-dark-2); }
         .footer h5{ color:#fff; font-size:13.5px; font-weight:700; margin:0 0 18px; }
         .footer-links{ display:flex; flex-direction:column; gap:11px; }
@@ -1329,92 +1448,6 @@ export default function App() {
         .footer-bottom{ border-top:1px solid var(--line-dark); padding-top:22px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:12px; }
         .footer-bottom a{ color:var(--gray-on-dark-2); margin-left:18px; }
         .footer-bottom a:hover{ color:#fff; }
-
-        /* ============ FOOTER MOBILE ============ */
-@media (max-width: 759px) {
-  .footer {
-    padding: 48px 0 22px;
-  }
-
-  .footer .wrap {
-    width: 100%;
-    max-width: none;
-    padding-left: 22px;
-    padding-right: 22px;
-    margin: 0 auto;
-  }
-
-  .footer-grid {
-    width: 100%;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 34px;
-    margin-bottom: 38px;
-  }
-
-  .footer-grid > div {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .footer-brand {
-    width: 100%;
-  }
-
-  .footer-brand p {
-    width: 100%;
-    max-width: 310px;
-    font-size: 13px;
-    line-height: 1.75;
-    margin: 14px 0 20px;
-  }
-
-  .footer h5 {
-    margin-bottom: 15px;
-  }
-
-  .footer-links {
-    width: 100%;
-    gap: 10px;
-  }
-
-  .footer-links a {
-    width: fit-content;
-    max-width: 100%;
-    font-size: 13px;
-    line-height: 1.5;
-    white-space: normal;
-    overflow-wrap: anywhere;
-  }
-
-  .footer-contact {
-    width: 100%;
-  }
-
-  .footer-contact div {
-    width: 100%;
-    align-items: flex-start;
-    line-height: 1.5;
-    overflow-wrap: anywhere;
-  }
-
-  .footer-bottom {
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 14px;
-    padding-top: 20px;
-  }
-
-  .footer-bottom div {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px 16px;
-  }
-
-  .footer-bottom a {
-    margin-left: 0;
-  }
-}
       `}</style>
 
       {/* ============ NAV ============ */}
@@ -1637,23 +1670,9 @@ export default function App() {
               </Reveal>
 
               <div className="proj-grid2">
-                {PROJECTS.slice(0, 3).map((p, i) => (
-                  <Reveal as="div" delay={i * 90} key={p.title} className="pcard">
-                    <div className="pcard__img-wrap">
-                      <ProjectPreview project={p} />
-                      <span className="pcard__badge" style={{ background: p.badgeBg }}>{p.code}</span>
-                    </div>
-                    <div className="pcard__body">
-                      <div className="pcard__eyebrow">{p.projectType}</div>
-                      <h3>{p.title}</h3>
-                      <p>{p.desc}</p>
-                      <div className="pcard__highlight">{p.highlight}</div>
-                      <div className="pcard__stack">
-                        {p.stack.map((s) => (
-                          <span key={s}>{s}</span>
-                        ))}
-                      </div>
-                    </div>
+                {PROJECTS.slice(0, 4).map((project, index) => (
+                  <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
+                    <ProjectCard project={project} onOpen={setSelectedProject} />
                   </Reveal>
                 ))}
               </div>
@@ -1980,12 +1999,23 @@ export default function App() {
         <>
           <Masthead
             crumb="Projects"
-            title="Selected development work."
-            subtitle="Client-facing websites and frontend projects presented with their platform, purpose, and development focus — followed by selected technical work from my engineering background."
+            title="Real websites built around real business needs."
+            subtitle="A selected archive of live and staged work across editorial publishing, clean energy, hospitality, financial services, digital agencies, and Shopify commerce."
           />
 
           <section className="projects sec">
             <div className="wrap">
+              <Reveal className="project-archive-head">
+                <div>
+                  <Eyebrow>Selected Work Archive</Eyebrow>
+                  <h2>From content architecture to conversion and checkout.</h2>
+                  <p>Each project below uses its real full-page screenshot and a concise case study covering the role, platform, business focus, and development work delivered.</p>
+                </div>
+                <a className="btn btn-outline-light" href="/Haseeb_Mujeeb_Ansari_Portfolio.pdf" target="_blank" rel="noreferrer">
+                  View Portfolio PDF <ExternalLink size={14} />
+                </a>
+              </Reveal>
+
               <Reveal className="filter-row">
                 {FILTERS.map((f) => (
                   <button
@@ -2000,23 +2030,9 @@ export default function App() {
 
               {filteredProjects.length > 0 ? (
                 <div className="proj-grid2">
-                  {filteredProjects.map((p, i) => (
-                    <Reveal as="div" delay={(i % 3) * 90} key={p.title} className="pcard">
-                      <div className="pcard__img-wrap">
-                        <ProjectPreview project={p} />
-                        <span className="pcard__badge" style={{ background: p.badgeBg }}>{p.code}</span>
-                      </div>
-                      <div className="pcard__body">
-                        <div className="pcard__eyebrow">{p.projectType}</div>
-                        <h3>{p.title}</h3>
-                        <p>{p.desc}</p>
-                        <div className="pcard__highlight">{p.highlight}</div>
-                        <div className="pcard__stack">
-                          {p.stack.map((s) => (
-                            <span key={s}>{s}</span>
-                          ))}
-                        </div>
-                      </div>
+                  {filteredProjects.map((project, index) => (
+                    <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
+                      <ProjectCard project={project} onOpen={setSelectedProject} />
                     </Reveal>
                   ))}
                 </div>
@@ -2175,6 +2191,8 @@ export default function App() {
           </section>
         </>
       )}
+
+      <ProjectCaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       {/* ============ FOOTER ============ */}
       <footer className="footer">
