@@ -548,7 +548,7 @@ function ProjectPreview({ project }) {
   );
 }
 
-function ProjectCard({ project, onOpen }) {
+function ProjectCard({ project, onOpen, onContact }) {
   return (
     <article className="pcard">
       <div className="pcard__img-wrap">
@@ -570,16 +570,16 @@ function ProjectCard({ project, onOpen }) {
           <button type="button" className="pcard__case" onClick={() => onOpen(project)}>
             View Case Study <ArrowRight size={14} />
           </button>
-          <a href={project.liveUrl} target="_blank" rel="noreferrer">
-            {project.statusTone === "development" ? "View Staging" : "Live Site"} <ExternalLink size={13} />
-          </a>
+          <button type="button" onClick={onContact}>
+            Discuss This Project <ArrowRight size={13} />
+          </button>
         </div>
       </div>
     </article>
   );
 }
 
-function ProjectCaseStudy({ project, onClose }) {
+function ProjectCaseStudy({ project, onClose, navigateTo }) {
   if (!project) return null;
 
   return (
@@ -613,7 +613,6 @@ function ProjectCaseStudy({ project, onClose }) {
             <div><small>Role</small><b>{project.role}</b></div>
             <div><small>Platform</small><b>{project.platform}</b></div>
             <div><small>Focus</small><b>{project.focus}</b></div>
-            <div><small>Website</small><b>{project.domain}</b></div>
           </div>
 
           <div className="project-modal__built">
@@ -630,9 +629,9 @@ function ProjectCaseStudy({ project, onClose }) {
           </div>
 
           <div className="project-modal__actions">
-            <a className="btn btn-grad" href={project.liveUrl} target="_blank" rel="noreferrer">
-              {project.statusTone === "development" ? "Open Staging Site" : "Visit Live Website"} <ExternalLink size={14} />
-            </a>
+            <button className="btn btn-grad" type="button" onClick={() => { onClose(); navigateTo("contact", "page"); }}>
+              Discuss a Similar Project <ArrowRight size={14} />
+            </button>
             <button className="btn btn-outline-light" type="button" onClick={onClose}>Close</button>
           </div>
         </div>
@@ -1199,12 +1198,26 @@ export default function App() {
         .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
         @media (min-width:860px){ .journey-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
         @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:0%; right:30%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
-        .journey-card{ position:relative; padding:0 0 34px 36px; }
+        .journey-card{ position:relative; padding:0 0 36px 64px; min-width:0; }
         .journey-card:last-child{ padding-bottom:0; }
-        .journey-card::before{ content:''; position:absolute; left:7px; top:30px; bottom:0; width:1px; background:var(--line-light); }
+        .journey-card::before{ content:''; position:absolute; left:23px; top:48px; bottom:0; width:1px; background:var(--line-light); }
         .journey-card:last-child::before{ display:none; }
         @media (min-width:860px){ .journey-card{ padding:0; z-index:1; } .journey-card::before{ display:none; } }
-        .journey-card__dot{ position:absolute; left:0; top:18px; width:16px; height:16px; border-radius:50%; background:#fff; border:4px solid var(--journey-color); box-shadow:0 0 0 6px var(--bg-light); }
+        .journey-card__dot{
+          position:absolute;
+          left:0;
+          top:0;
+          width:48px;
+          height:48px;
+          border-radius:14px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:#fff;
+          border:1px solid var(--line-light);
+          box-shadow:0 12px 28px -20px rgba(20,20,35,.3);
+          color:var(--journey-color);
+        }
         @media (min-width:860px){ .journey-card__dot{ position:relative; left:auto; top:auto; width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center; margin-bottom:22px; border:1px solid var(--line-light); background:#fff; box-shadow:0 18px 38px -25px rgba(20,20,35,.26); color:var(--journey-color); } }
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:10.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17px; line-height:1.35; margin:0 0 5px; }
@@ -1354,6 +1367,129 @@ export default function App() {
         }
 
         .center-row{ display:flex; justify-content:center; }
+
+        /* ============ SERVICES ============ */
+        .services-grid{
+          display:grid;
+          grid-template-columns:repeat(3,minmax(0,1fr));
+          gap:18px;
+        }
+        .service-card{
+          min-width:0;
+          min-height:285px;
+          padding:26px 24px 24px;
+          border:1px solid var(--line-light);
+          border-radius:20px;
+          background:#fff;
+          display:flex;
+          flex-direction:column;
+          transition:transform .35s cubic-bezier(.16,.8,.24,1),box-shadow .35s ease,border-color .35s ease;
+        }
+        .service-card:hover{
+          transform:translateY(-7px);
+          border-color:rgba(124,58,237,.2);
+          box-shadow:0 30px 58px -34px rgba(20,20,35,.3);
+        }
+        .service-card__ic{
+          width:48px;
+          height:48px;
+          border-radius:14px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin-bottom:20px;
+          flex:none;
+        }
+        .service-card h3{
+          font-size:18px;
+          line-height:1.35;
+          margin:0 0 10px;
+          letter-spacing:-.015em;
+        }
+        .service-card p{
+          color:var(--gray-on-light);
+          font-size:13px;
+          line-height:1.75;
+          margin:0 0 20px;
+        }
+        .service-card__tags{
+          display:flex;
+          flex-wrap:wrap;
+          gap:7px;
+          margin-top:auto;
+        }
+        .service-card__tags span,
+        .tag{
+          display:inline-flex;
+          align-items:center;
+          min-height:26px;
+          padding:5px 9px;
+          border:1px solid var(--line-light);
+          border-radius:999px;
+          background:var(--bg-light);
+          color:var(--gray-on-light);
+          font-size:10px;
+          font-weight:700;
+        }
+
+        /* ============ ACADEMIC PROJECTS ============ */
+        .mini-grid{
+          display:grid;
+          grid-template-columns:repeat(3,minmax(0,1fr));
+          gap:18px;
+        }
+        .mini-card{
+          min-width:0;
+          min-height:220px;
+          padding:24px;
+          border:1px solid var(--line-light);
+          border-radius:20px;
+          background:var(--bg-light);
+          display:flex;
+          flex-direction:column;
+          transition:transform .35s cubic-bezier(.16,.8,.24,1),box-shadow .35s ease,border-color .35s ease;
+        }
+        .mini-card:hover{
+          transform:translateY(-6px);
+          border-color:rgba(124,58,237,.2);
+          box-shadow:0 28px 54px -34px rgba(20,20,35,.25);
+        }
+        .mini-card__ic{
+          width:46px;
+          height:46px;
+          border-radius:13px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          margin-bottom:18px;
+        }
+        .mini-card .tag{
+          align-self:flex-start;
+          margin-bottom:10px;
+          background:#fff;
+        }
+        .mini-card h4{
+          font-size:16px;
+          line-height:1.35;
+          margin:0 0 9px;
+        }
+        .mini-card p{
+          color:var(--gray-on-light);
+          font-size:12.5px;
+          line-height:1.75;
+          margin:0;
+        }
+
+        @media (max-width:980px){
+          .services-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+          .mini-grid{ grid-template-columns:repeat(2,minmax(0,1fr)); }
+        }
+        @media (max-width:620px){
+          .services-grid,
+          .mini-grid{ grid-template-columns:1fr; gap:14px; }
+          .service-card,
+          .mini-card{ min-height:0; padding:22px 20px; }
+        }
 
         /* ============ PROCESS ============ */
         .process{ background:var(--bg-dark); color:#fff; }
@@ -1677,7 +1813,11 @@ export default function App() {
               <div className="proj-grid2">
                 {PROJECTS.slice(0, 4).map((project, index) => (
                   <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
-                    <ProjectCard project={project} onOpen={setSelectedProject} />
+                    <ProjectCard
+                        project={project}
+                        onOpen={setSelectedProject}
+                        onContact={() => navigateTo("contact", "page")}
+                      />
                   </Reveal>
                 ))}
               </div>
@@ -2010,17 +2150,6 @@ export default function App() {
 
           <section className="projects sec">
             <div className="wrap">
-              <Reveal className="project-archive-head">
-                <div>
-                  <Eyebrow>Selected Work Archive</Eyebrow>
-                  <h2>From content architecture to conversion and checkout.</h2>
-                  <p>Each project below uses its real full-page screenshot and a concise case study covering the role, platform, business focus, and development work delivered.</p>
-                </div>
-                <a className="btn btn-outline-light" href="/Haseeb_Mujeeb_Ansari_Portfolio.pdf" target="_blank" rel="noreferrer">
-                  View Portfolio PDF <ExternalLink size={14} />
-                </a>
-              </Reveal>
-
               <Reveal className="filter-row">
                 {FILTERS.map((f) => (
                   <button
@@ -2037,7 +2166,11 @@ export default function App() {
                 <div className="proj-grid2">
                   {filteredProjects.map((project, index) => (
                     <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
-                      <ProjectCard project={project} onOpen={setSelectedProject} />
+                      <ProjectCard
+                        project={project}
+                        onOpen={setSelectedProject}
+                        onContact={() => navigateTo("contact", "page")}
+                      />
                     </Reveal>
                   ))}
                 </div>
@@ -2197,7 +2330,13 @@ export default function App() {
         </>
       )}
 
-      <ProjectCaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} />
+      {selectedProject && (
+        <ProjectCaseStudy
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+          navigateTo={navigateTo}
+        />
+      )}
 
       {/* ============ FOOTER ============ */}
       <footer className="footer">
@@ -2253,3 +2392,4 @@ export default function App() {
     </div>
   );
 }
+
