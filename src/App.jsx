@@ -1583,7 +1583,10 @@ export default function App() {
         .about-final-cta__inner{ position:relative; z-index:1; display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:28px; }
         @media (min-width:840px){ .about-final-cta__inner{ flex-direction:row; align-items:center; } }
         .about-final-cta h2{ font-size:clamp(29px,4vw,42px); line-height:1.15; letter-spacing:-.03em; margin:0 0 10px; }
-        .about-final-cta p{ color:var(--gray-on-dark); font-size:15px; line-height:1.7; margin:0; }
+        .about-final-cta p{ color:var(--gray-on-dark); font-size:15px; line-height:1.7; margin:0; width:600px; }
+        @media screen and (max-width: 767px) {
+        .about-final-cta p{ width:100%; }
+        }
 
         @media (max-width:700px){
           .about-photo__badge{ position:relative; right:auto; top:auto; margin:-18px 14px 0; }
