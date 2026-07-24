@@ -470,26 +470,38 @@ const BUDGET_OPTIONS = [
   "$5,000+",
 ];
 
+const SITE_URL = "https://haseeb-mujeeb.vercel.app";
+
 const PAGE_META = {
   home: {
-    title: "Haseeb.dev — WordPress, Shopify & React Developer",
-    description: "Portfolio of Haseeb Mujeeb Ansari, a web developer building polished WordPress, Shopify, React, and responsive frontend experiences.",
+    title: "Haseeb Ansari | WordPress, Shopify & React Developer",
+    description: "Portfolio of Haseeb Ansari, a web developer building responsive WordPress, Shopify and React websites for businesses, agencies and growing brands.",
+    path: "/",
   },
   about: {
-    title: "About Haseeb — Web Developer & Computer Engineer",
-    description: "Learn about Haseeb Mujeeb Ansari, his development approach, experience, education, and focus on thoughtful digital delivery.",
+    title: "About Haseeb Ansari | Web Developer & Engineer",
+    description: "Meet Haseeb Ansari, a Karachi-based web developer and computer engineer focused on responsive design, clean implementation and reliable digital delivery.",
+    path: "/about",
   },
   services: {
-    title: "Web Development Services — Haseeb.dev",
-    description: "WordPress, Shopify, React, frontend development, builder customization, responsive design, and website optimization services.",
+    title: "Web Development Services | WordPress, Shopify & React",
+    description: "Professional WordPress, Shopify, React and front-end development services, including responsive builds, customizations, performance improvements and CMS work.",
+    path: "/services",
   },
   projects: {
-    title: "Selected Web Development Projects — Haseeb.dev",
-    description: "Explore selected WordPress, Shopify, and frontend projects built for publishing, commerce, services, and lead generation.",
+    title: "Web Development Portfolio | Haseeb Ansari",
+    description: "Explore Haseeb Ansari's WordPress, Shopify and front-end development portfolio, including publishing, e-commerce, lead generation and business websites.",
+    path: "/projects",
+  },
+  process: {
+    title: "Web Development Process | Haseeb Ansari",
+    description: "See Haseeb Ansari's four-step web development process: discovery, planning, responsive development, testing, optimization and polished project handoff.",
+    path: "/process",
   },
   contact: {
-    title: "Contact Haseeb — Start a Web Project",
-    description: "Share your website or frontend project with Haseeb and receive clear next steps within one business day.",
+    title: "Contact Haseeb Ansari | Start Your Web Project",
+    description: "Contact Haseeb Ansari to discuss a WordPress, Shopify, React or website redesign project and receive clear next steps for your build.",
+    path: "/contact",
   },
 };
 
@@ -923,29 +935,58 @@ function Masthead({ crumb, title, subtitle, meta = [] }) {
   );
 }
 
-function getRouteFromHash() {
-  if (typeof window === "undefined") return { page: "home", section: null };
+const ROUTE_PATHS = {
+  home: "/",
+  about: "/about",
+  services: "/services",
+  projects: "/projects",
+  process: "/process",
+  contact: "/contact",
+};
 
-  const route = window.location.hash.replace(/^#\/?/, "").trim().toLowerCase();
+function normalizePathname(pathname = "/") {
+  const normalized = pathname.trim().toLowerCase().replace(/\/+$/, "");
+  return normalized || "/";
+}
 
-  if (["about", "services", "projects", "contact"].includes(route)) {
-    return { page: route, section: null };
+function getRouteFromPath() {
+  if (typeof window === "undefined") {
+    return { page: "home", section: "home", routeKey: "home" };
   }
 
-  if (route === "process") {
-    return { page: "home", section: "process" };
+  const path = normalizePathname(window.location.pathname);
+
+  if (path === ROUTE_PATHS.about) {
+    return { page: "about", section: null, routeKey: "about" };
   }
 
-  return { page: "home", section: route === "home" ? "home" : null };
+  if (path === ROUTE_PATHS.services) {
+    return { page: "services", section: null, routeKey: "services" };
+  }
+
+  if (path === ROUTE_PATHS.projects) {
+    return { page: "projects", section: null, routeKey: "projects" };
+  }
+
+  if (path === ROUTE_PATHS.contact) {
+    return { page: "contact", section: null, routeKey: "contact" };
+  }
+
+  if (path === ROUTE_PATHS.process) {
+    return { page: "home", section: "process", routeKey: "process" };
+  }
+
+  return { page: "home", section: "home", routeKey: "home" };
 }
 
 /* ------------------------------------------------------------------ */
 /* Main App                                                             */
 /* ------------------------------------------------------------------ */
 export default function App() {
-  const [page, setPage] = useState(() => getRouteFromHash().page); // home | about | services | projects | contact
-  const [pendingScroll, setPendingScroll] = useState(() => getRouteFromHash().section);
-  const [activeSection, setActiveSection] = useState(() => getRouteFromHash().section || "home");
+  const [page, setPage] = useState(() => getRouteFromPath().page); // home | about | services | projects | contact
+  const [pendingScroll, setPendingScroll] = useState(() => getRouteFromPath().section);
+  const [activeSection, setActiveSection] = useState(() => getRouteFromPath().section || "home");
+  const [routeKey, setRouteKey] = useState(() => getRouteFromPath().routeKey);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
@@ -996,39 +1037,65 @@ export default function App() {
   }, [page]);
 
   useEffect(() => {
-    if (!window.location.hash) {
-      window.history.replaceState({ route: "home" }, "", "#home");
+    const legacyHash = window.location.hash.replace(/^#\/?/, "").trim().toLowerCase();
+
+    if (ROUTE_PATHS[legacyHash]) {
+      window.history.replaceState({ route: legacyHash }, "", ROUTE_PATHS[legacyHash]);
     }
 
     const syncRouteFromHistory = () => {
-      const route = getRouteFromHash();
+      const route = getRouteFromPath();
       setMenuOpen(false);
       setSelectedProject(null);
       setPage(route.page);
       setPendingScroll(route.section);
       setActiveSection(route.section || (route.page === "home" ? "home" : ""));
+      setRouteKey(route.routeKey);
 
       if (route.page !== "home" || !route.section) {
         window.scrollTo({ top: 0, behavior: "auto" });
       }
     };
 
+    syncRouteFromHistory();
     window.addEventListener("popstate", syncRouteFromHistory);
     return () => window.removeEventListener("popstate", syncRouteFromHistory);
   }, []);
 
   useEffect(() => {
-    const meta = PAGE_META[page] || PAGE_META.home;
+    const meta = PAGE_META[routeKey] || PAGE_META[page] || PAGE_META.home;
+    const canonicalUrl = `${SITE_URL}${meta.path}`;
+
     document.title = meta.title;
 
-    let description = document.querySelector('meta[name="description"]');
-    if (!description) {
-      description = document.createElement("meta");
-      description.setAttribute("name", "description");
-      document.head.appendChild(description);
+    const setMetaTag = (attribute, key, content) => {
+      let element = document.head.querySelector(`meta[${attribute}="${key}"]`);
+      if (!element) {
+        element = document.createElement("meta");
+        element.setAttribute(attribute, key);
+        document.head.appendChild(element);
+      }
+      element.setAttribute("content", content);
+    };
+
+    setMetaTag("name", "description", meta.description);
+    setMetaTag("property", "og:type", "website");
+    setMetaTag("property", "og:site_name", "Haseeb.dev");
+    setMetaTag("property", "og:title", meta.title);
+    setMetaTag("property", "og:description", meta.description);
+    setMetaTag("property", "og:url", canonicalUrl);
+    setMetaTag("name", "twitter:card", "summary");
+    setMetaTag("name", "twitter:title", meta.title);
+    setMetaTag("name", "twitter:description", meta.description);
+
+    let canonical = document.head.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement("link");
+      canonical.setAttribute("rel", "canonical");
+      document.head.appendChild(canonical);
     }
-    description.setAttribute("content", meta.description);
-  }, [page]);
+    canonical.setAttribute("href", canonicalUrl);
+  }, [page, routeKey]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -1077,10 +1144,11 @@ export default function App() {
       setMenuOpen(false);
       setSelectedProject(null);
 
-      const nextHash = `#${id}`;
-      if (window.location.hash !== nextHash) {
-        window.history.pushState({ route: id }, "", nextHash);
+      const nextPath = ROUTE_PATHS[id] || ROUTE_PATHS.home;
+      if (normalizePathname(window.location.pathname) !== nextPath || window.location.hash) {
+        window.history.pushState({ route: id }, "", nextPath);
       }
+      setRouteKey(id);
 
       if (type === "page") {
         setPendingScroll(null);
@@ -1120,10 +1188,11 @@ export default function App() {
       }));
     }
 
-    if (window.location.hash !== "#contact") {
-      window.history.pushState({ route: "contact" }, "", "#contact");
+    if (normalizePathname(window.location.pathname) !== ROUTE_PATHS.contact || window.location.hash) {
+      window.history.pushState({ route: "contact" }, "", ROUTE_PATHS.contact);
     }
 
+    setRouteKey("contact");
     setPage("contact");
     setPendingScroll(null);
     setActiveSection("");
@@ -1818,7 +1887,7 @@ export default function App() {
         .projects-page .pcard:hover .pcard__stack span{ border-color:rgba(124,58,237,.13); background:#FBF9FF; }
         .projects-page .pcard__actions{ margin-top:auto; padding-top:18px; }
         .projects-page .pcard__actions button,.projects-page .pcard__actions a{
-          min-height:38px; padding:9px 8px; border-radius:999px; transition:transform .24s ease,background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
+          min-height:38px; padding:9px 13px; border-radius:999px; transition:transform .24s ease,background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
         }
         .projects-page .pcard__case{ background:#F3EEFF; color:var(--purple-2); border:1px solid rgba(124,58,237,.1); }
         .projects-page .pcard__case:hover{ transform:translateY(-2px); background:var(--purple-2); color:#fff; box-shadow:0 12px 24px -16px rgba(124,58,237,.7); }
@@ -3024,11 +3093,11 @@ export default function App() {
             <div>
               <h5>Quick Links</h5>
               <div className="footer-links">
-                <a href="#about" onClick={(event) => { event.preventDefault(); navigateTo("about", "page"); }}>About</a>
-                <a href="#services" onClick={(event) => { event.preventDefault(); navigateTo("services", "page"); }}>Services</a>
-                <a href="#projects" onClick={(event) => { event.preventDefault(); navigateTo("projects", "page"); }}>Projects</a>
-                <a href="#process" onClick={(event) => { event.preventDefault(); navigateTo("process", "section"); }}>Process</a>
-                <a href="#contact" onClick={(event) => { event.preventDefault(); navigateTo("contact", "page"); }}>Contact</a>
+                <a href="/about" onClick={(event) => { event.preventDefault(); navigateTo("about", "page"); }}>About</a>
+                <a href="/services" onClick={(event) => { event.preventDefault(); navigateTo("services", "page"); }}>Services</a>
+                <a href="/projects" onClick={(event) => { event.preventDefault(); navigateTo("projects", "page"); }}>Projects</a>
+                <a href="/process" onClick={(event) => { event.preventDefault(); navigateTo("process", "section"); }}>Process</a>
+                <a href="/contact" onClick={(event) => { event.preventDefault(); navigateTo("contact", "page"); }}>Contact</a>
               </div>
             </div>
 
@@ -3038,7 +3107,7 @@ export default function App() {
                 {SERVICES.slice(0, 5).map((s) => (
                   <a
                     key={s.title}
-                    href="#services"
+                    href="/services"
                     onClick={(event) => {
                       event.preventDefault();
                       navigateTo("services", "page");
