@@ -1274,7 +1274,7 @@ export default function App() {
         .pcard{ min-width:0; border-radius:20px; overflow:hidden; border:1px solid var(--line-light); background:#fff; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s ease, border-color .35s ease; }
         .pcard:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.2); box-shadow:0 38px 70px -34px rgba(20,20,35,.3); }
         .pcard__img-wrap{ position:relative; height:310px; overflow:hidden; background:#0C0D14; padding:14px; }
-        .pcard__badge{ position:absolute; left:22px; bottom:-18px; min-width:44px; height:44px; padding:0 10px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800; box-shadow:0 13px 28px -10px rgba(0,0,0,.45); z-index:4; }
+        .pcard__badge{ position:absolute; left:22px; bottom:20px; min-width:44px; height:44px; padding:0 10px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:800; box-shadow:0 13px 28px -10px rgba(0,0,0,.45); z-index:4; }
         .pcard__body{ padding:32px 22px 23px; display:flex; flex-direction:column; flex:1; }
         .pcard__meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }
         .pcard__meta > span:first-child{ font-family:var(--mono); font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--purple-2); }
