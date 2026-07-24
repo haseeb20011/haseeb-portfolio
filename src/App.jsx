@@ -324,13 +324,35 @@ const PROJECTS = [
     accent: "#2141E8",
     badgeBg: "#1024A9",
   },
-];
-
-const ADDITIONAL_LIVE_PROJECTS = [
   {
+    code: "TK",
+    category: "Web Development",
+    filters: ["Live"],
+    projectType: "B2B Consulting · Technology",
     title: "Teknotch",
-    label: "B2B Consulting Website",
+    domain: "teknotch.com",
     liveUrl: "https://teknotch.com/",
+    status: "Live",
+    statusTone: "live",
+    role: "Website Development",
+    platform: "Responsive Web Platform",
+    focus: "B2B service positioning and a clear enquiry journey",
+    challenge: "Present a broad technology-consulting offer in a way that feels credible, focused, and easy for business visitors to understand.",
+    solution: "Organized the website around clear service pathways, concise business messaging, trust-building content, and direct contact opportunities.",
+    outcome: "A polished B2B presence that communicates the offer more clearly and gives prospective clients a straightforward route to start a conversation.",
+    desc: "A professional B2B consulting website designed to present technology services clearly, strengthen brand credibility, and guide prospective clients toward the right next step.",
+    highlight: "B2B positioning · Service clarity · Enquiry flow",
+    stack: ["Responsive", "B2B Website", "Service UX", "Lead Generation"],
+    details: [
+      "Clear service-led page structure for business and consulting audiences.",
+      "Responsive layouts designed for consistent presentation across devices.",
+      "Trust-focused messaging and supporting content throughout the journey.",
+      "Direct enquiry pathways positioned around relevant service information.",
+      "Reusable content sections that support future website expansion.",
+    ],
+    image: "/images/projects/teknotch.webp",
+    accent: "#6D5DFB",
+    badgeBg: "#392FA8",
   },
 ];
 
@@ -623,17 +645,44 @@ function TechPill({ t }) {
   );
 }
 
+function ProjectImage({ project, modal = false }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed || !project.image) {
+    return (
+      <div className={`project-image-fallback ${modal ? "project-image-fallback--modal" : ""}`} aria-label={`${project.title} project preview`}>
+        <span className="project-image-fallback__code" style={{ background: project.badgeBg }}>{project.code}</span>
+        <div>
+          <small>Project preview</small>
+          <strong>{project.title}</strong>
+          <span>{project.domain}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={project.image}
+      alt={`${project.title} ${modal ? "complete website screenshot" : "full-page website screenshot"}`}
+      loading={modal ? "eager" : "lazy"}
+      decoding="async"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function ProjectPreview({ project }) {
   return (
-    <div className="project-shot" role="img" aria-label={`${project.title} full-page website screenshot preview`}>
+    <div className="project-shot" aria-label={`${project.title} full-page website screenshot preview`}>
       <div className="project-shot__browser">
         <span className="project-shot__dots"><i /><i /><i /></span>
-        <span className="project-shot__url">{project.title}</span>
+        <span className="project-shot__url">{project.domain || project.title}</span>
         <span className={`project-shot__status project-shot__status--${project.statusTone}`}>{project.status}</span>
       </div>
       <div className="project-shot__viewport">
-        <img src={project.image} alt={`${project.title} full-page website screenshot`} loading="lazy" decoding="async" />
-        <span className="project-shot__hint">Full-page preview</span>
+        <ProjectImage project={project} />
+        <span className="project-shot__hint">Scroll preview</span>
       </div>
     </div>
   );
@@ -715,82 +764,131 @@ function ProjectCaseStudy({ project, onClose, onContact }) {
 
   if (!project) return null;
 
+  const storyItems = [
+    { label: "Challenge", text: project.challenge, icon: Lightbulb, tone: "purple" },
+    { label: "Solution", text: project.solution, icon: Wrench, tone: "orange" },
+    { label: "Outcome", text: project.outcome, icon: CheckCircle2, tone: "green" },
+  ];
+
   return (
-    <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" aria-describedby="project-modal-description" onMouseDown={(event) => {
-      if (event.target === event.currentTarget) onClose();
-    }}>
-      <div ref={dialogRef} className="project-modal__dialog">
-        <button ref={closeButtonRef} className="project-modal__close" type="button" onClick={onClose} aria-label="Close project case study">
+    <div
+      className="project-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+      aria-describedby="project-modal-description"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div ref={dialogRef} className="project-modal__dialog" style={{ "--project-accent": project.accent }}>
+        <button
+          ref={closeButtonRef}
+          className="project-modal__close"
+          type="button"
+          onClick={onClose}
+          aria-label="Close project case study"
+        >
           <X size={20} />
         </button>
 
         <div className="project-modal__visual">
-          <div className="project-modal__browser">
-            <span className="project-shot__dots"><i /><i /><i /></span>
-            <span>{project.title}</span>
+          <div className="project-modal__visual-heading">
+            <span className="project-modal__project-code" style={{ background: project.badgeBg }}>{project.code}</span>
+            <div>
+              <small>Featured case study</small>
+              <strong>{project.title}</strong>
+            </div>
           </div>
-          <div className="project-modal__screen">
-            <img src={project.image} alt={`${project.title} complete website screenshot`} decoding="async" />
+
+          <div className="project-modal__browser">
+            <div className="project-modal__browser-bar">
+              <span className="project-shot__dots"><i /><i /><i /></span>
+              <span className="project-modal__browser-url">{project.domain}</span>
+              <span className="project-modal__scroll-note">Scroll preview</span>
+            </div>
+            <div className="project-modal__screen">
+              <ProjectImage project={project} modal />
+            </div>
+          </div>
+
+          <div className="project-modal__visual-footer">
+            <span>{project.role}</span>
+            <span>{project.platform}</span>
           </div>
         </div>
 
         <div className="project-modal__details">
-          <div className="project-modal__eyebrow">
-            <span>{project.projectType}</span>
-            <span className={`pcard__status pcard__status--${project.statusTone}`}>{project.status}</span>
-          </div>
-          <h2 id="project-modal-title">{project.title}</h2>
-          <p id="project-modal-description" className="project-modal__lead">{project.desc}</p>
-
-          <div className="project-modal__story" aria-label={`${project.title} project summary`}>
-            <div>
-              <small>Challenge</small>
-              <p>{project.challenge}</p>
+          <div className="project-modal__content">
+            <div className="project-modal__eyebrow">
+              <span>{project.projectType}</span>
+              <span className={`pcard__status pcard__status--${project.statusTone}`}>{project.status}</span>
             </div>
-            <div>
-              <small>Solution</small>
-              <p>{project.solution}</p>
+
+            <h2 id="project-modal-title">{project.title}</h2>
+            <p id="project-modal-description" className="project-modal__lead">{project.desc}</p>
+
+            <div className="project-modal__specs" aria-label={`${project.title} project details`}>
+              <div><small>My role</small><b>{project.role}</b></div>
+              <div><small>Platform</small><b>{project.platform}</b></div>
+              <div><small>Primary focus</small><b>{project.focus}</b></div>
+              <div><small>Project status</small><b>{project.status}</b></div>
             </div>
-            <div>
-              <small>Outcome</small>
-              <p>{project.outcome}</p>
+
+            <div className="project-modal__section-heading">
+              <span>Project story</span>
+              <p>How the project moved from the core requirement to a practical final experience.</p>
             </div>
-          </div>
 
-          <div className="project-modal__specs">
-            <div><small>Role</small><b>{project.role}</b></div>
-            <div><small>Platform</small><b>{project.platform}</b></div>
-            <div><small>Focus</small><b>{project.focus}</b></div>
-            <div><small>Status</small><b>{project.status}</b></div>
-          </div>
+            <div className="project-modal__story">
+              {storyItems.map((item, index) => {
+                const StoryIcon = item.icon;
+                return (
+                  <div className={`project-modal__story-item project-modal__story-item--${item.tone}`} key={item.label}>
+                    <span className="project-modal__story-number">0{index + 1}</span>
+                    <span className="project-modal__story-icon"><StoryIcon size={17} /></span>
+                    <div>
+                      <small>{item.label}</small>
+                      <p>{item.text}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
 
-          <div className="project-modal__built">
-            <span className="eyebrow2">What I Built</span>
-            <ul>
-              {project.details.map((item) => (
-                <li key={item}><CheckCircle2 size={16} /> <span>{item}</span></li>
-              ))}
-            </ul>
-          </div>
+            <div className="project-modal__built">
+              <div className="project-modal__section-heading project-modal__section-heading--compact">
+                <span>What I built</span>
+                <p>The main implementation and experience details included in the project.</p>
+              </div>
+              <ul>
+                {project.details.map((item) => (
+                  <li key={item}>
+                    <span className="project-modal__check"><CheckCircle2 size={16} /></span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          <div className="pcard__stack project-modal__stack">
-            {project.stack.map((item) => <span key={item}>{item}</span>)}
-          </div>
+            <div className="pcard__stack project-modal__stack" aria-label="Project technologies and capabilities">
+              {project.stack.map((item) => <span key={item}>{item}</span>)}
+            </div>
 
-          <div className="project-modal__actions">
-            <a
-              className="btn btn-grad"
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit ${project.title} live website`}
-            >
-              Visit Live Site <ExternalLink size={14} />
-            </a>
-            <button className="btn btn-outline-light" type="button" onClick={() => onContact(project)}>
-              Discuss Similar Project <ArrowRight size={14} />
-            </button>
-            <button className="btn btn-outline-light" type="button" onClick={onClose}>Close</button>
+            <div className="project-modal__actions">
+              <a
+                className="btn btn-grad"
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit ${project.title} live website`}
+              >
+                Visit Live Site <ExternalLink size={14} />
+              </a>
+              <button className="btn btn-outline-light" type="button" onClick={() => onContact(project)}>
+                Discuss Similar Project <ArrowRight size={14} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -1676,9 +1774,6 @@ export default function App() {
         }
 
         .projects-page .proj-grid2{ margin-bottom:48px; }
-        @media (min-width:820px){
-          .projects-page .proj-grid2 > .rv:last-child:nth-child(odd){ grid-column:1 / -1; width:calc(50% - 14px); justify-self:center; }
-        }
         .projects-page .pcard{
           position:relative; isolation:isolate; border-radius:22px; border-color:rgba(20,20,35,.09);
           box-shadow:0 16px 45px -38px rgba(20,20,35,.38);
@@ -1760,64 +1855,145 @@ export default function App() {
         @media (hover:none){ .pcard:hover .project-shot__viewport img{ transform:none; } .project-shot__hint{ opacity:1; transform:none; } }
         @media (prefers-reduced-motion:reduce){ .project-shot__viewport img{ transition:none; } .pcard:hover .project-shot__viewport img{ transform:none; } }
 
-        .project-modal{ position:fixed; inset:0; z-index:1200; background:rgba(4,4,9,.82); backdrop-filter:blur(12px); padding:24px; overflow:auto; display:flex; align-items:flex-start; justify-content:center; }
-        .project-modal__dialog{ width:min(1180px,100%); min-height:min(760px,calc(100vh - 48px)); background:#fff; border-radius:24px; overflow:hidden; position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(370px,.95fr); box-shadow:0 60px 140px -45px rgba(0,0,0,.75); }
-        .project-modal__close{ position:absolute; right:16px; top:16px; width:40px; height:40px; z-index:8; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid var(--line-light); background:rgba(255,255,255,.92); color:var(--ink); box-shadow:0 14px 34px -20px rgba(0,0,0,.4); }
-        .project-modal__visual{ min-width:0; background:#0B0C13; padding:20px; display:flex; flex-direction:column; }
-        .project-modal__browser{ height:38px; flex:none; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12px; padding:0 13px; color:rgba(255,255,255,.6); background:#14151F; border:1px solid rgba(255,255,255,.08); border-radius:13px 13px 0 0; font-family:var(--mono); font-size:10px; }
-        .project-modal__screen{ height:calc(100vh - 126px); min-height:620px; overflow:auto; background:#fff; border-radius:0 0 13px 13px; scrollbar-width:thin; }
-        .project-modal__screen img{ width:100%; height:auto; display:block; }
-        .project-modal__details{ padding:58px 38px 38px; overflow:auto; }
-        .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:15px; }
-        .project-modal__eyebrow > span:first-child{ font-family:var(--mono); font-size:11px; color:var(--purple-2); font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
-        .project-modal__details h2{ font-size:clamp(28px,3.5vw,42px); line-height:1.13; letter-spacing:-.035em; margin:0 0 15px; }
-        .project-modal__lead{ color:var(--gray-on-light); font-size:15.5px; line-height:1.78; margin:0 0 24px; }
-        .project-modal__story{ display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:24px; }
-        .project-modal__story div{ padding:15px 16px; border:1px solid var(--line-light); border-radius:13px; background:#fff; }
-        .project-modal__story small{ display:block; margin-bottom:6px; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.075em; color:var(--purple-2); }
-        .project-modal__story p{ margin:0; color:#4B4F5D; font-size:13.5px; line-height:1.62; }
-        @media (min-width:1080px){ .project-modal__story{ grid-template-columns:repeat(3,1fr); } }
-        .project-modal__specs{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
-        .project-modal__specs div{ padding:14px; border:1px solid var(--line-light); border-radius:13px; background:var(--bg-light); }
-        .project-modal__specs small{ display:block; color:var(--gray-on-light); font-size:10px; text-transform:uppercase; letter-spacing:.07em; font-weight:700; margin-bottom:5px; }
-        .project-modal__specs b{ display:block; font-size:13px; line-height:1.45; }
-        .project-modal__built{ margin-bottom:24px; }
-        .project-modal__built ul{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:11px; }
-        .project-modal__built li{ display:grid; grid-template-columns:auto 1fr; gap:9px; color:#4E5260; font-size:14px; line-height:1.58; }
-        .project-modal__built li svg{ color:var(--purple-2); margin-top:2px; }
-        .project-modal__stack{ margin-bottom:28px; }
-        .project-modal__actions{ display:flex; flex-wrap:wrap; gap:10px; }
-
-        @media (max-width:860px){
-          .project-modal{ padding:12px; }
-          .project-modal__dialog{ grid-template-columns:1fr; border-radius:20px; }
-          .project-modal__visual{ padding:12px; }
-          .project-modal__screen{ height:52vh; min-height:360px; }
-          .project-modal__details{ padding:34px 20px 26px; }
-          .project-modal__close{ right:10px; top:10px; }
+        .project-image-fallback{
+          width:100%; height:100%; min-height:220px; display:flex; align-items:center; justify-content:center; gap:16px; padding:28px; text-align:left;
+          background:
+            radial-gradient(circle at 18% 20%,color-mix(in srgb,var(--project-accent,var(--purple)) 22%,transparent),transparent 35%),
+            radial-gradient(circle at 88% 85%,rgba(245,166,35,.16),transparent 32%),
+            linear-gradient(145deg,#171827,#0C0D15);
+          color:#fff;
         }
-        @media (max-width:560px){
-          .pcard__img-wrap{ height:270px; padding:10px; }
-          .pcard__body{ padding:31px 18px 20px; }
-          .project-shot__status{ display:none; }
-          .project-shot__browser{ grid-template-columns:auto minmax(0,1fr); }
-          .project-modal__specs{ grid-template-columns:1fr; }
-          .project-modal__actions .btn{ width:auto; }
-        }
+        .project-image-fallback__code{ width:54px; height:54px; flex:none; border-radius:15px; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:850; box-shadow:0 18px 38px -18px rgba(0,0,0,.8); }
+        .project-image-fallback small{ display:block; margin-bottom:5px; color:rgba(255,255,255,.52); font-family:var(--mono); font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
+        .project-image-fallback strong{ display:block; margin-bottom:5px; font-size:22px; line-height:1.2; }
+        .project-image-fallback span{ display:block; color:rgba(255,255,255,.68); font-size:12px; }
+        .project-image-fallback--modal{ min-height:100%; }
 
-        .additional-live-projects{ margin-top:34px; padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:22px; border:1px solid var(--line-light); border-radius:18px; background:linear-gradient(135deg,var(--bg-light),#fff); }
-        .additional-live-projects__copy h3{ margin:0; font-size:17px; line-height:1.35; }
-        .additional-live-projects__copy .eyebrow2{ margin-bottom:7px; font-size:10.5px; }
-        .additional-live-projects__links{ display:flex; flex-wrap:wrap; gap:10px; }
-        .additional-live-projects__link{ min-width:220px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:13px 15px; border:1px solid var(--line-light); border-radius:13px; background:#fff; transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
-        .additional-live-projects__link:hover{ transform:translateY(-2px); border-color:rgba(124,58,237,.24); box-shadow:0 18px 34px -26px rgba(20,20,35,.28); }
-        .additional-live-projects__link span{ min-width:0; }
-        .additional-live-projects__link b{ display:block; font-size:13px; margin-bottom:3px; }
-        .additional-live-projects__link small{ display:block; color:var(--gray-on-light); font-size:11px; }
-        .additional-live-projects__link svg{ color:var(--purple-2); flex:none; }
+        /* Clean, aligned case-study modal */
+        .project-modal{
+          position:fixed; inset:0; z-index:1200; padding:20px; overflow:hidden; display:flex; align-items:center; justify-content:center;
+          background:rgba(5,5,12,.82); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+          animation:projectModalFade .22s ease both;
+        }
+        .project-modal__dialog{
+          width:min(1240px,100%); height:min(820px,calc(100dvh - 40px)); min-height:0; position:relative; overflow:hidden;
+          display:grid; grid-template-columns:minmax(0,1.06fr) minmax(420px,.94fr); background:#fff; border:1px solid rgba(255,255,255,.18);
+          border-radius:28px; box-shadow:0 70px 170px -55px rgba(0,0,0,.9);
+          animation:projectModalEnter .38s cubic-bezier(.16,.8,.24,1) both;
+        }
+        .project-modal__dialog::before{
+          content:''; position:absolute; left:52%; right:0; top:0; height:4px; z-index:10;
+          background:linear-gradient(90deg,var(--project-accent,var(--purple)),var(--purple),var(--orange));
+        }
+        .project-modal__close{
+          position:absolute; right:18px; top:18px; width:42px; height:42px; z-index:20; border-radius:50%; display:flex; align-items:center; justify-content:center;
+          border:1px solid rgba(20,20,35,.1); background:rgba(255,255,255,.94); color:var(--ink); box-shadow:0 18px 38px -22px rgba(0,0,0,.45);
+          transition:transform .25s ease,background .25s ease,color .25s ease;
+        }
+        .project-modal__close:hover{ transform:rotate(5deg) scale(1.05); background:var(--ink); color:#fff; }
+
+        .project-modal__visual{
+          min-width:0; min-height:0; padding:22px; display:flex; flex-direction:column; gap:16px; overflow:hidden; color:#fff;
+          background:
+            radial-gradient(circle at 12% 8%,color-mix(in srgb,var(--project-accent,var(--purple)) 27%,transparent),transparent 34%),
+            radial-gradient(circle at 92% 92%,rgba(245,166,35,.12),transparent 31%),
+            linear-gradient(145deg,#11121D,#08090F);
+        }
+        .project-modal__visual-heading{ display:flex; align-items:center; gap:12px; min-height:48px; }
+        .project-modal__project-code{ width:46px; height:46px; flex:none; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:850; box-shadow:0 16px 34px -16px rgba(0,0,0,.8); }
+        .project-modal__visual-heading small{ display:block; color:rgba(255,255,255,.48); font-family:var(--mono); font-size:9px; text-transform:uppercase; letter-spacing:.09em; margin-bottom:3px; }
+        .project-modal__visual-heading strong{ display:block; font-size:15px; line-height:1.3; }
+        .project-modal__browser{ min-height:0; flex:1; display:flex; flex-direction:column; overflow:hidden; border:1px solid rgba(255,255,255,.1); border-radius:17px; background:#fff; box-shadow:0 35px 75px -34px rgba(0,0,0,.95); }
+        .project-modal__browser-bar{ height:42px; flex:none; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:12px; padding:0 14px; background:#151620; border-bottom:1px solid rgba(255,255,255,.08); }
+        .project-modal__browser-url{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; text-align:center; color:rgba(255,255,255,.56); font-family:var(--mono); font-size:9px; }
+        .project-modal__scroll-note{ color:rgba(255,255,255,.5); font-size:9px; font-weight:700; white-space:nowrap; }
+        .project-modal__screen{ min-height:0; flex:1; overflow:auto; background:#F5F5F7; scrollbar-width:thin; scrollbar-color:rgba(124,58,237,.45) transparent; overscroll-behavior:contain; }
+        .project-modal__screen::-webkit-scrollbar{ width:8px; }
+        .project-modal__screen::-webkit-scrollbar-thumb{ background:rgba(124,58,237,.35); border-radius:999px; border:2px solid transparent; background-clip:padding-box; }
+        .project-modal__screen img{ width:100%; height:auto; min-height:100%; display:block; object-fit:cover; object-position:top; }
+        .project-modal__visual-footer{ display:flex; align-items:center; justify-content:space-between; gap:16px; color:rgba(255,255,255,.58); font-size:10px; }
+        .project-modal__visual-footer span{ min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+
+        .project-modal__details{ min-width:0; min-height:0; overflow-y:auto; background:linear-gradient(180deg,#FFFFFF,#FCFBFF); scrollbar-width:thin; overscroll-behavior:contain; }
+        .project-modal__content{ max-width:610px; min-height:100%; margin:0 auto; padding:64px 38px 30px; display:flex; flex-direction:column; }
+        .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:14px; padding-right:48px; }
+        .project-modal__eyebrow > span:first-child{ font-family:var(--mono); font-size:11px; color:var(--purple-2); font-weight:750; text-transform:uppercase; letter-spacing:.075em; }
+        .project-modal__details h2{ font-size:clamp(30px,3.4vw,45px); line-height:1.08; letter-spacing:-.045em; margin:0 0 15px; text-wrap:balance; }
+        .project-modal__lead{ color:var(--gray-on-light); font-size:15.5px; line-height:1.78; margin:0 0 25px; }
+
+        .project-modal__specs{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-bottom:30px; }
+        .project-modal__specs div{ min-width:0; padding:14px 15px; border:1px solid rgba(20,20,35,.075); border-radius:14px; background:#F8F8FC; }
+        .project-modal__specs small{ display:block; margin-bottom:5px; color:var(--gray-on-light); font-size:9.5px; font-weight:800; text-transform:uppercase; letter-spacing:.075em; }
+        .project-modal__specs b{ display:block; font-size:12.5px; line-height:1.45; overflow-wrap:anywhere; }
+
+        .project-modal__section-heading{ margin-bottom:14px; }
+        .project-modal__section-heading span{ display:block; margin-bottom:5px; font-size:17px; font-weight:850; letter-spacing:-.015em; }
+        .project-modal__section-heading p{ margin:0; color:var(--gray-on-light); font-size:12.5px; line-height:1.6; }
+        .project-modal__section-heading--compact{ margin-bottom:15px; }
+
+        .project-modal__story{ display:grid; gap:10px; margin-bottom:30px; }
+        .project-modal__story-item{ position:relative; display:grid; grid-template-columns:38px minmax(0,1fr); gap:12px; align-items:start; padding:16px 16px 16px 58px; border:1px solid rgba(20,20,35,.075); border-radius:15px; background:#fff; }
+        .project-modal__story-number{ position:absolute; left:14px; top:15px; font-family:var(--mono); font-size:9px; font-weight:800; color:#A1A4B0; }
+        .project-modal__story-icon{ width:36px; height:36px; border-radius:11px; display:flex; align-items:center; justify-content:center; }
+        .project-modal__story-item > div{ min-width:0; }
+        .project-modal__story-item small{ display:block; margin-bottom:5px; font-size:10px; font-weight:850; text-transform:uppercase; letter-spacing:.08em; }
+        .project-modal__story-item p{ margin:0; color:#505462; font-size:13px; line-height:1.62; }
+        .project-modal__story-item--purple .project-modal__story-icon{ color:#7C3AED; background:#F3EEFF; }
+        .project-modal__story-item--purple small{ color:#7C3AED; }
+        .project-modal__story-item--orange .project-modal__story-icon{ color:#B86A00; background:#FFF4E3; }
+        .project-modal__story-item--orange small{ color:#A85D00; }
+        .project-modal__story-item--green .project-modal__story-icon{ color:#148447; background:#EAFBF1; }
+        .project-modal__story-item--green small{ color:#14723C; }
+
+        .project-modal__built{ margin-bottom:22px; padding:20px; border:1px solid rgba(20,20,35,.075); border-radius:17px; background:linear-gradient(145deg,#FAFAFD,#FFFFFF); }
+        .project-modal__built ul{ list-style:none; padding:0; margin:0; display:grid; gap:11px; }
+        .project-modal__built li{ display:grid; grid-template-columns:28px minmax(0,1fr); gap:10px; align-items:start; color:#4E5260; font-size:13.5px; line-height:1.58; }
+        .project-modal__check{ width:26px; height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#6D28D9; background:#F1EAFF; }
+        .project-modal__stack{ margin-bottom:0; padding-bottom:24px; }
+        .project-modal__stack span{ background:#F7F5FC; border-color:rgba(124,58,237,.1); }
+        .project-modal__actions{
+          position:sticky; bottom:-1px; z-index:4; margin-top:auto; padding:18px 0 2px; display:flex; flex-wrap:wrap; gap:10px;
+          background:linear-gradient(180deg,rgba(255,255,255,0),#fff 28%,#fff);
+        }
+        .project-modal__actions .btn{ justify-content:center; min-height:45px; }
+
+        @keyframes projectModalFade{ from{ opacity:0; } to{ opacity:1; } }
+        @keyframes projectModalEnter{ from{ opacity:0; transform:translateY(18px) scale(.985); } to{ opacity:1; transform:none; } }
+
+        @media (max-width:980px){
+          .project-modal{ overflow:auto; align-items:flex-start; padding:14px; }
+          .project-modal__dialog{ height:auto; min-height:0; max-height:none; grid-template-columns:1fr; border-radius:23px; overflow:hidden; }
+          .project-modal__dialog::before{ left:0; }
+          .project-modal__visual{ height:500px; padding:18px; }
+          .project-modal__details{ overflow:visible; }
+          .project-modal__content{ max-width:none; padding:42px 28px 28px; }
+          .project-modal__actions{ position:static; background:none; padding-top:4px; }
+        }
         @media (max-width:620px){
-          .additional-live-projects{ align-items:stretch; flex-direction:column; padding:19px; }
-          .additional-live-projects__link{ width:100%; min-width:0; }
+          .project-modal{ padding:0; background:#fff; }
+          .project-modal__dialog{ width:100%; min-height:100dvh; border:none; border-radius:0; box-shadow:none; }
+          .project-modal__close{ position:fixed; right:10px; top:10px; width:40px; height:40px; }
+          .project-modal__visual{ height:390px; padding:14px; gap:12px; }
+          .project-modal__visual-heading{ padding-right:48px; }
+          .project-modal__browser-bar{ grid-template-columns:auto minmax(0,1fr); height:38px; padding:0 11px; }
+          .project-modal__scroll-note{ display:none; }
+          .project-modal__visual-footer{ font-size:9px; }
+          .project-modal__content{ padding:31px 18px 24px; }
+          .project-modal__eyebrow{ padding-right:0; }
+          .project-modal__details h2{ font-size:31px; }
+          .project-modal__lead{ font-size:14.5px; line-height:1.72; }
+          .project-modal__specs{ grid-template-columns:1fr; }
+          .project-modal__story-item{ grid-template-columns:34px minmax(0,1fr); padding:14px 14px 14px 50px; gap:10px; }
+          .project-modal__story-number{ left:12px; top:14px; }
+          .project-modal__story-icon{ width:33px; height:33px; }
+          .project-modal__built{ padding:17px 15px; }
+          .project-modal__actions{ flex-direction:column; }
+          .project-modal__actions .btn{ width:100%; }
+          .project-image-fallback{ min-height:100%; padding:18px; }
+          .project-image-fallback strong{ font-size:19px; }
+        }
+        @media (prefers-reduced-motion:reduce){
+          .project-modal,.project-modal__dialog{ animation:none; }
         }
 
         .center-row{ display:flex; justify-content:center; }
@@ -2619,26 +2795,6 @@ export default function App() {
                 <div className="empty-state">No projects tagged "{activeFilter}" yet — check back soon.</div>
               )}
 
-              <Reveal className="additional-live-projects">
-                <div className="additional-live-projects__copy">
-                  <span className="eyebrow2">Additional Live Project</span>
-                  <h3>More selected work available online.</h3>
-                </div>
-                <div className="additional-live-projects__links">
-                  {ADDITIONAL_LIVE_PROJECTS.map((project) => (
-                    <a
-                      key={project.title}
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="additional-live-projects__link"
-                    >
-                      <span><b>{project.title}</b><small>{project.label}</small></span>
-                      <ExternalLink size={16} />
-                    </a>
-                  ))}
-                </div>
-              </Reveal>
             </div>
           </section>
 
