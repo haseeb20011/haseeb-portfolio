@@ -122,6 +122,7 @@ const PROJECTS = [
     projectType: "News & Media",
     title: "Holiday Weekly",
     domain: "holidayweekly.pk",
+    liveUrl: "http://holidayweekly.pk/",
     status: "Live",
     statusTone: "live",
     role: "Design & Development",
@@ -148,6 +149,7 @@ const PROJECTS = [
     projectType: "Clean Energy · Lead Generation",
     title: "Julien's Solar Solutions",
     domain: "juliensolarsolutions.com",
+    liveUrl: "https://juliensolarsolutions.com/",
     status: "Live",
     statusTone: "live",
     role: "Design & Development",
@@ -174,6 +176,7 @@ const PROJECTS = [
     projectType: "Hospitality · Booking",
     title: "Inspire Salon",
     domain: "inspiresalonstl.com",
+    liveUrl: "http://inspiresalonstl.com/",
     status: "Live",
     statusTone: "live",
     role: "Design & Development",
@@ -200,6 +203,7 @@ const PROJECTS = [
     projectType: "Financial Services",
     title: "Straight Ahead Credit & Funding",
     domain: "straightaheadcreditandfunding.com",
+    liveUrl: "http://straightaheadcreditandfunding.com/",
     status: "Live",
     statusTone: "live",
     role: "Design & Development",
@@ -226,6 +230,7 @@ const PROJECTS = [
     projectType: "E-commerce · Fashion",
     title: "Mardo",
     domain: "mardopk.com",
+    liveUrl: "https://www.mardopk.com/",
     status: "Live",
     statusTone: "live",
     role: "Design & Development",
@@ -252,6 +257,7 @@ const PROJECTS = [
     projectType: "Agency Build · Consulting",
     title: "Go Studio",
     domain: "Staged build · Pantheon environment",
+    liveUrl: "https://dev-go-studio.pantheonsite.io/",
     status: "In Development",
     statusTone: "development",
     role: "Development",
@@ -278,6 +284,7 @@ const PROJECTS = [
     projectType: "Agency Build · Digital Services",
     title: "DGT Forge",
     domain: "Staged build · Pantheon environment",
+    liveUrl: "https://dev-dgt-forge.pantheonsite.io/",
     status: "In Development",
     statusTone: "development",
     role: "Development",
@@ -296,6 +303,14 @@ const PROJECTS = [
     image: "/images/projects/dgt-forge.webp",
     accent: "#2141E8",
     badgeBg: "#1024A9",
+  },
+];
+
+const ADDITIONAL_LIVE_PROJECTS = [
+  {
+    title: "Teknotch",
+    label: "B2B Consulting Website",
+    liveUrl: "https://teknotch.com/",
   },
 ];
 
@@ -564,9 +579,15 @@ function ProjectCard({ project, onOpen, onContact }) {
           <button type="button" className="pcard__case" onClick={() => onOpen(project)}>
             View Case Study <ArrowRight size={14} />
           </button>
-          <button type="button" className="pcard__contact" onClick={() => onContact(project)}>
-            Discuss a Project Like This <ExternalLink size={13} />
-          </button>
+          <a
+            className="pcard__live"
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Open ${project.title} live website in a new tab`}
+          >
+            View Live Site <ExternalLink size={13} />
+          </a>
         </div>
       </div>
     </article>
@@ -624,8 +645,17 @@ function ProjectCaseStudy({ project, onClose, onContact }) {
           </div>
 
           <div className="project-modal__actions">
-            <button className="btn btn-grad" type="button" onClick={() => onContact(project)}>
-              Discuss a Project Like This <ArrowRight size={14} />
+            <a
+              className="btn btn-grad"
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Visit ${project.title} live website`}
+            >
+              Visit Live Site <ExternalLink size={14} />
+            </a>
+            <button className="btn btn-outline-light" type="button" onClick={() => onContact(project)}>
+              Discuss Similar Project <ArrowRight size={14} />
             </button>
             <button className="btn btn-outline-light" type="button" onClick={onClose}>Close</button>
           </div>
@@ -1297,12 +1327,13 @@ export default function App() {
         .pcard__stack{ display:flex; flex-wrap:wrap; gap:6px; }
         .pcard__stack span{ font-size:10.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:5px 8px; border-radius:7px; background:var(--bg-light); }
         .pcard__actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line-light); padding-top:17px; margin-top:12px; }
-        .pcard__actions button{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:800; background:none; border:none; padding:0; }
+        .pcard__actions button,.pcard__actions a{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:800; background:none; border:none; padding:0; }
         .pcard__case{ color:var(--purple-2); }
-        .pcard__contact{ color:var(--gray-on-light); }
-        .pcard__actions button svg{ transition:transform .25s ease; }
-        .pcard__actions button:hover svg{ transform:translate(2px,-1px); }
+        .pcard__live{ color:#14723C; }
+        .pcard__actions button svg,.pcard__actions a svg{ transition:transform .25s ease; }
+        .pcard__actions button:hover svg,.pcard__actions a:hover svg{ transform:translate(2px,-1px); }
         .pcard__actions button:hover{ color:var(--purple-2); }
+        .pcard__actions a:hover{ color:#0F5F33; }
 
         .project-shot{ width:100%; height:100%; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.13); background:#fff; box-shadow:0 28px 58px -32px rgba(0,0,0,.9); }
         .project-shot__browser{ height:32px; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:10px; padding:0 11px; background:#10111A; border-bottom:1px solid rgba(255,255,255,.09); }
@@ -1358,6 +1389,21 @@ export default function App() {
           .project-shot__browser{ grid-template-columns:auto minmax(0,1fr); }
           .project-modal__specs{ grid-template-columns:1fr; }
           .project-modal__actions .btn{ width:auto; }
+        }
+
+        .additional-live-projects{ margin-top:34px; padding:22px 24px; display:flex; align-items:center; justify-content:space-between; gap:22px; border:1px solid var(--line-light); border-radius:18px; background:linear-gradient(135deg,var(--bg-light),#fff); }
+        .additional-live-projects__copy h3{ margin:0; font-size:17px; line-height:1.35; }
+        .additional-live-projects__copy .eyebrow2{ margin-bottom:7px; font-size:10.5px; }
+        .additional-live-projects__links{ display:flex; flex-wrap:wrap; gap:10px; }
+        .additional-live-projects__link{ min-width:220px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:13px 15px; border:1px solid var(--line-light); border-radius:13px; background:#fff; transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
+        .additional-live-projects__link:hover{ transform:translateY(-2px); border-color:rgba(124,58,237,.24); box-shadow:0 18px 34px -26px rgba(20,20,35,.28); }
+        .additional-live-projects__link span{ min-width:0; }
+        .additional-live-projects__link b{ display:block; font-size:12px; margin-bottom:3px; }
+        .additional-live-projects__link small{ display:block; color:var(--gray-on-light); font-size:10px; }
+        .additional-live-projects__link svg{ color:var(--purple-2); flex:none; }
+        @media (max-width:620px){
+          .additional-live-projects{ align-items:stretch; flex-direction:column; padding:19px; }
+          .additional-live-projects__link{ width:100%; min-width:0; }
         }
 
         .center-row{ display:flex; justify-content:center; }
@@ -2069,6 +2115,27 @@ export default function App() {
               ) : (
                 <div className="empty-state">No projects tagged "{activeFilter}" yet — check back soon.</div>
               )}
+
+              <Reveal className="additional-live-projects">
+                <div className="additional-live-projects__copy">
+                  <span className="eyebrow2">Additional Live Project</span>
+                  <h3>More selected work available online.</h3>
+                </div>
+                <div className="additional-live-projects__links">
+                  {ADDITIONAL_LIVE_PROJECTS.map((project) => (
+                    <a
+                      key={project.title}
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="additional-live-projects__link"
+                    >
+                      <span><b>{project.title}</b><small>{project.label}</small></span>
+                      <ExternalLink size={16} />
+                    </a>
+                  ))}
+                </div>
+              </Reveal>
             </div>
           </section>
 
@@ -2286,4 +2353,3 @@ export default function App() {
     </div>
   );
 }
-
