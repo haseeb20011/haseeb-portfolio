@@ -641,7 +641,7 @@ function ProjectPreview({ project }) {
 
 function ProjectCard({ project, onOpen }) {
   return (
-    <article className="pcard">
+    <article className="pcard" style={{ "--project-accent": project.accent }}>
       <div className="pcard__img-wrap">
         <ProjectPreview project={project} />
         <span className="pcard__badge" style={{ background: project.badgeBg }}>{project.code}</span>
@@ -1599,22 +1599,18 @@ export default function App() {
         /* ============ PROJECTS ============ */
         .projects{ background:#fff; }
 
-        .filter-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px; }
-        .filter-pill{ font-size:13.5px; font-weight:700; padding:10px 17px; border-radius:100px; border:1px solid var(--line-light); background:#fff; color:var(--gray-on-light); transition:all .3s ease; }
-        .filter-pill.active{ background:var(--purple-2); color:#fff; border-color:var(--purple-2); box-shadow:0 12px 24px -16px rgba(124,58,237,.8); }
-        .filter-pill:hover:not(.active){ border-color:var(--purple-2); color:var(--purple-2); }
+        .filter-row{ display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+        .filter-pill{ position:relative; overflow:hidden; font-size:13.5px; font-weight:750; padding:10px 17px; border-radius:100px; border:1px solid rgba(20,20,35,.09); background:#fff; color:var(--gray-on-light); transition:transform .25s ease,border-color .25s ease,color .25s ease,background .25s ease,box-shadow .25s ease; }
+        .filter-pill::before{ content:''; position:absolute; inset:0; background:linear-gradient(105deg,rgba(139,92,246,.09),rgba(245,166,35,.08)); opacity:0; transition:opacity .25s ease; }
+        .filter-pill span{ position:relative; z-index:1; }
+        .filter-pill.active{ background:var(--purple-2); color:#fff; border-color:var(--purple-2); box-shadow:0 12px 28px -16px rgba(124,58,237,.85); }
+        .filter-pill:hover:not(.active){ transform:translateY(-2px); border-color:rgba(124,58,237,.34); color:var(--purple-2); box-shadow:0 12px 24px -20px rgba(20,20,35,.35); }
+        .filter-pill:hover:not(.active)::before{ opacity:1; }
 
-        .proj-grid2{ display:grid; grid-template-columns:1fr; gap:26px; margin-bottom:44px; }
-        @media (min-width:820px){ .proj-grid2{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
-        .proj-grid2 > .rv{ height:100%; }
+        .proj-grid2{ display:grid; grid-template-columns:1fr; gap:26px; margin-bottom:44px; align-items:stretch; }
+        @media (min-width:820px){ .proj-grid2{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; } }
+        .proj-grid2 > .rv{ min-width:0; height:100%; }
         .proj-grid2 > .rv > .pcard{ height:100%; }
-        @media (min-width:820px){
-          .proj-grid2__item--wide{ grid-column:1 / -1; }
-          .proj-grid2__item--wide .pcard{ display:grid; grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr); }
-          .proj-grid2__item--wide .pcard__img-wrap{ min-height:420px; height:auto; }
-          .proj-grid2__item--wide .pcard__body{ padding:38px 30px 28px; }
-          .proj-grid2__item--wide .pcard:hover .project-shot__viewport img{ transform:translateY(calc(-100% + 388px)); }
-        }
 
         .pcard{ min-width:0; border-radius:20px; overflow:hidden; border:1px solid var(--line-light); background:#fff; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s ease, border-color .35s ease; }
         .pcard:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.2); box-shadow:0 38px 70px -34px rgba(20,20,35,.3); }
@@ -1643,6 +1639,110 @@ export default function App() {
         .pcard__actions button:hover svg,.pcard__actions a:hover svg{ transform:translate(2px,-1px); }
         .pcard__actions button:hover{ color:var(--purple-2); }
         .pcard__actions a:hover{ color:#0F5F33; }
+
+        /* Projects archive — consistent cards, smoother motion, and stronger hierarchy */
+        .projects-page{
+          position:relative; overflow:hidden;
+          background:
+            radial-gradient(circle at 9% 8%,rgba(139,92,246,.065),transparent 25%),
+            radial-gradient(circle at 94% 42%,rgba(245,166,35,.055),transparent 24%),
+            linear-gradient(180deg,#FFFFFF 0%,#FBFAFF 52%,#FFFFFF 100%);
+        }
+        .projects-page::before{
+          content:''; position:absolute; inset:0; pointer-events:none; opacity:.55;
+          background-image:linear-gradient(rgba(20,20,35,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,35,.022) 1px,transparent 1px);
+          background-size:42px 42px; mask-image:linear-gradient(to bottom,black,transparent 72%);
+        }
+        .projects-page .wrap{ position:relative; z-index:1; }
+        .projects-toolbar{
+          display:flex; flex-direction:column; align-items:flex-start; justify-content:space-between; gap:20px;
+          margin-bottom:34px; padding:18px 20px; border:1px solid rgba(20,20,35,.075); border-radius:20px;
+          background:rgba(255,255,255,.84); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px);
+          box-shadow:0 22px 55px -42px rgba(20,20,35,.38);
+        }
+        .projects-toolbar__summary{ display:flex; align-items:center; gap:12px; white-space:nowrap; }
+        .projects-toolbar__summary::before{ content:''; width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.1); }
+        .projects-toolbar__summary span{ font-family:var(--mono); font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:var(--gray-on-light); }
+        .projects-toolbar__summary strong{ font-size:13px; color:var(--ink); }
+        @media (min-width:760px){
+          .projects-toolbar{ flex-direction:row; align-items:center; }
+          .projects-toolbar .filter-row{ justify-content:flex-end; }
+        }
+        @media (max-width:759px){
+          .projects-toolbar{ padding:16px; }
+          .projects-toolbar .filter-row{ width:100%; flex-wrap:nowrap; overflow-x:auto; padding:2px 2px 7px; scrollbar-width:none; }
+          .projects-toolbar .filter-row::-webkit-scrollbar{ display:none; }
+          .projects-toolbar .filter-pill{ flex:none; }
+        }
+
+        .projects-page .proj-grid2{ margin-bottom:48px; }
+        @media (min-width:820px){
+          .projects-page .proj-grid2 > .rv:last-child:nth-child(odd){ grid-column:1 / -1; width:calc(50% - 14px); justify-self:center; }
+        }
+        .projects-page .pcard{
+          position:relative; isolation:isolate; border-radius:22px; border-color:rgba(20,20,35,.09);
+          box-shadow:0 16px 45px -38px rgba(20,20,35,.38);
+          transform:translateZ(0);
+        }
+        .projects-page .pcard::before{
+          content:''; position:absolute; z-index:6; left:22px; right:22px; top:0; height:3px; border-radius:0 0 999px 999px;
+          background:linear-gradient(90deg,var(--project-accent,var(--purple)),var(--purple),var(--orange));
+          opacity:.82; transform:scaleX(.42); transform-origin:left; transition:transform .5s cubic-bezier(.16,.8,.24,1),opacity .35s ease;
+        }
+        .projects-page .pcard::after{
+          content:''; position:absolute; z-index:-1; width:220px; height:220px; right:-95px; bottom:-115px; border-radius:50%;
+          background:radial-gradient(circle,color-mix(in srgb,var(--project-accent,var(--purple)) 14%,transparent),transparent 70%);
+          opacity:0; transition:opacity .4s ease,transform .5s cubic-bezier(.16,.8,.24,1); transform:scale(.76);
+        }
+        .projects-page .pcard:hover{
+          transform:translateY(-8px); border-color:color-mix(in srgb,var(--project-accent,var(--purple)) 28%,rgba(20,20,35,.09));
+          box-shadow:0 36px 80px -42px rgba(20,20,35,.42);
+        }
+        .projects-page .pcard:hover::before{ transform:scaleX(1); opacity:1; }
+        .projects-page .pcard:hover::after{ opacity:1; transform:scale(1); }
+        .projects-page .pcard__img-wrap{
+          height:310px; padding:14px;
+          background:
+            radial-gradient(circle at 82% 18%,color-mix(in srgb,var(--project-accent,var(--purple)) 16%,transparent),transparent 34%),
+            linear-gradient(145deg,#11121B,#090A10);
+        }
+        .projects-page .project-shot{ border-radius:15px; transition:transform .45s cubic-bezier(.16,.8,.24,1),box-shadow .45s ease; }
+        .projects-page .pcard:hover .project-shot{ transform:scale(1.012); box-shadow:0 34px 70px -32px rgba(0,0,0,.95); }
+        .projects-page .project-shot__viewport img{ transition-duration:7.25s; transition-timing-function:cubic-bezier(.18,.72,.2,1); }
+        .projects-page .pcard:hover .project-shot__viewport img{ transform:translateY(calc(-100% + 250px)); }
+        .projects-page .pcard__badge{ border:1px solid rgba(255,255,255,.18); backdrop-filter:blur(8px); }
+        .projects-page .pcard__body{ padding:28px 24px 24px; }
+        .projects-page .pcard__body h3{ font-size:21px; margin-bottom:10px; }
+        .projects-page .pcard__body > p{
+          display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; overflow:hidden;
+          min-height:77px; font-size:15px; line-height:1.72; margin-bottom:16px;
+        }
+        .projects-page .pcard__highlight{ min-height:60px; padding:10px 0 10px 12px; margin-bottom:17px; border-left-width:3px; border-radius:0 10px 10px 0; background:linear-gradient(90deg,rgba(139,92,246,.055),transparent); }
+        .projects-page .pcard__stack{ min-height:64px; align-content:flex-start; }
+        .projects-page .pcard__stack span{ background:#F8F8FC; border-color:rgba(20,20,35,.075); transition:transform .22s ease,border-color .22s ease,background .22s ease; }
+        .projects-page .pcard:hover .pcard__stack span{ border-color:rgba(124,58,237,.13); background:#FBF9FF; }
+        .projects-page .pcard__actions{ margin-top:auto; padding-top:18px; }
+        .projects-page .pcard__actions button,.projects-page .pcard__actions a{
+          min-height:38px; padding:9px 13px; border-radius:999px; transition:transform .24s ease,background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
+        }
+        .projects-page .pcard__case{ background:#F3EEFF; color:var(--purple-2); border:1px solid rgba(124,58,237,.1); }
+        .projects-page .pcard__case:hover{ transform:translateY(-2px); background:var(--purple-2); color:#fff; box-shadow:0 12px 24px -16px rgba(124,58,237,.7); }
+        .projects-page .pcard__live{ background:#F0FBF5; color:#14723C; border:1px solid rgba(34,197,94,.13); }
+        .projects-page .pcard__live:hover{ transform:translateY(-2px); background:#14723C; color:#fff; border-color:#14723C; box-shadow:0 12px 24px -16px rgba(20,114,60,.65); }
+        @media (max-width:560px){
+          .projects-page .pcard__img-wrap{ height:270px; padding:10px; }
+          .projects-page .pcard:hover .project-shot__viewport img{ transform:translateY(calc(-100% + 218px)); }
+          .projects-page .pcard__body{ padding:25px 18px 20px; }
+          .projects-page .pcard__body > p{ min-height:0; -webkit-line-clamp:unset; }
+          .projects-page .pcard__highlight,.projects-page .pcard__stack{ min-height:0; }
+          .projects-page .pcard__actions{ align-items:stretch; }
+          .projects-page .pcard__actions button,.projects-page .pcard__actions a{ justify-content:center; flex:1 1 145px; }
+        }
+        @media (hover:none){
+          .projects-page .pcard:hover{ transform:none; }
+          .projects-page .pcard:hover .project-shot{ transform:none; }
+          .projects-page .pcard:hover .project-shot__viewport img{ transform:none; }
+        }
 
         .project-shot{ width:100%; height:100%; border-radius:14px; overflow:hidden; border:1px solid rgba(255,255,255,.13); background:#fff; box-shadow:0 28px 58px -32px rgba(0,0,0,.9); }
         .project-shot__browser{ height:32px; display:grid; grid-template-columns:auto minmax(0,1fr) auto; align-items:center; gap:10px; padding:0 11px; background:#10111A; border-bottom:1px solid rgba(255,255,255,.09); }
@@ -2482,37 +2582,38 @@ export default function App() {
             subtitle="A selected archive of live and staged work across editorial publishing, clean energy, hospitality, financial services, digital agencies, and Shopify commerce."
           />
 
-          <section className="projects sec">
+          <section className="projects projects-page sec">
             <div className="wrap">
-              <Reveal className="filter-row">
-                {FILTERS.map((f) => (
-                  <button
-                    key={f}
-                    className={`filter-pill ${activeFilter === f ? "active" : ""}`}
-                    onClick={() => setActiveFilter(f)}
-                  >
-                    {f}
-                  </button>
-                ))}
+              <Reveal className="projects-toolbar">
+                <div className="projects-toolbar__summary">
+                  <span>Selected work</span>
+                  <strong>{filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"}</strong>
+                </div>
+                <div className="filter-row" role="group" aria-label="Filter projects">
+                  {FILTERS.map((f) => (
+                    <button
+                      key={f}
+                      className={`filter-pill ${activeFilter === f ? "active" : ""}`}
+                      onClick={() => setActiveFilter(f)}
+                      aria-pressed={activeFilter === f}
+                    >
+                      <span>{f}</span>
+                    </button>
+                  ))}
+                </div>
               </Reveal>
 
               {filteredProjects.length > 0 ? (
                 <div className="proj-grid2">
-                  {filteredProjects.map((project, index) => {
-                    const isWideLastCard =
-                      filteredProjects.length % 2 === 1 && index === filteredProjects.length - 1;
-
-                    return (
-                      <Reveal
-                        as="div"
-                        delay={(index % 2) * 90}
-                        key={project.title}
-                        className={isWideLastCard ? "proj-grid2__item--wide" : ""}
-                      >
-                        <ProjectCard project={project} onOpen={setSelectedProject} />
-                      </Reveal>
-                    );
-                  })}
+                  {filteredProjects.map((project, index) => (
+                    <Reveal
+                      as="div"
+                      delay={(index % 2) * 90}
+                      key={project.title}
+                    >
+                      <ProjectCard project={project} onOpen={setSelectedProject} />
+                    </Reveal>
+                  ))}
                 </div>
               ) : (
                 <div className="empty-state">No projects tagged "{activeFilter}" yet — check back soon.</div>
