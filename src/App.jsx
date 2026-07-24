@@ -1818,7 +1818,7 @@ export default function App() {
         .projects-page .pcard:hover .pcard__stack span{ border-color:rgba(124,58,237,.13); background:#FBF9FF; }
         .projects-page .pcard__actions{ margin-top:auto; padding-top:18px; }
         .projects-page .pcard__actions button,.projects-page .pcard__actions a{
-          min-height:38px; padding:9px 13px; border-radius:999px; transition:transform .24s ease,background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
+          min-height:38px; padding:9px 8px; border-radius:999px; transition:transform .24s ease,background .24s ease,color .24s ease,border-color .24s ease,box-shadow .24s ease;
         }
         .projects-page .pcard__case{ background:#F3EEFF; color:var(--purple-2); border:1px solid rgba(124,58,237,.1); }
         .projects-page .pcard__case:hover{ transform:translateY(-2px); background:var(--purple-2); color:#fff; box-shadow:0 12px 24px -16px rgba(124,58,237,.7); }
