@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState, useCallback } from "react";
 import {
   ArrowRight,
-  Star,
   Layers,
   Zap,
   ChevronRight,
@@ -26,6 +25,8 @@ import {
   CheckCircle,
   ExternalLink,
   MessageCircle,
+  ShieldCheck,
+  Clock3,
 } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
@@ -110,8 +111,6 @@ const TECH_GROUPS = [
   { title: "Workflow & Delivery", desc: "Version control and modern development tooling", items: ["Git", "GitHub", "Vite"] },
 ];
 
-const HERO_TECH = ["React", "WordPress", "Shopify", "JavaScript", "WooCommerce"];
-
 const FILTERS = ["All", "WordPress", "Shopify", "Live", "In Development"];
 
 const PROJECTS = [
@@ -128,6 +127,9 @@ const PROJECTS = [
     role: "Design & Development",
     platform: "WordPress + Elementor",
     focus: "Editorial CMS architecture and content taxonomy",
+    challenge: "Organize a high-volume publication without making readers or editors fight the structure.",
+    solution: "Built a category-led WordPress system with modular homepage sections, archives, and mobile-first reading paths.",
+    outcome: "A scalable editorial experience that supports frequent publishing and makes stories easier to discover.",
     desc: "A publishing-focused news portal for Pakistan's aviation, tourism, and hospitality sectors, built around a scalable editorial structure for frequent content updates.",
     highlight: "Editorial taxonomy · Fast mobile reading · Content discovery",
     stack: ["WordPress", "Elementor", "Editorial CMS", "Taxonomy", "Responsive"],
@@ -155,6 +157,9 @@ const PROJECTS = [
     role: "Design & Development",
     platform: "WordPress + Elementor",
     focus: "Lead capture and single-path funnel design",
+    challenge: "Turn a complex solar decision into a clear path from education to quote request.",
+    solution: "Created a focused page hierarchy with repeated calls to action, service clarity, trust content, and streamlined forms.",
+    outcome: "A more direct lead-generation journey with fewer distractions between initial interest and enquiry.",
     desc: "A residential solar website designed to move Massachusetts homeowners from the value proposition to a quote request without unnecessary friction.",
     highlight: "Lead capture · Funnel design · Appointment conversion",
     stack: ["WordPress", "Elementor", "Forms", "Lead Generation", "Responsive"],
@@ -182,6 +187,9 @@ const PROJECTS = [
     role: "Design & Development",
     platform: "WordPress + Elementor",
     focus: "Booking integration and service-catalogue UX",
+    challenge: "Connect brand presentation, service discovery, and third-party booking in one smooth journey.",
+    solution: "Structured services, promotions, social proof, location details, and Meevo booking around clear guest intent.",
+    outcome: "A cohesive salon experience that helps visitors move naturally from inspiration to appointment booking.",
     desc: "A warm, service-led salon website that connects browsing, promotions, social proof, and appointment booking in one consistent guest journey.",
     highlight: "Meevo booking · Service catalogue · Local conversion",
     stack: ["WordPress", "Elementor", "Meevo", "Service UX", "Responsive"],
@@ -209,6 +217,9 @@ const PROJECTS = [
     role: "Design & Development",
     platform: "WordPress + Elementor",
     focus: "Lead qualification and complex form UX",
+    challenge: "Explain several funding and credit services without overwhelming prospective applicants.",
+    solution: "Used comparison content, trust-building sections, scheduling, and multi-step intake flows to simplify decisions.",
+    outcome: "A clearer qualification journey that guides prospects toward the right consultation or application path.",
     desc: "A business-financing and credit-repair website that explains multiple funding options, builds trust, and moves qualified prospects into scheduling and application flows.",
     highlight: "Lead qualification · Funding comparison · Application intake",
     stack: ["WordPress", "Elementor", "Calendly", "Multi-step Forms", "Responsive"],
@@ -236,6 +247,9 @@ const PROJECTS = [
     role: "Design & Development",
     platform: "Shopify",
     focus: "Storefront architecture and product storytelling",
+    challenge: "Present technical scrubwear as a premium brand while keeping product discovery and checkout simple.",
+    solution: "Organized collections, product storytelling, variants, material education, and commerce actions into one storefront.",
+    outcome: "An editorial shopping experience that balances brand credibility with practical product and checkout flows.",
     desc: "A Shopify storefront for a technical medical-scrubwear label, balancing editorial presentation with clear collection browsing and checkout-ready product flows.",
     highlight: "Collection architecture · Product storytelling · Commerce UX",
     stack: ["Shopify", "E-commerce", "Collections", "Product UX", "Checkout"],
@@ -263,6 +277,9 @@ const PROJECTS = [
     role: "Development",
     platform: "WordPress on Pantheon",
     focus: "Consulting-brand architecture and reusable page templates",
+    challenge: "Translate a growing consulting offer into a flexible website system before final production launch.",
+    solution: "Built reusable page patterns, service architecture, case-study templates, and a controlled Pantheon workflow.",
+    outcome: "A staged foundation that can expand consistently as the brand positioning and content are finalized.",
     desc: "An innovation-consulting brand presence being developed page by page, with a strong homepage narrative, service structure, case-study presentation, and reusable component patterns.",
     highlight: "Staged delivery · Service architecture · Case-study system",
     stack: ["WordPress", "Pantheon", "Component System", "Staging Workflow"],
@@ -290,6 +307,9 @@ const PROJECTS = [
     role: "Development",
     platform: "WordPress on Pantheon",
     focus: "Web, app, marketing, and SaaS service-page architecture",
+    challenge: "Bring a broad agency offer together without turning the website into a disconnected list of services.",
+    solution: "Created reusable service, portfolio, process, pricing, proof, and contact modules in a staged WordPress build.",
+    outcome: "A coherent agency framework ready for structured review, iteration, and production release.",
     desc: "A full-service digital agency website being assembled section by section in a staged WordPress environment, with focused service, portfolio, process, pricing, and contact experiences.",
     highlight: "Agency architecture · Staged WordPress · Service positioning",
     stack: ["WordPress", "Pantheon", "Service Pages", "Git Workflow"],
@@ -389,6 +409,67 @@ const SERVICES = [
     tags: ["Performance", "Responsive", "Cross-Browser"],
   },
 ];
+
+const DELIVERY_STANDARDS = [
+  {
+    icon: MessageCircle,
+    color: "#8B5CF6",
+    title: "Clear communication",
+    desc: "You get practical updates, direct answers, and a clear view of what is being built and what comes next.",
+  },
+  {
+    icon: Smartphone,
+    color: "#3B82F6",
+    title: "Responsive by default",
+    desc: "Layouts are checked across real screen sizes so the experience remains usable, readable, and consistent.",
+  },
+  {
+    icon: ShieldCheck,
+    color: "#22C55E",
+    title: "A practical handoff",
+    desc: "The finished build is organized, maintainable, and prepared for content updates, review, and future growth.",
+  },
+];
+
+const PROJECT_TYPE_OPTIONS = [
+  "WordPress website",
+  "Shopify store",
+  "React / front-end development",
+  "Website redesign",
+  "Performance or responsive fixes",
+  "Other",
+];
+
+const BUDGET_OPTIONS = [
+  "Not sure yet",
+  "Under $1,000",
+  "$1,000–$2,500",
+  "$2,500–$5,000",
+  "$5,000+",
+];
+
+const PAGE_META = {
+  home: {
+    title: "Haseeb.dev — WordPress, Shopify & React Developer",
+    description: "Portfolio of Haseeb Mujeeb Ansari, a web developer building polished WordPress, Shopify, React, and responsive frontend experiences.",
+  },
+  about: {
+    title: "About Haseeb — Web Developer & Computer Engineer",
+    description: "Learn about Haseeb Mujeeb Ansari, his development approach, experience, education, and focus on thoughtful digital delivery.",
+  },
+  services: {
+    title: "Web Development Services — Haseeb.dev",
+    description: "WordPress, Shopify, React, frontend development, builder customization, responsive design, and website optimization services.",
+  },
+  projects: {
+    title: "Selected Web Development Projects — Haseeb.dev",
+    description: "Explore selected WordPress, Shopify, and frontend projects built for publishing, commerce, services, and lead generation.",
+  },
+  contact: {
+    title: "Contact Haseeb — Start a Web Project",
+    description: "Share your website or frontend project with Haseeb and receive clear next steps within one business day.",
+  },
+};
 
 const ABOUT_VALUE_CARDS = [
   {
@@ -518,7 +599,8 @@ function TechBadge({ t, compact = false }) {
         <img
           src={logoUrl}
           alt={`${t.label} logo`}
-          loading={compact ? "eager" : "lazy"}
+          loading="lazy"
+          decoding="async"
           onError={(event) => {
             event.currentTarget.style.display = "none";
             event.currentTarget.parentElement?.classList.add("tech-badge__logo--fallback");
@@ -543,21 +625,21 @@ function TechPill({ t }) {
 
 function ProjectPreview({ project }) {
   return (
-    <div className="project-shot" aria-label={`${project.title} full-page website screenshot preview`}>
+    <div className="project-shot" role="img" aria-label={`${project.title} full-page website screenshot preview`}>
       <div className="project-shot__browser">
         <span className="project-shot__dots"><i /><i /><i /></span>
         <span className="project-shot__url">{project.title}</span>
         <span className={`project-shot__status project-shot__status--${project.statusTone}`}>{project.status}</span>
       </div>
       <div className="project-shot__viewport">
-        <img src={project.image} alt={`${project.title} full-page website screenshot`} loading="lazy" />
+        <img src={project.image} alt={`${project.title} full-page website screenshot`} loading="lazy" decoding="async" />
         <span className="project-shot__hint">Full-page preview</span>
       </div>
     </div>
   );
 }
 
-function ProjectCard({ project, onOpen, onContact }) {
+function ProjectCard({ project, onOpen }) {
   return (
     <article className="pcard">
       <div className="pcard__img-wrap">
@@ -595,14 +677,50 @@ function ProjectCard({ project, onOpen, onContact }) {
 }
 
 function ProjectCaseStudy({ project, onClose, onContact }) {
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    if (!project || !dialogRef.current) return undefined;
+
+    closeButtonRef.current?.focus();
+
+    const dialog = dialogRef.current;
+    const keepFocusInside = (event) => {
+      if (event.key !== "Tab") return;
+
+      const focusable = Array.from(
+        dialog.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )
+      ).filter((element) => !element.hasAttribute("hidden"));
+
+      if (!focusable.length) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    dialog.addEventListener("keydown", keepFocusInside);
+    return () => dialog.removeEventListener("keydown", keepFocusInside);
+  }, [project]);
+
   if (!project) return null;
 
   return (
-    <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" onMouseDown={(event) => {
+    <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-modal-title" aria-describedby="project-modal-description" onMouseDown={(event) => {
       if (event.target === event.currentTarget) onClose();
     }}>
-      <div className="project-modal__dialog">
-        <button className="project-modal__close" type="button" onClick={onClose} aria-label="Close project case study">
+      <div ref={dialogRef} className="project-modal__dialog">
+        <button ref={closeButtonRef} className="project-modal__close" type="button" onClick={onClose} aria-label="Close project case study">
           <X size={20} />
         </button>
 
@@ -612,7 +730,7 @@ function ProjectCaseStudy({ project, onClose, onContact }) {
             <span>{project.title}</span>
           </div>
           <div className="project-modal__screen">
-            <img src={project.image} alt={`${project.title} complete website screenshot`} />
+            <img src={project.image} alt={`${project.title} complete website screenshot`} decoding="async" />
           </div>
         </div>
 
@@ -622,7 +740,22 @@ function ProjectCaseStudy({ project, onClose, onContact }) {
             <span className={`pcard__status pcard__status--${project.statusTone}`}>{project.status}</span>
           </div>
           <h2 id="project-modal-title">{project.title}</h2>
-          <p className="project-modal__lead">{project.desc}</p>
+          <p id="project-modal-description" className="project-modal__lead">{project.desc}</p>
+
+          <div className="project-modal__story" aria-label={`${project.title} project summary`}>
+            <div>
+              <small>Challenge</small>
+              <p>{project.challenge}</p>
+            </div>
+            <div>
+              <small>Solution</small>
+              <p>{project.solution}</p>
+            </div>
+            <div>
+              <small>Outcome</small>
+              <p>{project.outcome}</p>
+            </div>
+          </div>
 
           <div className="project-modal__specs">
             <div><small>Role</small><b>{project.role}</b></div>
@@ -692,18 +825,42 @@ function Masthead({ crumb, title, subtitle, meta = [] }) {
   );
 }
 
+function getRouteFromHash() {
+  if (typeof window === "undefined") return { page: "home", section: null };
+
+  const route = window.location.hash.replace(/^#\/?/, "").trim().toLowerCase();
+
+  if (["about", "services", "projects", "contact"].includes(route)) {
+    return { page: route, section: null };
+  }
+
+  if (route === "process") {
+    return { page: "home", section: "process" };
+  }
+
+  return { page: "home", section: route === "home" ? "home" : null };
+}
+
 /* ------------------------------------------------------------------ */
 /* Main App                                                             */
 /* ------------------------------------------------------------------ */
 export default function App() {
-  const [page, setPage] = useState("home"); // home | about | services | projects | contact
-  const [pendingScroll, setPendingScroll] = useState(null);
+  const [page, setPage] = useState(() => getRouteFromHash().page); // home | about | services | projects | contact
+  const [pendingScroll, setPendingScroll] = useState(() => getRouteFromHash().section);
+  const [activeSection, setActiveSection] = useState(() => getRouteFromHash().section || "home");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
   const [selectedProject, setSelectedProject] = useState(null);
 
-  const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    projectType: "",
+    budget: "",
+    subject: "",
+    message: "",
+  });
   const [formSent, setFormSent] = useState(false);
   const [formError, setFormError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -715,6 +872,65 @@ export default function App() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    if (page !== "home") return undefined;
+
+    const updateActiveSection = () => {
+      const processSection = document.getElementById("process");
+      if (!processSection) {
+        setActiveSection("home");
+        return;
+      }
+
+      const processTop = processSection.getBoundingClientRect().top;
+      setActiveSection(processTop <= window.innerHeight * 0.48 ? "process" : "home");
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, [page]);
+
+  useEffect(() => {
+    if (!window.location.hash) {
+      window.history.replaceState({ route: "home" }, "", "#home");
+    }
+
+    const syncRouteFromHistory = () => {
+      const route = getRouteFromHash();
+      setMenuOpen(false);
+      setSelectedProject(null);
+      setPage(route.page);
+      setPendingScroll(route.section);
+      setActiveSection(route.section || (route.page === "home" ? "home" : ""));
+
+      if (route.page !== "home" || !route.section) {
+        window.scrollTo({ top: 0, behavior: "auto" });
+      }
+    };
+
+    window.addEventListener("popstate", syncRouteFromHistory);
+    return () => window.removeEventListener("popstate", syncRouteFromHistory);
+  }, []);
+
+  useEffect(() => {
+    const meta = PAGE_META[page] || PAGE_META.home;
+    document.title = meta.title;
+
+    let description = document.querySelector('meta[name="description"]');
+    if (!description) {
+      description = document.createElement("meta");
+      description.setAttribute("name", "description");
+      document.head.appendChild(description);
+    }
+    description.setAttribute("content", meta.description);
+  }, [page]);
 
   useEffect(() => {
     if (!menuOpen) return undefined;
@@ -741,27 +957,55 @@ export default function App() {
 
   useEffect(() => {
     if (page === "home" && pendingScroll) {
-      const t = setTimeout(() => {
+      const t = window.setTimeout(() => {
         const el = document.getElementById(pendingScroll);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        if (el) {
+          el.scrollIntoView({
+            behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+            block: "start",
+          });
+        }
         setPendingScroll(null);
-      }, 80);
-      return () => clearTimeout(t);
+      }, 90);
+
+      return () => window.clearTimeout(t);
     }
+
+    return undefined;
   }, [page, pendingScroll]);
 
   const navigateTo = useCallback(
     (id, type) => {
       setMenuOpen(false);
+      setSelectedProject(null);
+
+      const nextHash = `#${id}`;
+      if (window.location.hash !== nextHash) {
+        window.history.pushState({ route: id }, "", nextHash);
+      }
+
       if (type === "page") {
+        setPendingScroll(null);
+        setActiveSection(id === "home" ? "home" : "");
         setPage(id);
-        window.scrollTo(0, 0);
-      } else if (page !== "home") {
+        window.scrollTo({ top: 0, behavior: "auto" });
+        return;
+      }
+
+      setActiveSection(id);
+
+      if (page !== "home") {
         setPendingScroll(id);
         setPage("home");
-      } else {
-        const el = document.getElementById(id);
-        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start",
+        });
       }
     },
     [page]
@@ -769,14 +1013,23 @@ export default function App() {
 
   const goToContact = useCallback((project) => {
     setSelectedProject(null);
+
     if (project?.title) {
-      setForm((f) => ({
-        ...f,
+      setForm((current) => ({
+        ...current,
+        projectType: project.category === "Shopify" ? "Shopify store" : "WordPress website",
         subject: `Project enquiry — inspired by ${project.title}`,
       }));
     }
+
+    if (window.location.hash !== "#contact") {
+      window.history.pushState({ route: "contact" }, "", "#contact");
+    }
+
     setPage("contact");
-    window.scrollTo(0, 0);
+    setPendingScroll(null);
+    setActiveSection("");
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, []);
 
 
@@ -797,13 +1050,33 @@ export default function App() {
     };
   }, [selectedProject]);
 
+  const updateFormField = (field, value) => {
+    setForm((current) => ({ ...current, [field]: value }));
+    if (formError) setFormError("");
+    if (formSent) setFormSent(false);
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (website.trim()) return; // Honeypot: silently ignore automated submissions.
 
+    const emailLooksValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim());
+
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
-      setFormError("Please fill in your name, email and message.");
+      setFormError("Please fill in your name, email, and project message.");
+      setFormSent(false);
+      return;
+    }
+
+    if (!emailLooksValid) {
+      setFormError("Please enter a valid email address.");
+      setFormSent(false);
+      return;
+    }
+
+    if (form.message.trim().length < 20) {
+      setFormError("Please add a little more detail so I can understand the project.");
       setFormSent(false);
       return;
     }
@@ -822,6 +1095,8 @@ export default function App() {
         body: JSON.stringify({
           name: form.name.trim(),
           email: form.email.trim(),
+          project_type: form.projectType || "Not specified",
+          budget_range: form.budget || "Not specified",
           subject: form.subject.trim() || "Portfolio website enquiry",
           message: form.message.trim(),
           _subject: `New portfolio enquiry from ${form.name.trim()}`,
@@ -838,7 +1113,14 @@ export default function App() {
       }
 
       setFormSent(true);
-      setForm({ name: "", email: "", subject: "", message: "" });
+      setForm({
+        name: "",
+        email: "",
+        projectType: "",
+        budget: "",
+        subject: "",
+        message: "",
+      });
       setWebsite("");
     } catch (error) {
       setFormError(
@@ -868,9 +1150,9 @@ export default function App() {
           --bg-white:#FFFFFF;
           --line-light:rgba(20,20,35,0.08);
           --ink:#0E0E16;
-          --gray-on-dark:#9CA0AE;
-          --gray-on-dark-2:#6D7180;
-          --gray-on-light:#6B7080;
+          --gray-on-dark:#B4B8C6;
+          --gray-on-dark-2:#878C9D;
+          --gray-on-light:#5C6270;
           --purple:#8B5CF6;
           --purple-2:#7C3AED;
           --orange:#F5A623;
@@ -882,11 +1164,23 @@ export default function App() {
           --mono: 'JetBrains Mono', monospace;
         }
         .ds *{ box-sizing:border-box; }
-        .ds{ font-family:var(--font); background:var(--bg-white); color:var(--ink); overflow-x:hidden; font-size:16px; }
+        .ds{ font-family:var(--font); background:var(--bg-white); color:var(--ink); overflow-x:hidden; font-size:16px; line-height:1.5; }
         .ds img{ max-width:100%; display:block; }
         .ds a{ color:inherit; text-decoration:none; cursor:pointer; }
-        .ds button{ font-family:inherit; cursor:pointer; }
+        .ds button,.ds input,.ds textarea,.ds select{ font:inherit; }
+        .ds button{ cursor:pointer; }
+        .ds button:focus-visible,.ds a:focus-visible,.ds input:focus-visible,.ds textarea:focus-visible,.ds select:focus-visible{
+          outline:3px solid rgba(245,166,35,.6); outline-offset:3px;
+        }
         ::selection{ background:var(--purple); color:#fff; }
+
+        .skip-link{
+          position:fixed; left:20px; top:14px; z-index:2000; transform:translateY(-160%);
+          padding:10px 15px; border-radius:10px; background:#fff; color:var(--ink); font-size:13px; font-weight:800;
+          box-shadow:0 16px 36px -18px rgba(0,0,0,.55); transition:transform .2s ease;
+        }
+        .skip-link:focus{ transform:translateY(0); }
+        .main-content{ min-height:60vh; }
 
         .wrap{ max-width:1240px; margin:0 auto; padding:0 24px; }
         @media (min-width:900px){ .wrap{ padding:0 40px; } }
@@ -896,7 +1190,7 @@ export default function App() {
         @media (prefers-reduced-motion:reduce){ .rv{ opacity:1; transform:none; transition:none; } }
 
         .eyebrow2{
-          font-family:var(--mono); font-size:12.5px; font-weight:600; letter-spacing:.03em;
+          font-family:var(--mono); font-size:13px; font-weight:600; letter-spacing:.035em;
           background:linear-gradient(95deg, var(--purple), var(--pink));
           -webkit-background-clip:text; background-clip:text; color:transparent;
           display:inline-block; margin-bottom:12px;
@@ -914,22 +1208,23 @@ export default function App() {
 
         .nav-links{ display:none; gap:30px; align-items:center; }
         @media (min-width:960px){ .nav-links{ display:flex; } }
-        .nav-links button{ background:none; border:none; font-size:14.5px; font-weight:500; color:var(--gray-on-dark); position:relative; padding:4px 0; transition:color .25s ease; }
+        .nav-links button{ background:none; border:none; font-size:15px; font-weight:500; color:var(--gray-on-dark); position:relative; padding:4px 0; transition:color .25s ease; }
         .nav-links button.active{ color:#fff; }
         .nav-links button.active::after{ content:''; position:absolute; left:0; right:0; bottom:-14px; height:2px; background:var(--orange); border-radius:2px; }
         .nav-links button:hover{ color:#fff; }
 
-        .nav-cta{ display:none; background:#fff; color:#0A0A12; font-size:13.5px; font-weight:700; padding:11px 20px; border-radius:100px; border:none; align-items:center; gap:7px; transition:transform .25s ease; }
+        .nav-cta{ display:none; background:#fff; color:#0A0A12; font-size:14px; font-weight:700; padding:11px 20px; border-radius:100px; border:none; align-items:center; gap:7px; transition:transform .25s ease; }
         @media (min-width:960px){ .nav-cta{ display:inline-flex; } }
         .nav-cta:hover{ transform:translateY(-2px); }
 
         .nav-burger{ display:flex; background:none; border:1px solid var(--line-dark); color:#fff; border-radius:8px; padding:8px; position:relative; z-index:260; }
         @media (min-width:960px){ .nav-burger{ display:none; } }
 
-        .mmenu{ position:fixed; inset:0; z-index:250; background:var(--bg-darkest); padding:96px 28px 40px; display:flex; flex-direction:column; transform:translateX(100%); transition:transform .45s cubic-bezier(.16,.8,.24,1); }
-        .mmenu.open{ transform:translateX(0); }
+        .mmenu{ position:fixed; inset:0; z-index:250; background:var(--bg-darkest); padding:96px 28px 40px; display:flex; flex-direction:column; transform:translateX(100%); visibility:hidden; pointer-events:none; transition:transform .45s cubic-bezier(.16,.8,.24,1),visibility 0s linear .45s; }
+        .mmenu.open{ transform:translateX(0); visibility:visible; pointer-events:auto; transition-delay:0s; }
         .mmenu-close{ position:absolute; top:20px; right:20px; border:1px solid var(--line-dark); background:none; color:#fff; border-radius:8px; padding:8px; }
-        .mmenu button.mlink{ background:none; border:none; text-align:left; font-size:26px; font-weight:700; color:#fff; padding:14px 0; border-bottom:1px solid var(--line-dark); }
+        .mmenu button.mlink{ background:none; border:none; text-align:left; font-size:25px; font-weight:750; color:#fff; padding:15px 0; border-bottom:1px solid var(--line-dark); }
+        .mmenu .mmenu-cta{ margin-top:auto; justify-content:center; width:100%; }
 
         /* ============ MASTHEAD (inner pages) ============ */
         .masthead{
@@ -939,10 +1234,10 @@ export default function App() {
             var(--bg-dark);
           color:#fff; padding:150px 0 60px;
         }
-        .masthead .crumb{ display:flex; align-items:center; gap:6px; font-size:13px; color:var(--gray-on-dark-2); margin-bottom:16px; }
+        .masthead .crumb{ display:flex; align-items:center; gap:6px; font-size:13.5px; color:var(--gray-on-dark-2); margin-bottom:16px; }
         .masthead .crumb b{ color:var(--orange); font-weight:600; }
         .masthead h1{ font-size:clamp(28px,4.4vw,42px); font-weight:800; letter-spacing:-0.02em; margin:0 0 12px; }
-        .masthead p{ font-size:16px; color:var(--gray-on-dark); max-width:600px; margin:0; line-height:1.75; }
+        .masthead p{ font-size:17px; color:var(--gray-on-dark); max-width:600px; margin:0; line-height:1.75; }
 
         /* ============ HERO ============ */
         .hero{
@@ -956,7 +1251,7 @@ export default function App() {
         .hero__grid > *{ min-width:0; }
         @media (min-width:980px){ .hero__grid{ grid-template-columns:1.12fr .88fr; gap:48px; } }
 
-        .hi-badge{ display:inline-flex; align-items:center; gap:8px; font-size:13.5px; color:var(--gray-on-dark); border:1px solid var(--line-dark); padding:6px 14px 6px 10px; border-radius:100px; margin-bottom:22px; }
+        .hi-badge{ display:inline-flex; align-items:center; gap:8px; font-size:14px; color:var(--gray-on-dark); border:1px solid var(--line-dark); padding:6px 14px 6px 10px; border-radius:100px; margin-bottom:22px; }
 
         .hero h1{
           max-width:650px; margin:0 0 22px; font-size:clamp(46px,3.8vw,56px); font-weight:800;
@@ -970,14 +1265,15 @@ export default function App() {
           .hero h1{ max-width:570px; font-size:clamp(42px,3.75vw,50px); }
         }
         @media (max-width:720px){
-          .hero h1{ max-width:100%; font-size:clamp(25px,7.65vw,34px); line-height:1.1; letter-spacing:-0.052em; text-wrap:balance; }
+          .hero h1{ max-width:100%; font-size:clamp(29px,8.1vw,38px); line-height:1.1; letter-spacing:-0.045em; text-wrap:balance; }
+          .hero-title-accent{ white-space:normal; }
         }
 
-        .hero p.lead{ font-size:17px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
+        .hero p.lead{ font-size:18px; color:var(--gray-on-dark); max-width:610px; line-height:1.78; margin:0 0 32px; }
         .hero p.lead strong{ color:#fff; font-weight:700; }
 
         .btn-row{ display:flex; flex-wrap:wrap; gap:14px; margin-bottom:44px; }
-        .btn{ font-size:14px; font-weight:700; padding:14px 24px; border-radius:100px; display:inline-flex; align-items:center; gap:8px; border:1px solid transparent; transition:transform .3s cubic-bezier(.16,.8,.24,1), box-shadow .3s ease; }
+        .btn{ font-size:14.5px; font-weight:700; padding:14px 24px; border-radius:100px; display:inline-flex; align-items:center; gap:8px; border:1px solid transparent; transition:transform .3s cubic-bezier(.16,.8,.24,1), box-shadow .3s ease; }
         .btn-grad{ background:var(--grad); color:#fff; }
         .btn-grad:hover{ transform:translateY(-3px); box-shadow:0 16px 32px -14px rgba(139,92,246,0.55); }
         .btn-outline-dark{ background:transparent; color:#fff; border-color:var(--line-dark); }
@@ -1019,7 +1315,7 @@ export default function App() {
           .hero{ padding:112px 0 62px; }
           .hero__grid{ gap:44px; }
           .hi-badge{ margin-bottom:18px; font-size:12.5px; }
-          .hero p.lead{ max-width:none; margin-bottom:26px; font-size:15px; line-height:1.72; }
+          .hero p.lead{ max-width:none; margin-bottom:26px; font-size:16px; line-height:1.75; }
           .btn-row{ flex-direction:column; align-items:flex-start; gap:11px; margin-bottom:32px; }
           .btn-row .btn{ width:auto; max-width:100%; justify-content:center; padding:13px 20px; }
         }
@@ -1137,10 +1433,12 @@ export default function App() {
         @keyframes scrolldown{ 0%{ opacity:1; transform:translate(-50%,0);} 100%{ opacity:0; transform:translate(-50%,8px);} }
 
         /* ============ SECTION shared ============ */
-        .sec{ padding:96px 0; }
-        .sec-head{ margin-bottom:48px; max-width:640px; }
+        .sec{ padding:104px 0; scroll-margin-top:72px; }
+        #process{ scroll-margin-top:70px; }
+        .sec-head{ margin-bottom:50px; max-width:680px; }
+        @media (max-width:720px){ .sec{ padding:76px 0; } .sec-head{ margin-bottom:36px; } }
         .sec-head h2{ font-size:clamp(26px,3.6vw,38px); font-weight:800; letter-spacing:-0.02em; line-height:1.2; margin:0; }
-        .sec-head p{ font-size:16px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
+        .sec-head p{ font-size:16.5px; color:var(--gray-on-light); margin-top:12px; line-height:1.7; }
         .sec-head--white p{ color:var(--gray-on-dark); }
 
         /* ============ ABOUT ============ */
@@ -1149,14 +1447,15 @@ export default function App() {
         @media (min-width:960px){ .about__grid{ grid-template-columns:0.95fr 1.05fr; gap:56px; align-items:center; } }
         .about h2{ font-size:clamp(26px,3.6vw,36px); font-weight:800; line-height:1.28; letter-spacing:-0.02em; margin:0 0 16px; }
         .about h2 .link-word{ color:var(--purple-2); text-decoration:underline; text-decoration-color:rgba(124,58,237,0.35); text-underline-offset:4px; }
-        .about-copy p{ font-size:16px; color:var(--gray-on-light); line-height:1.8; margin:0 0 26px; max-width:480px; }
+        .about-copy p{ font-size:16.5px; color:var(--gray-on-light); line-height:1.8; margin:0 0 26px; max-width:480px; }
 
-        .card-grid2{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+        .card-grid2{ display:grid; grid-template-columns:1fr; gap:16px; }
+        @media (min-width:560px){ .card-grid2{ grid-template-columns:1fr 1fr; } }
         .about-card{ background:#fff; border:1px solid var(--line-light); border-radius:16px; padding:22px 20px; transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease; }
         .about-card:hover{ transform:translateY(-6px); box-shadow:0 26px 48px -26px rgba(20,20,35,0.22); }
         .about-card__ic{ width:42px; height:42px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
-        .about-card h4{ font-size:14.5px; font-weight:700; margin:0 0 4px; }
-        .about-card p{ font-size:13px; color:var(--gray-on-light); margin:0; line-height:1.55; }
+        .about-card h4{ font-size:15.5px; font-weight:700; margin:0 0 4px; }
+        .about-card p{ font-size:14px; color:var(--gray-on-light); margin:0; line-height:1.55; }
 
         .tech-row{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
         @media (min-width:560px){ .tech-row{ grid-template-columns:repeat(4,minmax(0,1fr)); } }
@@ -1170,18 +1469,18 @@ export default function App() {
         .tech-badge__logo--dark b{ color:#fff; }
         .tech-badge__logo--fallback img{ display:none; }
         .tech-badge__logo--fallback b{ display:block; }
-        .tech-badge__label{ font-size:11px; font-weight:700; color:var(--gray-on-light); text-align:center; }
+        .tech-badge__label{ font-size:12px; font-weight:700; color:var(--gray-on-light); text-align:center; }
         .tech-badge--compact{ min-height:0; width:32px; height:32px; padding:0; border-radius:9px; gap:0; }
 
         .stack-intro{ display:flex; align-items:end; justify-content:space-between; gap:24px; margin:10px 0 22px; }
         .stack-intro h3{ font-size:18px; font-weight:800; margin:0; }
-        .stack-intro p{ font-size:13.5px; color:var(--gray-on-light); margin:5px 0 0; }
+        .stack-intro p{ font-size:14px; color:var(--gray-on-light); margin:5px 0 0; }
         .tech-groups{ display:grid; grid-template-columns:1fr; gap:14px; }
         @media (min-width:720px){ .tech-groups{ grid-template-columns:1fr 1fr; } }
         .tech-group{ background:#fff; border:1px solid var(--line-light); border-radius:16px; padding:20px; }
         .tech-group__head{ margin-bottom:14px; }
-        .tech-group__head h4{ font-size:14px; font-weight:800; margin:0 0 4px; }
-        .tech-group__head p{ font-size:12.5px; color:var(--gray-on-light); line-height:1.55; margin:0; }
+        .tech-group__head h4{ font-size:15px; font-weight:800; margin:0 0 4px; }
+        .tech-group__head p{ font-size:13.5px; color:var(--gray-on-light); line-height:1.55; margin:0; }
         .tech-group__items{ display:flex; flex-wrap:wrap; gap:9px; }
         .tech-pill{ display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:4px 11px 4px 5px; border:1px solid var(--line-light); border-radius:11px; background:var(--bg-light); transition:transform .25s ease, border-color .25s ease, background .25s ease; }
         .tech-pill:hover{ transform:translateY(-2px); border-color:rgba(124,58,237,.22); background:#fff; }
@@ -1189,11 +1488,11 @@ export default function App() {
         .tech-pill .tech-badge:hover{ transform:none; box-shadow:none; }
         .tech-pill .tech-badge__logo{ width:23px; height:23px; border-radius:6px; }
         .tech-pill .tech-badge__logo img{ width:15px; height:15px; }
-        .tech-pill > span{ font-size:11px; font-weight:700; color:#3C3E49; }
+        .tech-pill > span{ font-size:12px; font-weight:700; color:#3C3E49; }
 
         /* ============ PREMIUM ABOUT PAGE ============ */
         .masthead-meta{ display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin-top:22px; }
-        .masthead-meta span{ display:inline-flex; align-items:center; gap:7px; min-height:34px; padding:7px 12px; border:1px solid var(--line-dark); border-radius:100px; background:rgba(255,255,255,.035); color:#CDD0DB; font-size:12px; font-weight:650; }
+        .masthead-meta span{ display:inline-flex; align-items:center; gap:7px; min-height:36px; padding:8px 13px; border:1px solid var(--line-dark); border-radius:100px; background:rgba(255,255,255,.035); color:#D7DAE4; font-size:12.5px; font-weight:650; }
         .masthead-meta span:last-child{ color:#D8FBE5; }
         .masthead-meta span:last-child svg{ color:var(--green); }
 
@@ -1206,17 +1505,17 @@ export default function App() {
         .about-photo__frame img{ width:100%; aspect-ratio:1.2/1; object-fit:cover; object-position:center 44%; }
         .about-photo__caption{ position:absolute; left:22px; right:22px; bottom:20px; z-index:2; display:flex; align-items:flex-end; justify-content:space-between; gap:18px; }
         .about-photo__caption b{ display:block; color:#fff; font-size:15.5px; margin-bottom:4px; }
-        .about-photo__caption span{ color:#AFB3C2; font-size:12px; }
+        .about-photo__caption span{ color:#C0C4D0; font-size:12.5px; }
         .about-photo__signal{ display:inline-flex; align-items:center; gap:7px; padding:8px 11px; border:1px solid rgba(255,255,255,.1); border-radius:100px; background:rgba(8,8,14,.62); backdrop-filter:blur(12px); color:#D8FBE5 !important; font-size:11px !important; font-weight:700; white-space:nowrap; }
         .about-photo__signal::before{ content:''; width:7px; height:7px; border-radius:50%; background:var(--green); box-shadow:0 0 0 5px rgba(34,197,94,.12); }
         .about-photo__badge{ position:absolute; right:-14px; top:28px; z-index:3; display:flex; align-items:center; gap:10px; min-width:170px; padding:13px 15px; border-radius:15px; background:#fff; border:1px solid var(--line-light); box-shadow:0 24px 52px -27px rgba(20,20,35,.32); }
         .about-photo__badge-icon{ width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; background:rgba(139,92,246,.12); color:var(--purple-2); flex:none; }
-        .about-photo__badge small{ display:block; color:var(--gray-on-light); font-size:10.5px; margin-bottom:2px; }
-        .about-photo__badge b{ font-size:12.5px; }
+        .about-photo__badge small{ display:block; color:var(--gray-on-light); font-size:11.5px; margin-bottom:2px; }
+        .about-photo__badge b{ font-size:13.5px; }
         .about-story .eyebrow2{ margin-bottom:14px; }
         .about-story h2{ font-size:clamp(30px,4.2vw,46px); line-height:1.12; letter-spacing:-.035em; margin:0 0 22px; max-width:600px; }
-        .about-story p{ font-size:16px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
-        .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:14.5px; line-height:1.7; }
+        .about-story p{ font-size:16.5px; line-height:1.85; color:var(--gray-on-light); margin:0 0 17px; max-width:590px; }
+        .about-story__highlight{ margin:26px 0 30px; padding:18px 20px; border-left:3px solid var(--purple-2); border-radius:0 13px 13px 0; background:#fff; color:#343642; font-size:15px; line-height:1.7; }
 
         .about-values{ background:#fff; }
         .about-value-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
@@ -1229,7 +1528,7 @@ export default function App() {
         .about-value-card__icon{ width:45px; height:45px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb,var(--value-color) 13%,transparent); }
         .about-value-card__num{ font-family:var(--mono); color:var(--value-color); font-size:12px; font-weight:700; }
         .about-value-card h3{ font-size:17.5px; margin:0 0 10px; }
-        .about-value-card p{ font-size:14px; line-height:1.75; color:var(--gray-on-light); margin:0; }
+        .about-value-card p{ font-size:14.5px; line-height:1.75; color:var(--gray-on-light); margin:0; }
 
         .about-journey{ background:var(--bg-light); }
         .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
@@ -1248,8 +1547,8 @@ export default function App() {
         }
         .journey-card__year{ display:inline-block; font-family:var(--mono); font-size:11.5px; color:var(--journey-color); font-weight:700; margin-bottom:9px; }
         .journey-card h3{ font-size:17.5px; line-height:1.35; margin:0 0 5px; }
-        .journey-card__org{ font-size:12.5px; color:var(--gray-on-light); margin-bottom:12px; }
-        .journey-card p{ font-size:14px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
+        .journey-card__org{ font-size:13px; color:var(--gray-on-light); margin-bottom:12px; }
+        .journey-card p{ font-size:14.5px; color:var(--gray-on-light); line-height:1.75; margin:0; max-width:330px; }
 
         .about-principles{ background:var(--bg-dark); color:#fff; position:relative; overflow:hidden; }
         .about-principles::before{ content:''; position:absolute; width:480px; height:480px; border-radius:50%; right:-180px; top:-250px; background:radial-gradient(circle,rgba(139,92,246,.22),transparent 68%); }
@@ -1258,7 +1557,7 @@ export default function App() {
         .principle-card{ display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; padding:24px; border:1px solid var(--line-dark); border-radius:17px; background:rgba(255,255,255,.025); }
         .principle-card__icon{ width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,.05); }
         .principle-card h3{ font-size:15.5px; margin:2px 0 7px; }
-        .principle-card p{ color:var(--gray-on-dark); font-size:14px; line-height:1.7; margin:0; }
+        .principle-card p{ color:var(--gray-on-dark); font-size:14.5px; line-height:1.7; margin:0; }
 
         .about-details{ background:#fff; }
         .about-details__grid{ display:grid; grid-template-columns:1fr; gap:22px; }
@@ -1268,16 +1567,16 @@ export default function App() {
         .education-card__icon{ width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:rgba(139,92,246,.13); color:var(--purple-2); margin-bottom:34px; }
         .education-card__year{ font-family:var(--mono); font-size:11.5px; font-weight:700; color:var(--purple-2); }
         .education-card h3{ font-size:21px; line-height:1.35; margin:9px 0 8px; max-width:340px; }
-        .education-card p{ font-size:14px; color:var(--gray-on-light); line-height:1.7; margin:0; max-width:390px; }
+        .education-card p{ font-size:14.5px; color:var(--gray-on-light); line-height:1.7; margin:0; max-width:390px; }
         .beyond-card{ border:1px solid var(--line-light); border-radius:20px; padding:28px; background:#fff; }
         .beyond-card h2{ font-size:25px; margin:0 0 12px; }
-        .beyond-card > p{ color:var(--gray-on-light); font-size:14.5px; line-height:1.75; max-width:680px; margin:0 0 24px; }
+        .beyond-card > p{ color:var(--gray-on-light); font-size:15px; line-height:1.75; max-width:680px; margin:0 0 24px; }
         .beyond-grid{ display:grid; grid-template-columns:1fr; gap:12px; }
         @media (min-width:620px){ .beyond-grid{ grid-template-columns:repeat(3,1fr); } }
         .beyond-item{ padding:17px; border:1px solid var(--line-light); border-radius:14px; background:var(--bg-light); }
         .beyond-item__icon{ width:37px; height:37px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; background:color-mix(in srgb,var(--beyond-color) 13%,transparent); }
         .beyond-item small{ display:block; font-size:10.5px; color:var(--gray-on-light); text-transform:uppercase; letter-spacing:.055em; font-weight:700; margin-bottom:5px; }
-        .beyond-item b{ font-size:13.5px; line-height:1.5; display:block; }
+        .beyond-item b{ font-size:14px; line-height:1.5; display:block; }
 
         .about-final-cta{ background:var(--bg-darkest); color:#fff; padding:76px 0; position:relative; overflow:hidden; }
         .about-final-cta::after{ content:''; position:absolute; inset:0; background:radial-gradient(circle at 86% 40%,rgba(139,92,246,.25),transparent 42%); }
@@ -1298,7 +1597,7 @@ export default function App() {
         .projects{ background:#fff; }
 
         .filter-row{ display:flex; flex-wrap:wrap; gap:10px; margin-bottom:34px; }
-        .filter-pill{ font-size:13px; font-weight:700; padding:10px 17px; border-radius:100px; border:1px solid var(--line-light); background:#fff; color:var(--gray-on-light); transition:all .3s ease; }
+        .filter-pill{ font-size:13.5px; font-weight:700; padding:10px 17px; border-radius:100px; border:1px solid var(--line-light); background:#fff; color:var(--gray-on-light); transition:all .3s ease; }
         .filter-pill.active{ background:var(--purple-2); color:#fff; border-color:var(--purple-2); box-shadow:0 12px 24px -16px rgba(124,58,237,.8); }
         .filter-pill:hover:not(.active){ border-color:var(--purple-2); color:var(--purple-2); }
 
@@ -1306,6 +1605,13 @@ export default function App() {
         @media (min-width:820px){ .proj-grid2{ grid-template-columns:repeat(2,minmax(0,1fr)); } }
         .proj-grid2 > .rv{ height:100%; }
         .proj-grid2 > .rv > .pcard{ height:100%; }
+        @media (min-width:820px){
+          .proj-grid2__item--wide{ grid-column:1 / -1; }
+          .proj-grid2__item--wide .pcard{ display:grid; grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr); }
+          .proj-grid2__item--wide .pcard__img-wrap{ min-height:420px; height:auto; }
+          .proj-grid2__item--wide .pcard__body{ padding:38px 30px 28px; }
+          .proj-grid2__item--wide .pcard:hover .project-shot__viewport img{ transform:translateY(calc(-100% + 388px)); }
+        }
 
         .pcard{ min-width:0; border-radius:20px; overflow:hidden; border:1px solid var(--line-light); background:#fff; display:flex; flex-direction:column; transition:transform .4s cubic-bezier(.16,.8,.24,1), box-shadow .4s ease, border-color .35s ease; }
         .pcard:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.2); box-shadow:0 38px 70px -34px rgba(20,20,35,.3); }
@@ -1313,21 +1619,21 @@ export default function App() {
         .pcard__badge{ position:absolute; left:22px; bottom:20px; min-width:44px; height:44px; padding:0 10px; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:10.5px; font-weight:800; box-shadow:0 13px 28px -10px rgba(0,0,0,.45); z-index:4; }
         .pcard__body{ padding:32px 22px 23px; display:flex; flex-direction:column; flex:1; }
         .pcard__meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:9px; }
-        .pcard__meta > span:first-child{ font-family:var(--mono); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--purple-2); }
-        .pcard__status{ display:inline-flex; align-items:center; gap:6px; font-size:10px; font-weight:800; padding:5px 8px; border-radius:100px; white-space:nowrap; }
+        .pcard__meta > span:first-child{ font-family:var(--mono); font-size:11.5px; font-weight:700; text-transform:uppercase; letter-spacing:.06em; color:var(--purple-2); }
+        .pcard__status{ display:inline-flex; align-items:center; gap:6px; font-size:10.5px; font-weight:800; padding:5px 8px; border-radius:100px; white-space:nowrap; }
         .pcard__status::before{ content:''; width:6px; height:6px; border-radius:50%; }
         .pcard__status--live{ color:#14723C; background:#ECFDF3; border:1px solid #CEF2DC; }
         .pcard__status--live::before{ background:#22C55E; }
         .pcard__status--development{ color:#9A5500; background:#FFF7E8; border:1px solid #F5DFC1; }
         .pcard__status--development::before{ background:#F5A623; }
-        .pcard__body h3{ font-size:19px; font-weight:800; margin:0 0 9px; line-height:1.32; letter-spacing:-.015em; }
-        .pcard__body > p{ font-size:14px; color:var(--gray-on-light); margin:0 0 15px; line-height:1.72; }
-        .pcard__highlight{ font-size:11.5px; color:#4B4E5C; border-left:2px solid var(--purple-2); padding-left:10px; margin:0 0 15px; line-height:1.6; }
-        .pcard__highlight b{ display:block; color:var(--ink); font-size:9.5px; text-transform:uppercase; letter-spacing:.065em; margin-bottom:2px; }
+        .pcard__body h3{ font-size:20px; font-weight:800; margin:0 0 9px; line-height:1.32; letter-spacing:-.015em; }
+        .pcard__body > p{ font-size:15px; color:var(--gray-on-light); margin:0 0 15px; line-height:1.72; }
+        .pcard__highlight{ font-size:12.5px; color:#4B4E5C; border-left:2px solid var(--purple-2); padding-left:10px; margin:0 0 15px; line-height:1.6; }
+        .pcard__highlight b{ display:block; color:var(--ink); font-size:10.5px; text-transform:uppercase; letter-spacing:.065em; margin-bottom:2px; }
         .pcard__stack{ display:flex; flex-wrap:wrap; gap:6px; }
-        .pcard__stack span{ font-size:10.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:5px 8px; border-radius:7px; background:var(--bg-light); }
+        .pcard__stack span{ font-size:11.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:5px 8px; border-radius:7px; background:var(--bg-light); }
         .pcard__actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line-light); padding-top:17px; margin-top:12px; }
-        .pcard__actions button,.pcard__actions a{ display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:800; background:none; border:none; padding:0; }
+        .pcard__actions button,.pcard__actions a{ display:inline-flex; align-items:center; gap:7px; font-size:13px; font-weight:800; background:none; border:none; padding:0; }
         .pcard__case{ color:var(--purple-2); }
         .pcard__live{ color:#14723C; }
         .pcard__actions button svg,.pcard__actions a svg{ transition:transform .25s ease; }
@@ -1362,14 +1668,19 @@ export default function App() {
         .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:15px; }
         .project-modal__eyebrow > span:first-child{ font-family:var(--mono); font-size:11px; color:var(--purple-2); font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
         .project-modal__details h2{ font-size:clamp(28px,3.5vw,42px); line-height:1.13; letter-spacing:-.035em; margin:0 0 15px; }
-        .project-modal__lead{ color:var(--gray-on-light); font-size:15px; line-height:1.78; margin:0 0 24px; }
+        .project-modal__lead{ color:var(--gray-on-light); font-size:15.5px; line-height:1.78; margin:0 0 24px; }
+        .project-modal__story{ display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:24px; }
+        .project-modal__story div{ padding:15px 16px; border:1px solid var(--line-light); border-radius:13px; background:#fff; }
+        .project-modal__story small{ display:block; margin-bottom:6px; font-size:10.5px; font-weight:800; text-transform:uppercase; letter-spacing:.075em; color:var(--purple-2); }
+        .project-modal__story p{ margin:0; color:#4B4F5D; font-size:13.5px; line-height:1.62; }
+        @media (min-width:1080px){ .project-modal__story{ grid-template-columns:repeat(3,1fr); } }
         .project-modal__specs{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
         .project-modal__specs div{ padding:14px; border:1px solid var(--line-light); border-radius:13px; background:var(--bg-light); }
         .project-modal__specs small{ display:block; color:var(--gray-on-light); font-size:10px; text-transform:uppercase; letter-spacing:.07em; font-weight:700; margin-bottom:5px; }
         .project-modal__specs b{ display:block; font-size:13px; line-height:1.45; }
         .project-modal__built{ margin-bottom:24px; }
         .project-modal__built ul{ list-style:none; padding:0; margin:14px 0 0; display:grid; gap:11px; }
-        .project-modal__built li{ display:grid; grid-template-columns:auto 1fr; gap:9px; color:#4E5260; font-size:13.5px; line-height:1.58; }
+        .project-modal__built li{ display:grid; grid-template-columns:auto 1fr; gap:9px; color:#4E5260; font-size:14px; line-height:1.58; }
         .project-modal__built li svg{ color:var(--purple-2); margin-top:2px; }
         .project-modal__stack{ margin-bottom:28px; }
         .project-modal__actions{ display:flex; flex-wrap:wrap; gap:10px; }
@@ -1398,8 +1709,8 @@ export default function App() {
         .additional-live-projects__link{ min-width:220px; display:flex; align-items:center; justify-content:space-between; gap:18px; padding:13px 15px; border:1px solid var(--line-light); border-radius:13px; background:#fff; transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }
         .additional-live-projects__link:hover{ transform:translateY(-2px); border-color:rgba(124,58,237,.24); box-shadow:0 18px 34px -26px rgba(20,20,35,.28); }
         .additional-live-projects__link span{ min-width:0; }
-        .additional-live-projects__link b{ display:block; font-size:12px; margin-bottom:3px; }
-        .additional-live-projects__link small{ display:block; color:var(--gray-on-light); font-size:10px; }
+        .additional-live-projects__link b{ display:block; font-size:13px; margin-bottom:3px; }
+        .additional-live-projects__link small{ display:block; color:var(--gray-on-light); font-size:11px; }
         .additional-live-projects__link svg{ color:var(--purple-2); flex:none; }
         @media (max-width:620px){
           .additional-live-projects{ align-items:stretch; flex-direction:column; padding:19px; }
@@ -1415,10 +1726,18 @@ export default function App() {
         .service-card{ border:1px solid var(--line-light); border-radius:19px; padding:28px 24px; background:#fff; transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease, border-color .35s ease; }
         .service-card:hover{ transform:translateY(-7px); border-color:rgba(124,58,237,.2); box-shadow:0 30px 58px -34px rgba(20,20,35,.28); }
         .service-card__ic{ width:48px; height:48px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
-        .service-card h3{ font-size:17px; font-weight:800; margin:0 0 10px; line-height:1.32; letter-spacing:-.01em; }
-        .service-card p{ font-size:14px; color:var(--gray-on-light); line-height:1.72; margin:0 0 18px; }
+        .service-card h3{ font-size:18px; font-weight:800; margin:0 0 10px; line-height:1.32; letter-spacing:-.01em; }
+        .service-card p{ font-size:15px; color:var(--gray-on-light); line-height:1.72; margin:0 0 18px; }
         .service-card__tags{ display:flex; flex-wrap:wrap; gap:8px; }
-        .service-card__tags span{ font-size:11px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:6px 10px; border-radius:7px; background:var(--bg-light); }
+        .service-card__tags span{ font-size:11.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:6px 10px; border-radius:7px; background:var(--bg-light); }
+
+        .delivery{ background:var(--bg-light); }
+        .delivery-grid{ display:grid; grid-template-columns:1fr; gap:16px; }
+        @media (min-width:760px){ .delivery-grid{ grid-template-columns:repeat(3,1fr); } }
+        .delivery-card{ display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; padding:24px; border:1px solid var(--line-light); border-radius:18px; background:#fff; box-shadow:0 22px 50px -38px rgba(20,20,35,.26); }
+        .delivery-card__icon{ width:46px; height:46px; border-radius:13px; display:flex; align-items:center; justify-content:center; background:color-mix(in srgb,var(--delivery-color) 13%,transparent); }
+        .delivery-card h3{ margin:1px 0 8px; font-size:17px; }
+        .delivery-card p{ margin:0; color:var(--gray-on-light); font-size:14.5px; line-height:1.72; }
 
         /* ============ ACADEMIC / MINI GRID ============ */
         .mini-grid{ display:grid; grid-template-columns:1fr; gap:18px; }
@@ -1426,11 +1745,11 @@ export default function App() {
         .mini-card{ border:1px solid var(--line-light); border-radius:18px; padding:24px; background:#fff; transition:transform .35s cubic-bezier(.16,.8,.24,1), box-shadow .35s ease, border-color .35s ease; }
         .mini-card:hover{ transform:translateY(-6px); border-color:rgba(124,58,237,.18); box-shadow:0 26px 50px -30px rgba(20,20,35,.26); }
         .mini-card__ic{ width:42px; height:42px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
-        .mini-card .tag{ display:inline-block; font-family:var(--mono); font-size:10.5px; font-weight:700; color:var(--purple-2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
-        .mini-card h4{ font-size:15.5px; font-weight:800; margin:0 0 8px; line-height:1.3; }
-        .mini-card p{ font-size:13.5px; color:var(--gray-on-light); line-height:1.68; margin:0; }
+        .mini-card .tag{ display:inline-block; font-family:var(--mono); font-size:11px; font-weight:700; color:var(--purple-2); text-transform:uppercase; letter-spacing:.05em; margin-bottom:10px; }
+        .mini-card h4{ font-size:16.5px; font-weight:800; margin:0 0 8px; line-height:1.3; }
+        .mini-card p{ font-size:14.5px; color:var(--gray-on-light); line-height:1.68; margin:0; }
 
-        .empty-state{ padding:40px 24px; text-align:center; border:1px dashed var(--line-light); border-radius:16px; color:var(--gray-on-light); font-size:14px; }
+        .empty-state{ padding:40px 24px; text-align:center; border:1px dashed var(--line-light); border-radius:16px; color:var(--gray-on-light); font-size:15px; }
 
         /* ============ PROCESS ============ */
         .process{ background:var(--bg-dark); color:#fff; }
@@ -1447,7 +1766,7 @@ export default function App() {
         .p-step__num{ font-family:var(--mono); font-size:14px; font-weight:700; }
         .p-step__ic{ width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; background:var(--panel-dark); border:1px solid var(--line-dark); }
         .p-step h3{ font-size:17px; font-weight:700; margin:0 0 8px; }
-        .p-step p{ font-size:14.5px; color:var(--gray-on-dark); line-height:1.7; margin:0; max-width:230px; }
+        .p-step p{ font-size:15px; color:var(--gray-on-dark); line-height:1.7; margin:0; max-width:230px; }
         @media (max-width:859px){
           .process .sec-head{ text-align:center; margin-left:auto; margin-right:auto; margin-bottom:32px; }
           .process-row{ max-width:430px; margin:0 auto; }
@@ -1465,31 +1784,41 @@ export default function App() {
         .dash-eyebrow{ display:inline-flex; align-items:center; gap:10px; font-size:12px; font-weight:800; letter-spacing:.09em; text-transform:uppercase; color:var(--ink); margin-bottom:16px; }
         .dash-eyebrow i{ display:block; width:26px; height:2px; border-radius:2px; background:linear-gradient(95deg, var(--orange), var(--pink)); flex:none; }
         .contact-heading h2{ font-size:clamp(25px,3.4vw,34px); font-weight:800; letter-spacing:-.025em; margin:0 0 14px; line-height:1.22; }
-        .contact-heading p{ font-size:15.5px; color:var(--gray-on-light); line-height:1.8; margin:0; max-width:440px; }
+        .contact-heading p{ font-size:16px; color:var(--gray-on-light); line-height:1.8; margin:0; max-width:440px; }
         .contact-grid{ display:grid; grid-template-columns:1fr; gap:40px; }
         @media (min-width:960px){ .contact-grid{ grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start; } }
 
         .c-info-card{ display:flex; align-items:center; gap:14px; background:#fff; border:1px solid var(--line-light); border-radius:14px; padding:16px 18px; margin-bottom:14px; transition:transform .3s ease, box-shadow .3s ease; }
         .c-info-card:hover{ transform:translateX(4px); box-shadow:0 20px 34px -24px rgba(20,20,35,0.25); }
         .c-info-card__ic{ width:44px; height:44px; border-radius:12px; background:var(--bg-dark); color:var(--orange); display:flex; align-items:center; justify-content:center; flex:none; }
-        .c-info-card .label{ font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gray-on-light); margin-bottom:3px; }
-        .c-info-card .value{ font-size:15px; font-weight:700; }
+        .c-info-card .label{ font-size:11.5px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--gray-on-light); margin-bottom:3px; }
+        .c-info-card .value{ font-size:15.5px; font-weight:700; }
 
         .c-form{ background:#fff; border:1px solid var(--line-light); border-radius:20px; padding:34px; box-shadow:0 40px 80px -46px rgba(20,20,35,0.25); }
-        .c-form h3{ font-size:18.5px; font-weight:800; margin:0 0 22px; }
+        .c-form h3{ font-size:20px; font-weight:800; margin:0 0 7px; }
+        .c-form__intro{ margin:0 0 24px; color:var(--gray-on-light); font-size:14px; line-height:1.65; }
+        .c-form__reply-note{ display:flex; align-items:center; gap:8px; margin-top:14px; color:var(--gray-on-light); font-size:12.5px; line-height:1.55; }
         .c-form-row{ display:grid; grid-template-columns:1fr; gap:18px; margin-bottom:18px; }
         @media (min-width:560px){ .c-form-row.two{ grid-template-columns:1fr 1fr; } }
-        .c-field label{ font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gray-on-light); display:block; margin-bottom:8px; }
-        .c-field input, .c-field textarea{
-          width:100%; border:1px solid var(--line-light); border-radius:10px; padding:12px 14px; font-family:var(--font); font-size:15px;
-          background:var(--bg-light); color:var(--ink); transition:border-color .25s ease, box-shadow .25s ease;
+        .c-field label{ font-size:11.5px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--gray-on-light); display:block; margin-bottom:8px; }
+        .c-field input, .c-field textarea, .c-field select{
+          width:100%; border:1px solid var(--line-light); border-radius:10px; padding:13px 14px; font-family:var(--font); font-size:15px;
+          background:var(--bg-light); color:var(--ink); transition:border-color .25s ease, box-shadow .25s ease, background .25s ease;
         }
-        .c-field input:focus, .c-field textarea:focus{ outline:none; border-color:var(--purple-2); box-shadow:0 0 0 3px rgba(124,58,237,0.14); background:#fff; }
-        .c-field textarea{ resize:vertical; min-height:130px; }
+        .c-field select{ min-height:49px; appearance:auto; }
+        .c-field input:focus, .c-field textarea:focus, .c-field select:focus{ outline:none; border-color:var(--purple-2); box-shadow:0 0 0 3px rgba(124,58,237,0.14); background:#fff; }
+        .c-field textarea{ resize:vertical; min-height:145px; }
         .c-success{ display:flex; align-items:center; gap:8px; color:var(--green); font-size:13.5px; font-weight:600; margin-top:16px; }
-        .c-error{ font-size:13px; color:#EF4444; margin-top:10px; line-height:1.6; }
+        .c-error{ font-size:13.5px; color:#EF4444; margin-top:10px; line-height:1.6; }
         .c-form button[disabled]{ opacity:.65; cursor:not-allowed; transform:none; box-shadow:none; }
         .hp-field{ position:absolute !important; left:-9999px !important; width:1px !important; height:1px !important; overflow:hidden !important; opacity:0 !important; pointer-events:none !important; }
+        @media (max-width:620px){
+          .contact-grid{ gap:30px; }
+          .c-form{ padding:25px 19px; border-radius:17px; }
+          .c-form-row{ gap:14px; margin-bottom:14px; }
+          .c-info-card{ padding:15px; }
+          .c-info-card .value{ overflow-wrap:anywhere; }
+        }
 
         /* ============ OPPORTUNITIES ============ */
         .opportunity{ background:var(--bg-light); padding:86px 0; }
@@ -1504,7 +1833,7 @@ export default function App() {
         .opportunity-availability::before{ content:''; width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 6px rgba(34,197,94,.12); }
         .opportunity-actions{ display:flex; flex-wrap:wrap; gap:11px; }
         .opportunity-actions .btn{ width:auto; }
-        .opportunity-email{ font-size:12.5px; color:var(--gray-on-dark); display:flex; align-items:center; gap:7px; }
+        .opportunity-email{ font-size:13.5px; color:var(--gray-on-dark); display:flex; align-items:center; gap:7px; }
         @media (max-width:620px){ .opportunity{ padding:64px 0; } .opportunity-card{ padding:32px 24px; border-radius:20px; text-align:center; } .opportunity-details{ align-items:center; } .opportunity-actions{ justify-content:center; } }
 
         /* ============ CTA BANNER ============ */
@@ -1520,37 +1849,53 @@ export default function App() {
         .footer{ background:var(--bg-darkest); color:var(--gray-on-dark); padding:60px 0 24px; border-top:1px solid var(--line-dark); }
         .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; margin-bottom:48px; }
         @media (min-width:760px){ .footer-grid{ grid-template-columns:1.4fr 0.6fr 1.3fr 1.1fr; gap:30px; } }
-        .footer-brand p{ font-size:14.5px; line-height:1.8; margin:14px 0 20px; max-width:300px; color:var(--gray-on-dark-2); }
+        .footer-brand p{ font-size:15px; line-height:1.8; margin:14px 0 20px; max-width:300px; color:var(--gray-on-dark-2); }
         @media screen and (max-width: 480px) {
   .footer-brand p {
-        font-size:14.5px; line-height:1.8; margin:14px 0 0px; max-width:360px; color:var(--gray-on-dark-2); 
+        font-size:15px; line-height:1.8; margin:14px 0 0px; max-width:360px; color:var(--gray-on-dark-2); 
   }
 }
-        .footer h5{ color:#fff; font-size:14px; font-weight:700; margin:0 0 18px; }
+        .footer h5{ color:#fff; font-size:14.5px; font-weight:700; margin:0 0 18px; }
         .footer-links{ display:flex; flex-direction:column; gap:11px; }
-        .footer-links a{ font-size:14px; color:var(--gray-on-dark-2); transition:color .25s ease; background:none; border:none; text-align:left; padding:0; }
+        .footer-links a,.footer-links button{ font-size:14.5px; color:var(--gray-on-dark-2); transition:color .25s ease; background:none; border:none; text-align:left; padding:0; cursor:pointer; }
+        .footer-links button:hover{ color:#fff; }
         .footer-links a:hover{ color:#fff; }
         .footer-contact{ display:flex; flex-direction:column; gap:12px; margin-bottom:18px; }
-        .footer-contact div{ display:flex; align-items:center; gap:10px; font-size:13.5px; color:var(--gray-on-dark-2); }
-        .footer-bottom{ border-top:1px solid var(--line-dark); padding-top:22px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:13px; }
+        .footer-contact a,.footer-contact div{ display:flex; align-items:center; gap:10px; font-size:14px; color:var(--gray-on-dark-2); }
+        .footer-contact a:hover{ color:#fff; }
+        .footer-bottom{ border-top:1px solid var(--line-dark); padding-top:22px; display:flex; flex-wrap:wrap; gap:12px; justify-content:space-between; font-size:13.5px; }
         .footer-bottom a{ color:var(--gray-on-dark-2); margin-left:18px; }
         .footer-bottom a:hover{ color:#fff; }
       `}</style>
 
+      <a
+        className="skip-link"
+        href="#main-content"
+        onClick={(event) => {
+          event.preventDefault();
+          const main = document.getElementById("main-content");
+          main?.focus();
+          main?.scrollIntoView({ behavior: "auto", block: "start" });
+        }}
+      >
+        Skip to content
+      </a>
+
       {/* ============ NAV ============ */}
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+      <nav className={`navbar ${scrolled ? "scrolled" : ""}`} aria-label="Primary navigation">
         <div className="wrap navbar__inner">
-          <button className="logo" onClick={() => navigateTo("home", "page")} style={{ background: "none", border: "none", padding: 0 }}>
+          <button type="button" className="logo" aria-label="Go to Haseeb.dev home" onClick={() => navigateTo("home", "page")} style={{ background: "none", border: "none", padding: 0 }}>
             <span className="logo__mark" />
             <span className="logo__text">Haseeb<span>.dev</span></span>
           </button>
           <div className="nav-links">
             {NAV_LINKS.map((item) => {
-              const isActive = item.type === "page" ? page === item.id : page === "home" && item.id === "home";
+              const isActive = item.type === "page" ? page === item.id : page === "home" && activeSection === item.id;
               return (
                 <button
                   key={item.id}
                   className={isActive ? "active" : ""}
+                  aria-current={isActive ? "page" : undefined}
                   onClick={() => navigateTo(item.id, item.type)}
                 >
                   {item.label}
@@ -1558,26 +1903,37 @@ export default function App() {
               );
             })}
           </div>
-          <button className="nav-cta" onClick={() => navigateTo("contact", "page")}>
+          <button type="button" className="nav-cta" onClick={() => navigateTo("contact", "page")}>
             Let's Work Together <ArrowRight size={14} />
           </button>
-          <button className="nav-burger" onClick={() => setMenuOpen((o) => !o)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation">
+          <button type="button" className="nav-burger" onClick={() => setMenuOpen((o) => !o)} aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} aria-controls="mobile-navigation">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
-      <div id="mobile-navigation" className={`mmenu ${menuOpen ? "open" : ""}`} aria-hidden={!menuOpen}>
-        <button className="mmenu-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
+      <div
+        id="mobile-navigation"
+        className={`mmenu ${menuOpen ? "open" : ""}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation"
+        aria-hidden={!menuOpen}
+      >
+        <button type="button" className="mmenu-close" onClick={() => setMenuOpen(false)} aria-label="Close menu">
           <X size={22} />
         </button>
         {NAV_LINKS.map((item) => (
-          <button key={item.id} className="mlink" onClick={() => navigateTo(item.id, item.type)}>
+          <button type="button" key={item.id} className="mlink" onClick={() => navigateTo(item.id, item.type)}>
             {item.label}
           </button>
         ))}
+        <button type="button" className="btn btn-grad mmenu-cta" onClick={() => navigateTo("contact", "page")}>
+          Start a Conversation <ArrowRight size={15} />
+        </button>
       </div>
 
+      <main id="main-content" className="main-content" tabIndex={-1}>
       {/* ================================================================ */}
       {/* HOME PAGE                                                        */}
       {/* ================================================================ */}
@@ -1586,16 +1942,16 @@ export default function App() {
           <section id="home" className="hero">
             <div className="wrap hero__grid">
               <div>
-                <Reveal><span className="hi-badge">Web Developer · Computer Engineer</span></Reveal>
+                <Reveal><span className="hi-badge">WordPress · Shopify · React Developer</span></Reveal>
                 <Reveal delay={70}>
                   <h1>
-                    I build digital experiences that look sharp and <span className="hero-title-accent">work beautifully.</span>
+                    I build polished websites that look sharp and <span className="hero-title-accent">work beautifully.</span>
                   </h1>
                 </Reveal>
                 <Reveal delay={130}>
                   <p className="lead">
-                    <strong>I'm Haseeb</strong> — a Computer Engineer and Web Developer specializing in
-                    React, WordPress, Shopify, and responsive frontend experiences built for real users.
+                    <strong>I'm Haseeb</strong> — I help businesses and agencies turn approved designs,
+                    ideas, and requirements into fast, responsive WordPress, Shopify, and React experiences.
                   </p>
                 </Reveal>
                 <Reveal delay={190}>
@@ -1759,7 +2115,7 @@ export default function App() {
               <div className="proj-grid2">
                 {PROJECTS.slice(0, 4).map((project, index) => (
                   <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
-                    <ProjectCard project={project} onOpen={setSelectedProject} onContact={goToContact} />
+                    <ProjectCard project={project} onOpen={setSelectedProject} />
                   </Reveal>
                 ))}
               </div>
@@ -1854,6 +2210,7 @@ export default function App() {
                     src="/images/haseeb-ansari-profile.webp"
                     alt="Haseeb Mujeeb Ansari, Web Developer and Computer Engineer"
                     loading="eager"
+                    decoding="async"
                   />
                   <div className="about-photo__caption">
                     <div>
@@ -2042,6 +2399,38 @@ export default function App() {
             </div>
           </section>
 
+          <section className="delivery sec">
+            <div className="wrap">
+              <Reveal className="sec-head">
+                <Eyebrow>What You Can Expect</Eyebrow>
+                <h2>Professional delivery, not just a finished page.</h2>
+                <p>Every build is approached with communication, responsive quality, and a handoff that remains practical after launch.</p>
+              </Reveal>
+
+              <div className="delivery-grid">
+                {DELIVERY_STANDARDS.map((item, index) => {
+                  const DeliveryIcon = item.icon;
+                  return (
+                    <Reveal
+                      key={item.title}
+                      delay={index * 80}
+                      className="delivery-card"
+                      style={{ "--delivery-color": item.color }}
+                    >
+                      <span className="delivery-card__icon">
+                        <DeliveryIcon size={20} color={item.color} />
+                      </span>
+                      <div>
+                        <h3>{item.title}</h3>
+                        <p>{item.desc}</p>
+                      </div>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
           <section className="process sec">
             <div className="wrap">
               <Reveal className="sec-head sec-head--white">
@@ -2106,11 +2495,21 @@ export default function App() {
 
               {filteredProjects.length > 0 ? (
                 <div className="proj-grid2">
-                  {filteredProjects.map((project, index) => (
-                    <Reveal as="div" delay={(index % 2) * 90} key={project.title}>
-                      <ProjectCard project={project} onOpen={setSelectedProject} onContact={goToContact} />
-                    </Reveal>
-                  ))}
+                  {filteredProjects.map((project, index) => {
+                    const isWideLastCard =
+                      filteredProjects.length % 2 === 1 && index === filteredProjects.length - 1;
+
+                    return (
+                      <Reveal
+                        as="div"
+                        delay={(index % 2) * 90}
+                        key={project.title}
+                        className={isWideLastCard ? "proj-grid2__item--wide" : ""}
+                      >
+                        <ProjectCard project={project} onOpen={setSelectedProject} />
+                      </Reveal>
+                    );
+                  })}
                 </div>
               ) : (
                 <div className="empty-state">No projects tagged "{activeFilter}" yet — check back soon.</div>
@@ -2182,8 +2581,12 @@ export default function App() {
         <>
           <Masthead
             crumb="Contact"
-            title="Let's Build Something Amazing Together! 🚀"
-            subtitle="Have a project in mind? Let's talk and turn your ideas into reality."
+            title="Tell me what you're building."
+            subtitle="Share the goal, platform, or problem. I'll review the details and reply with clear next steps."
+            meta={[
+              { icon: Clock3, label: "Usually replies within one business day" },
+              { icon: CheckCircle2, label: "No obligation" },
+            ]}
           />
           <section className="contact sec">
             <div className="wrap">
@@ -2216,8 +2619,9 @@ export default function App() {
                 </div>
 
                 <Reveal delay={100} className="c-form">
-                  <h3>Send a message</h3>
-                  <form onSubmit={handleFormSubmit} noValidate>
+                  <h3>Send project details</h3>
+                  <p className="c-form__intro">A few useful details help me understand the scope before I reply.</p>
+                  <form onSubmit={handleFormSubmit} noValidate aria-busy={isSubmitting}>
                     <div className="hp-field" aria-hidden="true">
                       <label htmlFor="cf-website">Website</label>
                       <input
@@ -2239,9 +2643,11 @@ export default function App() {
                           type="text"
                           autoComplete="name"
                           required
+                          maxLength={80}
+                          aria-invalid={Boolean(formError) && !form.name.trim()}
                           placeholder="Your name"
                           value={form.name}
-                          onChange={(e) => setForm({ ...form, name: e.target.value })}
+                          onChange={(e) => updateFormField("name", e.target.value)}
                         />
                       </div>
                       <div className="c-field">
@@ -2252,10 +2658,42 @@ export default function App() {
                           type="email"
                           autoComplete="email"
                           required
+                          maxLength={120}
+                          aria-invalid={Boolean(formError) && !form.email.trim()}
                           placeholder="you@example.com"
                           value={form.email}
-                          onChange={(e) => setForm({ ...form, email: e.target.value })}
+                          onChange={(e) => updateFormField("email", e.target.value)}
                         />
+                      </div>
+                    </div>
+                    <div className="c-form-row two">
+                      <div className="c-field">
+                        <label htmlFor="cf-project-type">Project type</label>
+                        <select
+                          id="cf-project-type"
+                          name="projectType"
+                          value={form.projectType}
+                          onChange={(e) => updateFormField("projectType", e.target.value)}
+                        >
+                          <option value="">Select a project type</option>
+                          {PROJECT_TYPE_OPTIONS.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
+                      </div>
+                      <div className="c-field">
+                        <label htmlFor="cf-budget">Budget range</label>
+                        <select
+                          id="cf-budget"
+                          name="budget"
+                          value={form.budget}
+                          onChange={(e) => updateFormField("budget", e.target.value)}
+                        >
+                          <option value="">Select a range</option>
+                          {BUDGET_OPTIONS.map((option) => (
+                            <option key={option} value={option}>{option}</option>
+                          ))}
+                        </select>
                       </div>
                     </div>
                     <div className="c-form-row">
@@ -2265,9 +2703,10 @@ export default function App() {
                           id="cf-subject"
                           name="subject"
                           type="text"
+                          maxLength={140}
                           placeholder="What's this about?"
                           value={form.subject}
-                          onChange={(e) => setForm({ ...form, subject: e.target.value })}
+                          onChange={(e) => updateFormField("subject", e.target.value)}
                         />
                       </div>
                     </div>
@@ -2278,15 +2717,21 @@ export default function App() {
                           id="cf-message"
                           name="message"
                           required
-                          placeholder="Tell me about your project..."
+                          minLength={20}
+                          maxLength={3000}
+                          aria-invalid={Boolean(formError) && !form.message.trim()}
+                          placeholder="Tell me about your project, goals, timeline, and any existing website..."
                           value={form.message}
-                          onChange={(e) => setForm({ ...form, message: e.target.value })}
+                          onChange={(e) => updateFormField("message", e.target.value)}
                         />
                       </div>
                     </div>
                     <button type="submit" className="btn btn-grad" disabled={isSubmitting}>
-                      {isSubmitting ? "Sending..." : "Get in Touch"} <Send size={14} />
+                      {isSubmitting ? "Sending..." : "Send Project Details"} <Send size={14} />
                     </button>
+                    <div className="c-form__reply-note">
+                      <Clock3 size={14} /> Usually replies within one business day. No obligation.
+                    </div>
                     {formSent && (
                       <div className="c-success" role="status" aria-live="polite">
                         <CheckCircle2 size={15} /> Message sent successfully. I'll reply as soon as possible.
@@ -2300,6 +2745,7 @@ export default function App() {
           </section>
         </>
       )}
+      </main>
 
       <ProjectCaseStudy project={selectedProject} onClose={() => setSelectedProject(null)} onContact={goToContact} />
 
@@ -2318,11 +2764,11 @@ export default function App() {
             <div>
               <h5>Quick Links</h5>
               <div className="footer-links">
-                <a onClick={() => navigateTo("about", "page")}>About</a>
-                <a onClick={() => navigateTo("services", "page")}>Services</a>
-                <a onClick={() => navigateTo("projects", "page")}>Projects</a>
-                <a onClick={() => navigateTo("process", "section")}>Process</a>
-                <a onClick={() => navigateTo("contact", "page")}>Contact</a>
+                <a href="#about" onClick={(event) => { event.preventDefault(); navigateTo("about", "page"); }}>About</a>
+                <a href="#services" onClick={(event) => { event.preventDefault(); navigateTo("services", "page"); }}>Services</a>
+                <a href="#projects" onClick={(event) => { event.preventDefault(); navigateTo("projects", "page"); }}>Projects</a>
+                <a href="#process" onClick={(event) => { event.preventDefault(); navigateTo("process", "section"); }}>Process</a>
+                <a href="#contact" onClick={(event) => { event.preventDefault(); navigateTo("contact", "page"); }}>Contact</a>
               </div>
             </div>
 
@@ -2330,7 +2776,16 @@ export default function App() {
               <h5>Services</h5>
               <div className="footer-links">
                 {SERVICES.slice(0, 5).map((s) => (
-                  <a key={s.title} onClick={() => navigateTo("services", "page")}>{s.title}</a>
+                  <a
+                    key={s.title}
+                    href="#services"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      navigateTo("services", "page");
+                    }}
+                  >
+                    {s.title}
+                  </a>
                 ))}
               </div>
             </div>
@@ -2338,15 +2793,15 @@ export default function App() {
             <div>
               <h5>Let's Connect</h5>
               <div className="footer-contact">
-                <div><Mail size={14} /> haseebmujeeb360@gmail.com</div>
-                <div><Phone size={14} /> +92 335 3832477</div>
+                <a href="mailto:haseebmujeeb360@gmail.com"><Mail size={14} /> haseebmujeeb360@gmail.com</a>
+                <a href="tel:+923353832477"><Phone size={14} /> +92 335 3832477</a>
                 <div><MapPin size={14} /> Karachi, Pakistan</div>
               </div>
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>© 2026 Haseeb Mujeeb Ansari. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Haseeb Mujeeb Ansari. All rights reserved.</span>
                      </div>
         </div>
       </footer>
