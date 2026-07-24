@@ -1290,7 +1290,7 @@ export default function App() {
         .pcard__highlight b{ display:block; color:var(--ink); font-size:9px; text-transform:uppercase; letter-spacing:.065em; margin-bottom:2px; }
         .pcard__stack{ display:flex; flex-wrap:wrap; gap:6px; }
         .pcard__stack span{ font-size:9.5px; font-weight:650; color:var(--gray-on-light); border:1px solid var(--line-light); padding:5px 8px; border-radius:7px; background:var(--bg-light); }
-        .pcard__actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line-light); padding-top:17px; margin-top:auto; }
+        .pcard__actions{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; border-top:1px solid var(--line-light); padding-top:17px; margin-top:12px; }
         .pcard__actions button,.pcard__actions a{ display:inline-flex; align-items:center; gap:7px; font-size:11px; font-weight:800; }
         .pcard__case{ color:var(--purple-2); background:none; border:none; padding:0; }
         .pcard__actions a{ color:var(--gray-on-light); }
