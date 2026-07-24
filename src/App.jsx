@@ -1198,7 +1198,7 @@ export default function App() {
         .about-journey{ background:var(--bg-light); }
         .journey-grid{ display:grid; grid-template-columns:1fr; gap:0; position:relative; }
         @media (min-width:860px){ .journey-grid{ grid-template-columns:repeat(3,1fr); gap:24px; } }
-        @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:10%; right:10%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
+        @media (min-width:860px){ .journey-grid::before{ content:''; position:absolute; left:0%; right:30%; top:28px; height:1px; background:linear-gradient(90deg,rgba(139,92,246,.25),rgba(245,166,35,.25),rgba(34,197,94,.25)); } }
         .journey-card{ position:relative; padding:0 0 34px 36px; }
         .journey-card:last-child{ padding-bottom:0; }
         .journey-card::before{ content:''; position:absolute; left:7px; top:30px; bottom:0; width:1px; background:var(--line-light); }
