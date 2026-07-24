@@ -1332,23 +1332,8 @@ export default function App() {
         .project-modal__browser{ height:38px; flex:none; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12px; padding:0 13px; color:rgba(255,255,255,.6); background:#14151F; border:1px solid rgba(255,255,255,.08); border-radius:13px 13px 0 0; font-family:var(--mono); font-size:9px; }
         .project-modal__screen{ height:calc(100vh - 126px); min-height:620px; overflow:auto; background:#fff; border-radius:0 0 13px 13px; scrollbar-width:thin; }
         .project-modal__screen img{ width:100%; height:auto; display:block; }
-.project-modal__details{
-  min-width:0;
-  min-height:0;
-  height:100%;
-  overflow:hidden;
-}
-.project-modal__details-scroll{
-  height:100%;
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:hidden;
-  padding:58px 38px 38px;
-  box-sizing:border-box;
-  scrollbar-width:thin;
-  scrollbar-color:rgba(124,58,237,.75) rgba(20,20,35,.08);
-}
-                .project-modal__details::-webkit-scrollbar,.project-modal__screen::-webkit-scrollbar{ width:8px; }
+        .project-modal__details{ padding:58px 38px 38px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:rgba(124,58,237,.55) rgba(20,20,35,.08); }
+        .project-modal__details::-webkit-scrollbar,.project-modal__screen::-webkit-scrollbar{ width:8px; }
         .project-modal__details::-webkit-scrollbar-track,.project-modal__screen::-webkit-scrollbar-track{ background:rgba(20,20,35,.06); border-radius:99px; }
         .project-modal__details::-webkit-scrollbar-thumb,.project-modal__screen::-webkit-scrollbar-thumb{ background:linear-gradient(180deg,var(--purple),var(--orange)); border-radius:99px; border:2px solid transparent; background-clip:padding-box; }
         .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:15px; }
