@@ -1441,7 +1441,7 @@ export default function App() {
         .footer-brand p{ font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:260px; color:var(--gray-on-dark-2); }
         @media screen and (max-width: 480px) {
   .footer-brand p {
-        font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:360px; color:var(--gray-on-dark-2); 
+        font-size:13px; line-height:1.8; margin:14px 0 0px; max-width:360px; color:var(--gray-on-dark-2); 
   }
 }
         .footer h5{ color:#fff; font-size:13.5px; font-weight:700; margin:0 0 18px; }
