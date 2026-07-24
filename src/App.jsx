@@ -548,7 +548,7 @@ function ProjectPreview({ project }) {
   );
 }
 
-function ProjectCard({ project, onOpen, onContact }) {
+function ProjectCard({ project, onOpen }) {
   return (
     <article className="pcard">
       <div className="pcard__img-wrap">
@@ -569,9 +569,6 @@ function ProjectCard({ project, onOpen, onContact }) {
         <div className="pcard__actions">
           <button type="button" className="pcard__case" onClick={() => onOpen(project)}>
             View Case Study <ArrowRight size={14} />
-          </button>
-          <button type="button" onClick={onContact}>
-            Discuss This Project <ArrowRight size={13} />
           </button>
         </div>
       </div>
@@ -594,7 +591,7 @@ function ProjectCaseStudy({ project, onClose, navigateTo }) {
         <div className="project-modal__visual">
           <div className="project-modal__browser">
             <span className="project-shot__dots"><i /><i /><i /></span>
-            <span>{project.domain}</span>
+            <span>Project case study preview</span>
           </div>
           <div className="project-modal__screen">
             <img src={project.image} alt={`${project.title} complete website screenshot`} />
@@ -845,7 +842,9 @@ export default function App() {
           --mono: 'JetBrains Mono', monospace;
         }
         .ds *{ box-sizing:border-box; }
-        .ds{ font-family:var(--font); background:var(--bg-white); color:var(--ink); overflow-x:hidden; }
+        .ds{ font-family:var(--font); background:var(--bg-white); color:var(--ink); overflow-x:hidden; font-size:16px; }
+        .ds p{ font-size:16px; line-height:1.7; }
+        .ds button,.ds input,.ds textarea{ font-size:inherit; }
         .ds img{ max-width:100%; display:block; }
         .ds a{ color:inherit; text-decoration:none; cursor:pointer; }
         .ds button{ font-family:inherit; cursor:pointer; }
@@ -1327,13 +1326,16 @@ export default function App() {
         @media (prefers-reduced-motion:reduce){ .project-shot__viewport img{ transition:none; } .pcard:hover .project-shot__viewport img{ transform:none; } }
 
         .project-modal{ position:fixed; inset:0; z-index:1200; background:rgba(4,4,9,.82); backdrop-filter:blur(12px); padding:24px; overflow:auto; display:flex; align-items:flex-start; justify-content:center; }
-        .project-modal__dialog{ width:min(1180px,100%); min-height:min(760px,calc(100vh - 48px)); background:#fff; border-radius:24px; overflow:hidden; position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(370px,.95fr); box-shadow:0 60px 140px -45px rgba(0,0,0,.75); }
+        .project-modal__dialog{ width:min(1180px,100%); max-height:calc(100vh - 48px); min-height:min(760px,calc(100vh - 48px)); background:#fff; border-radius:24px; overflow:hidden; position:relative; display:grid; grid-template-columns:minmax(0,1.05fr) minmax(370px,.95fr); box-shadow:0 60px 140px -45px rgba(0,0,0,.75); }
         .project-modal__close{ position:absolute; right:16px; top:16px; width:40px; height:40px; z-index:8; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid var(--line-light); background:rgba(255,255,255,.92); color:var(--ink); box-shadow:0 14px 34px -20px rgba(0,0,0,.4); }
         .project-modal__visual{ min-width:0; background:#0B0C13; padding:20px; display:flex; flex-direction:column; }
         .project-modal__browser{ height:38px; flex:none; display:grid; grid-template-columns:auto 1fr; align-items:center; gap:12px; padding:0 13px; color:rgba(255,255,255,.6); background:#14151F; border:1px solid rgba(255,255,255,.08); border-radius:13px 13px 0 0; font-family:var(--mono); font-size:9px; }
         .project-modal__screen{ height:calc(100vh - 126px); min-height:620px; overflow:auto; background:#fff; border-radius:0 0 13px 13px; scrollbar-width:thin; }
         .project-modal__screen img{ width:100%; height:auto; display:block; }
-        .project-modal__details{ padding:58px 38px 38px; overflow:auto; }
+        .project-modal__details{ padding:58px 38px 38px; overflow-y:auto; overscroll-behavior:contain; scrollbar-width:thin; scrollbar-color:rgba(124,58,237,.55) rgba(20,20,35,.08); }
+        .project-modal__details::-webkit-scrollbar,.project-modal__screen::-webkit-scrollbar{ width:8px; }
+        .project-modal__details::-webkit-scrollbar-track,.project-modal__screen::-webkit-scrollbar-track{ background:rgba(20,20,35,.06); border-radius:99px; }
+        .project-modal__details::-webkit-scrollbar-thumb,.project-modal__screen::-webkit-scrollbar-thumb{ background:linear-gradient(180deg,var(--purple),var(--orange)); border-radius:99px; border:2px solid transparent; background-clip:padding-box; }
         .project-modal__eyebrow{ display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-bottom:15px; }
         .project-modal__eyebrow > span:first-child{ font-family:var(--mono); font-size:10px; color:var(--purple-2); font-weight:700; text-transform:uppercase; letter-spacing:.07em; }
         .project-modal__details h2{ font-size:clamp(28px,3.5vw,42px); line-height:1.13; letter-spacing:-.035em; margin:0 0 15px; }
@@ -1351,7 +1353,7 @@ export default function App() {
 
         @media (max-width:860px){
           .project-modal{ padding:12px; }
-          .project-modal__dialog{ grid-template-columns:1fr; border-radius:20px; }
+          .project-modal__dialog{ grid-template-columns:1fr; border-radius:20px; max-height:calc(100vh - 24px); }
           .project-modal__visual{ padding:12px; }
           .project-modal__screen{ height:52vh; min-height:360px; }
           .project-modal__details{ padding:34px 20px 26px; }
@@ -1522,6 +1524,12 @@ export default function App() {
         .contact{ background:var(--bg-light); }
         .contact-grid{ display:grid; grid-template-columns:1fr; gap:40px; }
         @media (min-width:960px){ .contact-grid{ grid-template-columns:0.85fr 1.15fr; gap:56px; align-items:start; } }
+        @media (max-width:600px){ .contact-intro__eyebrow{ font-size:11px; } .contact-intro h2{ font-size:32px; } .contact-intro p{ font-size:16px; } }
+        .contact-intro{ margin-bottom:34px; }
+        .contact-intro__eyebrow{ display:inline-flex; align-items:center; gap:12px; font-size:13px; font-weight:800; letter-spacing:.12em; color:var(--ink); margin-bottom:22px; }
+        .contact-intro__eyebrow::before{ content:''; width:54px; height:4px; border-radius:99px; background:var(--orange); }
+        .contact-intro h2{ font-size:clamp(32px,4vw,48px); line-height:1.12; letter-spacing:-.04em; margin:0 0 20px; max-width:680px; }
+        .contact-intro p{ color:var(--gray-on-light); font-size:18px; line-height:1.75; margin:0; max-width:700px; }
 
         .c-info-card{ display:flex; align-items:center; gap:14px; background:#fff; border:1px solid var(--line-light); border-radius:14px; padding:16px 18px; margin-bottom:14px; transition:transform .3s ease, box-shadow .3s ease; }
         .c-info-card:hover{ transform:translateX(4px); box-shadow:0 20px 34px -24px rgba(20,20,35,0.25); }
@@ -2228,8 +2236,13 @@ export default function App() {
           />
           <section className="contact sec">
             <div className="wrap contact-grid">
-              <div>
-                <Reveal>
+              <div className="contact-intro-column">
+                <Reveal className="contact-intro">
+                  <span className="contact-intro__eyebrow">CONTACT DETAILS</span>
+                  <h2>Let's talk about what you're building.</h2>
+                  <p>Share a few details about your project, goals, or the challenge you're trying to solve. I'll review everything and get back to you with clear next steps.</p>
+                </Reveal>
+                <Reveal delay={80}>
                   {CONTACT_INFO.map((c) => {
                     const Wrap = c.href ? "a" : "div";
                     return (
