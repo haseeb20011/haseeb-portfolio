@@ -1474,7 +1474,7 @@ export default function App() {
         .footer{ background:var(--bg-darkest); color:var(--gray-on-dark); padding:60px 0 24px; border-top:1px solid var(--line-dark); }
         .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; margin-bottom:48px; }
         @media (min-width:760px){ .footer-grid{ grid-template-columns:1.4fr 0.6fr 1.3fr 1.1fr; gap:30px; } }
-        .footer-brand p{ font-size:14.5px; line-height:1.8; margin:14px 0 20px; max-width:260px; color:var(--gray-on-dark-2); }
+        .footer-brand p{ font-size:14.5px; line-height:1.8; margin:14px 0 20px; max-width:300px; color:var(--gray-on-dark-2); }
         @media screen and (max-width: 480px) {
   .footer-brand p {
         font-size:14.5px; line-height:1.8; margin:14px 0 0px; max-width:360px; color:var(--gray-on-dark-2); 
