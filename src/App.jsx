@@ -1439,6 +1439,11 @@ export default function App() {
         .footer-grid{ display:grid; grid-template-columns:1fr; gap:40px; margin-bottom:48px; }
         @media (min-width:760px){ .footer-grid{ grid-template-columns:1.3fr 1fr 1fr 1.1fr; gap:30px; } }
         .footer-brand p{ font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:260px; color:var(--gray-on-dark-2); }
+        @media screen and (max-width: 480px) {
+  .footer-brand p {
+        font-size:13px; line-height:1.8; margin:14px 0 20px; max-width:360px; color:var(--gray-on-dark-2); 
+  }
+}
         .footer h5{ color:#fff; font-size:13.5px; font-weight:700; margin:0 0 18px; }
         .footer-links{ display:flex; flex-direction:column; gap:11px; }
         .footer-links a{ font-size:13px; color:var(--gray-on-dark-2); transition:color .25s ease; background:none; border:none; text-align:left; padding:0; }
